@@ -1,0 +1,40 @@
+<mat-toolbar color="primary" class="navigation">
+  <i class="material-icons" style="color: red;font-size: 36px;">event_seat</i>
+  <button mat-button>首页</button>
+  <button mat-button>发现</button>
+  <button mat-button>话题</button>
+  <button mat-button>提问</button>
+  <span class="example-fill-remaining-space"></span>
+  <div class="example-fill-remaining-space">
+    <div class="example-container">
+      <mat-form-field [floatLabel]="">
+        <input matInput  [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <mat-placeholder class="placeholder" style="color: white; font-size: 14px;" >搜索....</mat-placeholder>
+        <mat-icon matSuffix style="font-size: smaller;" ></mat-icon>
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+            <span>{{ state.name }}</span> |
+            <small>Population: {{state.population}}</small>
+            <mat-divider></mat-divider>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-button >私信</button>
+  <button mat-button >个人</button>
+</mat-toolbar>
+
+<br>
+
+<div class="example-container">
+</div>
+
+
+
+
+
+
+

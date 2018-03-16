@@ -1,0 +1,47 @@
+.navigation {
+  -moz-box-shadow: 0px 5px 10px #888888; /* 老的 Firefox */
+  box-shadow: 0px 5px 10px #888888;
+}
+
+.example-fill-remaining-space {
+  /* This fills the remaining space, by using flexbox.
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+  align-items:center;
+  justify-content:center;
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.center-card {
+  margin: auto;
+}
+
+:host /deep/ .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+  color: white;
+}
+
+
+:host /deep/ .mat-form-field-underline {
+  background-color: red;
+}
+
+.dummy-input-field .mat-input-placeholder {
+  color: white;
+}
+
+.example-container > * {
+  display: block;
+  max-width: 80%;
+}
+
+:host /deep/ .mat-toolbar-row, .mat-toolbar-single-row {
+  /*height: auto;*/
+}
