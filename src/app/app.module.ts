@@ -10,28 +10,17 @@ import {
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {IndexFeedsComponent} from './pages/index-feeds/index-feeds.component';
+import {PagesModule} from './pages/pages.moudle';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
-    IndexFeedsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,
-    // material
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatAutocompleteModule,
-    MatDividerModule,
+    PagesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

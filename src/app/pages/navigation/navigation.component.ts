@@ -9,7 +9,7 @@ export class State {
 }
 
 @Component({
-  selector: 'app-navigation',
+  selector: 'app-pages-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.css'],
 })

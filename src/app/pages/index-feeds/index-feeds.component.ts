@@ -7,7 +7,7 @@ import {State} from '../navigation/navigation.component';
 
 
 @Component({
-  selector: 'index-feeds',
+  selector: 'app-pages-index-feeds',
   templateUrl: './index-feeds.component.html',
   styleUrls: ['./index-feeds.component.css'],
 })
