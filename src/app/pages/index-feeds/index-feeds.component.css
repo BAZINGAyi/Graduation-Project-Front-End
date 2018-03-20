@@ -1,7 +1,61 @@
+.feeds-container {
+  padding: 16px;
+}
 .example-card {
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .center-card {
   margin: auto;
 }
+
+.card-feeds-container {
+  display: flex;
+}
+
+.card-feeds-img {
+  max-width: 200px;
+  max-height: 150px;
+}
+
+.card-feeds-text {
+  padding-left: 20px;
+
+  flex: 1 1 auto;
+  align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-feeds-text-header {
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.card-feeds-text-content {
+  max-height: 120px;
+  position:relative;
+  overflow:hidden;
+}
+
+.card-feeds-text-content::after {
+  content:"...";
+  font-weight:bold;
+  position:absolute;
+  bottom:0;
+  right:0;
+  padding:0 20px 1px 45px;
+  background:url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
+}
+
+/*three part*/
+
+:host /deep/ .mat-card {
+  padding: 16px;
+}
+
+.clear-padding {
+  margin: 0 !important;
+ }

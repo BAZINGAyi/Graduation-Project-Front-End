@@ -1,6 +1,11 @@
 .navigation {
   -moz-box-shadow: 0 5px 5px #888888; /* 老的 Firefox */
   box-shadow: 0 5px 5px #888888;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.bar-width-normal {
 }
 
 .example-fill-remaining-space {

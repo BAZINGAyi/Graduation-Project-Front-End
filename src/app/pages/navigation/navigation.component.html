@@ -1,33 +1,33 @@
 <!--navigation-->
 <mat-toolbar color="primary" class="navigation">
-  <span class="example-fill-remaining-space"></span>
-  <i class="material-icons" style="color: white;font-size: 36px;">event_seat</i>
-  <button mat-button>首页</button>
-  <button mat-button>发现</button>
-  <button mat-button>话题</button>
-  <button mat-button>提问</button>
-  <span class="example-fill-remaining-space"></span>
-  <div class="example-fill-remaining-space center">
-    <!--search input-->
-    <div class="example-container">
-      <mat-form-field [floatLabel]="">
-        <input matInput  [matAutocomplete]="auto" [formControl]="stateCtrl">
-        <mat-placeholder class="placeholder" style="color: white; font-size: 14px;" >搜索....</mat-placeholder>
-        <mat-icon matSuffix style="font-size: smaller;" >search</mat-icon>
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
-            <span>{{ state.name }}</span> |
-            <small>Population: {{state.population}}</small>
-            <mat-divider></mat-divider>
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
+    <!--<span class="example-fill-remaining-space"></span>-->
+    <i class="material-icons" style="color: white;font-size: 36px;">event_seat</i>
+    <button mat-button>首页</button>
+    <button mat-button>发现</button>
+    <button mat-button>话题</button>
+    <button mat-button>提问</button>
+    <span class="example-fill-remaining-space"></span>
+    <div class="example-fill-remaining-space center">
+      <!--search input-->
+      <div class="example-container">
+        <mat-form-field [floatLabel]="">
+          <input matInput  [matAutocomplete]="auto" [formControl]="stateCtrl">
+          <mat-placeholder class="placeholder" style="color: white; font-size: 14px;" >搜索....</mat-placeholder>
+          <mat-icon matSuffix style="font-size: smaller;" >search</mat-icon>
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+              <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+              <span>{{ state.name }}</span> |
+              <small>Population: {{state.population}}</small>
+              <mat-divider></mat-divider>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
     </div>
-  </div>
-  <button mat-button ><i class="material-icons">message</i></button>
-  <button mat-button ><i class="material-icons">person_pin</i></button>
-  <span class="example-fill-remaining-space"></span>
+    <button mat-button ><i class="material-icons">message</i></button>
+    <button mat-button ><i class="material-icons">person_pin</i></button>
+    <!--<span class="example-fill-remaining-space"></span>-->
 </mat-toolbar>
 
 
