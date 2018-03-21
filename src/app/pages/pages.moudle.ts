@@ -11,6 +11,7 @@ import {
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PagesComponent} from './pages.component';
 import {IndexModule} from './index/index.moudle';
+import {ProgressBarServiceComponent} from '../shared/progressbar/progressBarService.component';
 
 
 @NgModule({
@@ -35,6 +36,6 @@ import {IndexModule} from './index/index.moudle';
   ],
   declarations: [ NavigationComponent, PagesComponent ],
   exports:      [ PagesComponent ],
-  providers:    [  ]
+  providers:    [ ProgressBarServiceComponent ]
 })
 export class PagesModule {}

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+           <html>
+           <head>
+           <meta charset="UTF-8">
+             <style>
+               /*Demo1*/
+               .CenterMe {
+                 background-color: indigo;
+                 color: #ebebeb;
+                 font-family: 'Oswald', sans-serif;
+                 font-size: 2rem;
+                 text-transform: uppercase;
+                 height: 200px;
+
+                 display: flex; /**设置 flexbox 布局**/
+                 align-items: center; /**这是要在Flexbox中沿交叉轴对齐项目**/
+                 justify-content: center; /**内容主轴居中**/
+               }
+              /*Demo2*/
+              .MenuWrap {
+                background-color: indigo;
+                font-family: 'Oswald', sans-serif;
+                font-size: 1rem;
+                min-height: 2.75rem;
+                display: flex;
+                align-items: center;
+                padding: 0 1rem;
+              }
+              .ListItem,
+              .LastItem {
+                color: #ebebeb;
+                text-decoration: none;
+              }
+              .ListItem {
+                margin-right: 1rem; /**在 flex box 中的子元素，默认是弹性布局**/
+              }
+              .LastItem {
+                margin-left: auto; /**让最后一项用上所有可能得外边距**/
+              }
+              /*Demo3*/
+              .MenuWrap-reverse {
+                background-color: indigo;
+                font-family: 'Oswald', sans-serif;
+                font-size: 1rem;
+                min-height: 2.75rem;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                padding: 0 1rem;
+              }
+              .ListItem-reverse,
+              .LastItem-reverse {
+                color: #ebebeb;
+                text-decoration: none;
+              }
+              .ListItem-reverse {
+                margin-right: 1rem;
+              }
+              .LastItem-reverse {
+                margin-right: auto;
+              }
+              /*Demo4*/
+              .MenuWrap-vertical {
+                background-color: indigo;
+                font-family: 'Oswald', sans-serif;
+                font-size: 1rem;
+                min-height: 2.75rem;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding: 0 1rem;
+              }
+              .ListItem-vertical,
+              .LastItem-vertical {
+                color: #ebebeb;
+                text-decoration: none;
+              }
+              /*Demo5*/
+              .InlineFlex {
+                display: inline-flex;
+                align-items: center;
+                height: 120px;
+                padding: 0 4px;
+                background-color: indigo;
+                text-decoration: none;
+                border-radius: 3px;
+                color: #ddd;
+              }
+              /*Demo6*/
+              .FlexWrapper {
+                background-color: indigo;
+                display: flex;
+                height: 200px;
+                width: 400px;
+              }
+              .FlexInner {
+                background-color: #34005B;
+                display: flex;
+                height: 100px;
+                width: 200px;
+              }
+              .FlexWrapper-vertical {
+                background-color: indigo;
+                display: flex;
+                height: 200px;
+                width: 400px;
+                align-items: center; /**主轴为横轴，交叉轴为纵轴**/ /**align-items在交叉轴上定位元素。应用在包裹下的所有子元素**/
+              }
+              .AlignSelf {
+                background-color: #34005B;
+                align-self: flex-end; /**控制自己的对齐方式**/
+              }
+              .FlexWrapper-base {
+                background-color: indigo;
+                display: flex;
+                justify-content: space-between; /**控制沿Flexbox主轴对齐的属性是justify-content**/
+                height: 200px;
+                width: 100%;
+              }
+              .FlexWrapper-base1 {
+                background-color: indigo;
+                display: flex;
+                justify-content: space-around;
+                height: 200px;
+                width: 100%;
+              }
+              .FlexInner-base {
+                background-color: #34005B;
+                display: flex;
+                height: 100px;
+                width: 25%;
+              }
+              /*Demo7*/
+               .FlexItems-Telescopic {
+                 border: 1px solid #ebebeb;
+                 background-color: #34005B;
+                 display: flex;
+                 height: 100px;
+               }
+               .FlexOne-Telescopic {
+                 flex: 1.5 0 auto; /**auto 内容的固有宽度**/
+                 /** flex: flex-grow(空间足够，伸展的最大宽度) flex-shrink(空间不足，伸展最大宽度) flex-basis(伸缩项的基准值) **/
+               }
+               .FlexTwo-Telescopic,
+               .FlexThree-Telescopic {
+                 flex: 1 0 auto;
+               }
+               /*Demo7*/
+               .FlexHeader {
+                 background-color: #105B63;
+                 order: 1;
+               }
+               .FlexContent {
+                 background-color: #FFFAD5;
+                 order: 2;
+               }
+               .FlexSideOne {
+                 background-color: #FFD34E;
+                 order: 3;
+               }
+               .FlexSideTwo {
+                 background-color: #DB9E36;
+                 order: 4;
+               }
+               .FlexFooter {
+                 background-color: #BD4932;
+                 order: 5;
+               }
+             </style>
+
+</head>
+<body>
+<h1>CSS Flexible Box Layout</h1>>
+<!--Demo1-->
+<h2>方便地垂直居中内容</h2>
+<div class="CenterMe">
+  Hello, I'm centered with Flexbox!
+</div>
+<!--Demo2-->
+<h2>偏移</h2>
+<div class="MenuWrap">
+  <a href="#" class="ListItem">Home</a>
+  <a href="#" class="ListItem">About Us</a>
+  <a href="#" class="ListItem">Products</a>
+  <a href="#" class="ListItem">Policy</a>
+  <a href="#" class="LastItem">Contact Us</a>
+</div>
+<!--Demo3-->
+<h2>反序</h2>
+<div class="MenuWrap-reverse">
+  <a href="#" class="ListItem-reverse">Home</a>
+  <a href="#" class="ListItem-reverse">About Us</a>
+  <a href="#" class="ListItem-reverse">Products</a>
+  <a href="#" class="ListItem-reverse">Policy</a>
+  <a href="#" class="LastItem-reverse">Contact Us</a>
+</div>
+<!--Demo4-->
+<h2>垂直排列</h2>
+<div class="MenuWrap-vertical">
+  <a href="#" class="ListItem-vertical">Home</a>
+  <a href="#" class="ListItem-vertical">About Us</a>
+  <a href="#" class="ListItem-vertical">Products</a>
+  <a href="#" class="ListItem-vertical">Policy</a>
+  <a href="#" class="LastItem-vertical">Contact Us</a>
+</div>
+<!--Demo5-->
+<h2>行内伸缩</h2>
+<p>Here is a sentence with a <a href="http://www.w3.org/TR/cssflexbox1/#flex-containers" class="InlineFlex">inline-flex link</a>.</p>
+<!--Demo6-->
+<h2>Flexbox 的对齐</h2>
+<div class="FlexWrapper">
+  <div class="FlexInner">I am content in the inner Flexbox.</div>
+</div>
+<hr>
+<div class="FlexWrapper-vertical">
+  <div class="FlexInner">I am content in the inner Flexbox.</div>
+</div>
+<hr>
+<div class="FlexWrapper">
+  <div class="FlexInner">I am content in the inner Flexbox1.</div>
+  <div class="AlignSelf">I am content in the inner Flexbox2.</div>
+  <div class="FlexInner">I am content in the inner Flexbox3.</div>
+</div>
+<hr>
+<div class="FlexWrapper-base">
+  <div class="FlexInner-base">I am content in the inner Flexbox 1.</div>
+  <div class="FlexInner-base">I am content in the inner Flexbox 2.</div>
+  <div class="FlexInner-base">I am content in the inner Flexbox 3.</div>
+</div>
+<hr>
+<div class="FlexWrapper-base1">
+  <div class="FlexInner-base">I am content in the inner Flexbox 1.</div>
+  <div class="FlexInner-base">I am content in the inner Flexbox 2.</div>
+  <div class="FlexInner-base">I am content in the inner Flexbox 3.</div>
+</div>
+<!--Demo7-->
+<h2>flex伸缩</h2>
+<div class="FlexWrapper">
+  <div class="FlexItems-Telescopic FlexOne-Telescopic">I am content in the inner Flexbox
+    1.</div>
+  <div class="FlexItems-Telescopic FlexTwo-Telescopic">I am content in the inner Flexbox
+    2.</div>
+  <div class="FlexItems-Telescopic FlexThree-Telescopic">I am content in the inner Flexbox
+    3.</div>
+</div>
+<!--Demo7-->
+<h2>改变原始次序</h2>
+<div class="FlexWrapper">
+  <div class="FlexItems FlexContent">I am content in the Content.</div>
+  <div class="FlexItems FlexSideOne">I am content in the SideOne.</div>
+  <div class="FlexItems FlexSideTwo">I am content in the SideTwo.</div>
+  <div class="FlexItems FlexHeader">I am content in the Header.</div>
+  <div class="FlexItems FlexFooter">I am content in the Footer.</div>
+</div>
+</body>
+</html>

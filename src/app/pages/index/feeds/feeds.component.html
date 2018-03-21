@@ -1,7 +1,6 @@
 <mat-card class="example-card">
   <!--card-content-->
     <mat-card-content class="clear-padding">
-
       <!--card-header-->
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
@@ -31,34 +30,40 @@
           </div>
         </div>
       </div>
-
+      <!--card-button-->
       <div style="margin-top: 5px;">
         <button mat-button color="primary">Upvote | 210</button>
         <button mat-button>关注问题</button>
         <button mat-button disabled>2条评论</button>
       </div>
-
+      <!--expansion panel-->
       <mat-accordion>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
+        <mat-expansion-panel (opened)="openExpansionPanel()"
+                             (closed)="closeExpansionPanel()">
           <mat-expansion-panel-header>
             <mat-panel-title>
             </mat-panel-title>
-            <mat-panel-description style="display:block; text-align: right;">
+            <mat-panel-description class="expansion-panel-description">
               More
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <!--editormd-->
-          <div id="layout">
-            <div id="test-editormd-view">
-              <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>
-            </div>
+          <!-- 用于存放 editormd 的容器,这里用 editor 解析 markdown 文本-->
+          <div #tref>
+          </div>
+          <br>
+           <!-- 评论区域 -->
+          <div class="row">
+            <textarea type="text" class="col-12"></textarea>
+          </div>
+          <div class="example-container">
+            <mat-form-field>
+              <textarea matInput placeholder="Textarea"></textarea>
+            </mat-form-field>
+            <button mat-raised-button color="primary">Primary</button>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
-
   </mat-card-content>
-
 </mat-card>
 
 

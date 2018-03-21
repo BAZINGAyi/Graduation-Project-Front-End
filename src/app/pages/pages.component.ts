@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ProgressBarServiceComponent} from '../shared/progressbar/progressBarService.component';
 
 @Component({
   selector: 'app-pages',
@@ -8,9 +9,10 @@ import {Component, OnInit} from '@angular/core';
 
 export class PagesComponent implements OnInit {
 
-  constructor() {
+  constructor(private progressBarServiceComponent: ProgressBarServiceComponent) {
   }
 
   ngOnInit() {
+    this.progressBarServiceComponent.closeProgressBar();
   }
 }

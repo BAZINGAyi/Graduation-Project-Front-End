@@ -55,6 +55,19 @@
   margin: 0 !important;
 }
 
+.expansion-panel-description {
+  display:block; text-align: right;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
 /*three part*/
 
 :host /deep/ .mat-card {
@@ -63,4 +76,8 @@
 
 :host /deep/ .mat-expansion-panel:not([class*=mat-elevation-z]) {
   box-shadow: 0 0 0;
+}
+
+:host /deep/ .mat-expansion-indicator::after {
+  margin-bottom: 5px;
 }

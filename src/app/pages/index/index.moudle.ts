@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {IndexFeedsComponent} from './index-feeds/index-feeds.component';
 import {FeedsComponent} from './feeds/feeds.component';
 import {IndexComponent} from './index.component';
+import {EditorServiceComponent} from '../../shared/editor/editorService.component';
 
 
 @NgModule({
@@ -34,6 +35,6 @@ import {IndexComponent} from './index.component';
   ],
   declarations: [ IndexFeedsComponent, FeedsComponent, IndexComponent],
   exports:      [ IndexComponent ],
-  providers:    [  ]
+  providers:    [ EditorServiceComponent, ]
 })
 export class IndexModule {}

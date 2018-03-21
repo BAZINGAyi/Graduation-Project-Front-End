@@ -45,8 +45,9 @@
   max-width: 80%;
 }
 
+/* 改变 toolbar 的高度 */
 :host /deep/ .mat-toolbar-row, .mat-toolbar-single-row {
-  height: auto;
+  /* height: auto; */
 }
 
 .center{
