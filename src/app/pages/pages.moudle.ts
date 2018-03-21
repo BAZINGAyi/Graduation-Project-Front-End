@@ -1,20 +1,23 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {IndexFeedsComponent} from './index-feeds/index-feeds.component';
 import {NavigationComponent} from './navigation/navigation.component';
 import {
-  MatAutocompleteModule, MatButtonModule, MatCardModule, MatDividerModule, MatFormFieldModule, MatIconModule, MatInputModule,
+  MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
+  MatIconModule,
+  MatInputModule, MatProgressBarModule,
   MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PagesComponent} from './pages.component';
+import {IndexModule} from './index/index.moudle';
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    IndexModule,
     // material
     BrowserAnimationsModule,
     ReactiveFormsModule,
@@ -26,8 +29,11 @@ import {PagesComponent} from './pages.component';
     MatIconModule,
     MatAutocompleteModule,
     MatDividerModule,
+    MatButtonToggleModule,
+    MatProgressBarModule,
+    MatExpansionModule
   ],
-  declarations: [ IndexFeedsComponent, NavigationComponent, PagesComponent ],
+  declarations: [ NavigationComponent, PagesComponent ],
   exports:      [ PagesComponent ],
   providers:    [  ]
 })

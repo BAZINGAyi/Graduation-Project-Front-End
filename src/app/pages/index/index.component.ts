@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 
+
 @Component({
-  selector: 'app-pages',
-  templateUrl: './pages.component.html',
-  styleUrls: ['./pages.component.css']
+  selector: 'app-pages-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.css']
 })
 
-export class PagesComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
   constructor() {
   }
