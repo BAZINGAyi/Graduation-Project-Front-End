@@ -12,6 +12,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {PagesComponent} from './pages.component';
 import {IndexModule} from './index/index.moudle';
 import {ProgressBarServiceComponent} from '../shared/progressbar/progressBarService.component';
+import { QuestionModule } from './question/question.module';
+import { QuestionComponent } from './question/question.component';
 
 
 @NgModule({
@@ -19,6 +21,7 @@ import {ProgressBarServiceComponent} from '../shared/progressbar/progressBarServ
     CommonModule,
     FormsModule,
     IndexModule,
+    QuestionModule,
     // material
     BrowserAnimationsModule,
     ReactiveFormsModule,

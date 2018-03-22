@@ -6,6 +6,16 @@ import {Injectable} from '@angular/core';
 declare var $: any;
 declare var editormd: any;
 
+/**
+ *  该 service 主要用于操纵 Editor
+ *  主要功能如下：
+ *  1. 在给定 id 的 div 下, 添加可以将 markdown 解析成 html 的容器（多个）
+ *  2. 在给定 dom 的 div 下，显示进行编辑 editor 的容器 （一个）
+ *  主要类型：
+ *  1. display editor 类型，用于表示将 markdown 解析成 html 的页面
+ *  2. edit editor 类型，用于标识输入 markdown 的输入页面
+ */
+ 
 @Injectable()
 export class EditorServiceComponent {
 
@@ -17,46 +27,50 @@ export class EditorServiceComponent {
   private editEditoTemplate = '<div id="editEditorId">' +
                                   '<textarea style="display:none;" name="">###Hello</textarea>' +
                               '</div>';
-  // 用于加入 div 中的 editor 模板
-  private displayEditorTemplate = '<div id="displayEditorId">' +
-                                    '<textarea style="display:none;" name="">###Hello</textarea>' +
-                                 '</div>';
 
   /**
-   * 添加内容到相应的 div 中
+   * 根据提高 dom id，在其中添加 editor 显示页面
    * @param {string} refElement
    * @param {string} htmlContent
    */
-  public appendHtmlContentToContainer(refElement: any, htmlContent: string) {
-    if (refElement != null && refElement !== '' && htmlContent != null && htmlContent !== '') {
-      // const innerHtml = refElement.nativeElement.textContent.trim();
-      // console.log('---' + innerHtml + '----');
-      // // 添加内容到 div 中
-      // if (innerHtml !== '' && innerHtml != null) {
-      //   alert(123);
-      //   return;
-      // }
-      refElement.nativeElement.innerHTML = '';
-      refElement.nativeElement.innerHTML = this.displayEditorTemplate;
-      this.generateDisplayEditor();
+  public appendHtmlContentToContainer(containerId: string, htmlContent: string) {
+    // 输入不正确，不允许添加
+    if (containerId == null || containerId == '' || htmlContent == null || htmlContent == '') {
+      return;
     }
+    const container = document.getElementById(containerId);
+    const containerInnerText = container.innerText;
+    // 证明该页面已经加载过 display editor，不重新进行加载
+    if (containerInnerText != null && containerInnerText != '') {
+      return;
+    }
+    // 添加 display editor 
+    // 要想生成一个 editor 解析的页面需要进行两个步骤
+    // 1. 在想要添加的 dom 节点内生成 editor 的容器
+    // 2. 在生成 editor 的容器内进行初始化 editor 的操作
+    // 这里的需求是在一个单页程序中可以存在多个用于展示的 editor 的内容，所以需要传入 id 进行区分
+    container.innerHTML = this.generateDisplayEditorTemplate(containerId);
+    this.generateDisplayEditor(this.displayEditorId + containerId);
   }
 
   /**
    * 添加输入界面到相应的 div 中
    * @param {string} containerId
    */
-  private appendEditorToContainer(containerId: string) {
-    if (containerId != null && containerId !== '') {
+  public appendEditorToContainer(refElement: any) {
+    if (refElement != null) {
       // 添加内容到 div 中
+      refElement.nativeElement.innerHTML = '';
+      refElement.nativeElement.innerHTML = this.editEditoTemplate;
+      this.genernateEditEditor();
     }
   }
 
   /**
-   * 生成显示 Editor 内容的页面
+   * 生成显示 display Editor 内容的页面
    */
-  private generateDisplayEditor() {
-    editormd.markdownToHTML(this.displayEditorId, {
+  private generateDisplayEditor(displayEditorId: string) {
+    editormd.markdownToHTML(displayEditorId, {
       markdown        : this.text ,
       tocm            : true,    // Using [TOCM]
       emoji           : true,
@@ -69,18 +83,40 @@ export class EditorServiceComponent {
 
   /**
    * 生成编辑 Editor 内容的页面
+   * 编辑后保存的内容尽量是 html 形式，如果是 markdown 形式，则会造成多次渲染 editor
    */
-  public genernateEditEditor() {
-    editormd.markdownToHTML(this.editEditorId, {
-      markdown        : this.text ,
-      tocm            : true,    // Using [TOCM]
-      emoji           : true,
-      taskList        : true,
-      tex             : true,  // 默认不解析
-      flowChart       : true,  // 默认不解析
-      sequenceDiagram : true,  // 默认不解析
+  private genernateEditEditor() {
+    editormd(this.editEditorId, {
+      width   : "90%",
+      height  : 640,
+      syncScrolling : "single",
+      path    : "../../../../assets/editor/lib/"，
+      saveHTMLToTextarea : true,
+      toolbarIcons : function() {
+          return ["undo", "redo", "|", "bold", "hr", "|"]
+      },
+      imageUpload : true,
+      imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+      imageUploadURL : "/testMarkdown"
     });
   }
+
+  /**
+   * 生成用于显示 display editor 的 div 容器 
+   * @param displayEditorId 用于在显示 editor 的 div 的 id
+   */
+  private generateDisplayEditorTemplate(displayEditorId:string) {
+
+    if (displayEditorId == null || displayEditorId == '') {
+      return null;
+    }
+
+    let displayEditorTemplate = '<div id="displayEditorId' + displayEditorId + '">' +
+                                    '<textarea style="display:none;" name="">###Hello</textarea>' +
+                                '</div>';
+    return displayEditorTemplate;
+  }
+
   private text = 'let markdown = \'# Editor.md\\n\' +\n' +
     '      \'\\n\' +\n' +
     '      \'![](https://pandao.github.io/editor.md/images/logos/editormd-logo-180x180.png)\\n\' +\n' +

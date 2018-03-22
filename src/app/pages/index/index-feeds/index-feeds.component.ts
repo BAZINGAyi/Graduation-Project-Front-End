@@ -12,7 +12,7 @@ export class IndexFeedsComponent implements OnInit {
   feeds = [1];
 
   ngOnInit(): void {
-    // this.feeds.push(1);
+    this.feeds.push(2);
     // this.feeds.push(2);
     // this.feeds.push(3);
     // this.feeds.push(4);

@@ -13,7 +13,6 @@ import {FeedsComponent} from './feeds/feeds.component';
 import {IndexComponent} from './index.component';
 import {EditorServiceComponent} from '../../shared/editor/editorService.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -33,7 +32,7 @@ import {EditorServiceComponent} from '../../shared/editor/editorService.componen
     MatProgressBarModule,
     MatExpansionModule
   ],
-  declarations: [ IndexFeedsComponent, FeedsComponent, IndexComponent],
+  declarations: [ IndexFeedsComponent, FeedsComponent, IndexComponent ],
   exports:      [ IndexComponent ],
   providers:    [ EditorServiceComponent, ]
 })
