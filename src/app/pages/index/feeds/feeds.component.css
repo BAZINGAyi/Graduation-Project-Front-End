@@ -2,20 +2,25 @@
   padding: 16px;
 }
 .example-card {
-  max-width: 800px;
-}
-
-.center-card {
-  margin: auto;
+  max-width: 43.5rem;
+  padding: 0.5rem !important;
+  margin-bottom: 1rem;
+  /* margin-right: auto;
+  margin-left: auto; */
 }
 
 .card-feeds-container {
   display: flex;
 }
 
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
 .card-feeds-img {
-  width: 200px;
-  height: 120px;
+  max-width: 200px;
+  max-height: 120px;
 }
 
 .card-feeds-text {
@@ -80,4 +85,10 @@
 
 :host /deep/ .mat-expansion-indicator::after {
   margin-bottom: 5px;
+}
+
+:host /deep/ .mat-expansion-panel-header {
+  height: 1rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }

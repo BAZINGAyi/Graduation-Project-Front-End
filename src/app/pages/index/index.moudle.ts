@@ -5,13 +5,16 @@ import {
   MatAutocompleteModule, MatButtonModule, MatButtonToggleModule, MatCardModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
   MatIconModule,
   MatInputModule, MatProgressBarModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatListModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {IndexFeedsComponent} from './index-feeds/index-feeds.component';
 import {FeedsComponent} from './feeds/feeds.component';
 import {IndexComponent} from './index.component';
 import {EditorServiceComponent} from '../../shared/editor/editorService.component';
+import { HotQuestionComponent } from './hot-question/hot-question.component';
+import { IndexProfileComponent } from './index-profile/index-profile.component';
 
 @NgModule({
   imports: [
@@ -30,9 +33,10 @@ import {EditorServiceComponent} from '../../shared/editor/editorService.componen
     MatDividerModule,
     MatButtonToggleModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatListModule,
   ],
-  declarations: [ IndexFeedsComponent, FeedsComponent, IndexComponent ],
+  declarations: [ IndexFeedsComponent, FeedsComponent, IndexComponent, HotQuestionComponent, IndexProfileComponent ],
   exports:      [ IndexComponent ],
   providers:    [ EditorServiceComponent, ]
 })

@@ -1,4 +1,11 @@
 <div class="feeds-container">
-  <app-pages-feeds *ngFor="let feed of feeds" [content] = "feed">
-  </app-pages-feeds>
+  <span class="fill-remaining-space"></span>
+  <div>
+      <app-index-profile></app-index-profile>
+      <app-pages-feeds *ngFor="let feed of feeds" [content] = "feed"></app-pages-feeds>
+  </div>
+  <div>
+      <app-hot-question></app-hot-question>
+  </div>
+  <span class="fill-remaining-space"></span>
 </div>

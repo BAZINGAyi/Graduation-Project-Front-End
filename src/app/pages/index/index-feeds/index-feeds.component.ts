@@ -13,10 +13,9 @@ export class IndexFeedsComponent implements OnInit {
 
   ngOnInit(): void {
     this.feeds.push(2);
-    // this.feeds.push(2);
-    // this.feeds.push(3);
-    // this.feeds.push(4);
-    // this.feeds.push(5);
+    this.feeds.push(3);
+    this.feeds.push(4);
+    this.feeds.push(5);
   }
 
   constructor() {

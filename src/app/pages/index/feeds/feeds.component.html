@@ -1,35 +1,73 @@
+<mat-card class="example-card center-card">
+  <!--card-content-->
+    <mat-card-content class="clear-padding">
+      <!--card-header-->
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-subtitle>Dog Breed , 2018.10.2 16:30:22</mat-card-subtitle>
+      </mat-card-header>
+      <div class="card-feeds-container">
+        <!--card-left-content-->
+        <img class="card-feeds-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+        <!--card-right-content-->
+        <div class="card-feeds-text">
+          <!--card-content-header-->
+          <h2 class="card-feeds-text-header">
+            The Shiba Inu is the smallest of
+          </h2>
+          <!--card-content-content-->
+          <div class="card-feeds-text-content">
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </div>
+        </div>
+      </div>
+      <!--card-button-->
+      <div style="margin-top: 5px;">
+        <button mat-button color="primary">Upvote | 210</button>
+        <button mat-button>关注问题</button>
+        <button mat-button disabled>2条评论</button>
+      </div>
+      <!--expansion panel-->
+     <!--expansion panel-->
+    <mat-accordion>
+      <mat-expansion-panel (opened)="openExpansionPanel()"
+                          (closed)="closeExpansionPanel()">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          </mat-panel-title>
+          <mat-panel-description class="expansion-panel-description">
+            More
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <!-- 用于存放 editormd 的容器,这里用 editor 解析 markdown 文本-->
+        <div id={{content}}>
+        </div>
+        <br>
+        <!-- 评论区域 -->
+        <!-- <div class="row">
+          <textarea type="text" class="col-12"></textarea>
+        </div>
+        <div class="example-container">
+          <mat-form-field>
+            <textarea matInput placeholder="Textarea"></textarea>
+          </mat-form-field>
+          <button mat-raised-button color="primary">Primary</button>
+        </div> -->
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>
 
 
-<br>
 
 
 
-
-
-<!--expansion panel-->
-<mat-accordion>
-  <mat-expansion-panel (opened)="openExpansionPanel()"
-                       (closed)="closeExpansionPanel()">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-      </mat-panel-title>
-      <mat-panel-description class="expansion-panel-description">
-        More
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <!-- 用于存放 editormd 的容器,这里用 editor 解析 markdown 文本-->
-    <div id={{content}}>
-    </div>
-    <br>
-     <!-- 评论区域 -->
-    <!-- <div class="row">
-      <textarea type="text" class="col-12"></textarea>
-    </div>
-    <div class="example-container">
-      <mat-form-field>
-        <textarea matInput placeholder="Textarea"></textarea>
-      </mat-form-field>
-      <button mat-raised-button color="primary">Primary</button>
-    </div> -->
-  </mat-expansion-panel>
-</mat-accordion>
