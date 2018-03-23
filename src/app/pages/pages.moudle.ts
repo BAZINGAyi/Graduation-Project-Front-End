@@ -14,14 +14,17 @@ import {IndexModule} from './index/index.moudle';
 import {ProgressBarServiceComponent} from '../shared/progressbar/progressBarService.component';
 import { QuestionModule } from './question/question.module';
 import { QuestionComponent } from './question/question.component';
+import { BrowserModule } from '@angular/platform-browser';
 
 
 @NgModule({
   imports: [
+    BrowserModule,
     CommonModule,
     FormsModule,
     IndexModule,
     QuestionModule,
+    
     // material
     BrowserAnimationsModule,
     ReactiveFormsModule,

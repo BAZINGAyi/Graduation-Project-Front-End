@@ -9,10 +9,16 @@ import {ProgressBarServiceComponent} from '../shared/progressbar/progressBarServ
 
 export class PagesComponent implements OnInit {
 
+  INDEX_VIEW_TAG = 'INDEX_TAG';
+  QUESTION_VIEW_TAG = 'QUESTION_TAG';
+  FANS_VIEW_TAG = 'FANS_VIEW_TAG';
+  CURRENT_VIEW_TAG = this.INDEX_VIEW_TAG;
+
   constructor(private progressBarServiceComponent: ProgressBarServiceComponent) {
   }
 
   ngOnInit() {
     this.progressBarServiceComponent.closeProgressBar();
   }
+
 }

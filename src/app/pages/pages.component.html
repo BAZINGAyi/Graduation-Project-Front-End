@@ -1,4 +1,14 @@
 <app-pages-navigation></app-pages-navigation>
 <mat-progress-bar mode="indeterminate" id="pagesProgressBar"></mat-progress-bar>
-<app-pages-index></app-pages-index>
-<app-question></app-question>
+<!-- 显示主页页面 -->
+<div *ngIf="(CURRENT_VIEW_TAG == INDEX_VIEW_TAG)">
+    <app-pages-index ></app-pages-index>
+</div>
+<!-- 显示问题页页面 -->
+<div *ngIf="(CURRENT_VIEW_TAG == QUESTION_TAG)" >
+    <app-question ></app-question>
+</div>
+<!-- 显示 FANS 页页面 -->
+<div *ngIf="(CURRENT_VIEW_TAG == FANS_VIEW_TAG)" >
+    <app-question ></app-question>
+</div>
