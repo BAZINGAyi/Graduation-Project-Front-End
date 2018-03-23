@@ -90,10 +90,12 @@ export class EditorServiceComponent {
       width   : "90%",
       height  : 640,
       syncScrolling : "single",
-      path    : "../../../../assets/editor/lib/"，
+      path    : "../../../../assets/editor/lib/",
       saveHTMLToTextarea : true,
       toolbarIcons : function() {
-          return ["undo", "redo", "|", "bold", "hr", "|"]
+          return ["undo", "redo", "|", "bold", "hr", "|", "preview",
+           "watch", "|", "fullscreen", "image",'code','code-block','clear',
+           'search','list-ol','reference-link'];
       },
       imageUpload : true,
       imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],

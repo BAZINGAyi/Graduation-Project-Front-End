@@ -10,7 +10,6 @@ import { HotQuestionComponent } from './pages/index/hot-question/hot-question.co
 @NgModule({
   declarations: [
     AppComponent,
-    HotQuestionComponent,
   ],
   imports: [
     BrowserModule,

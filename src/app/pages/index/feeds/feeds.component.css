@@ -19,13 +19,12 @@
 }
 
 .card-feeds-img {
-  max-width: 200px;
-  max-height: 120px;
+  width: 14rem;
+  height: 8rem;
 }
 
 .card-feeds-text {
   padding-left: 20px;
-
   flex: 1 1 auto;
   align-items:center;
   display: flex;
@@ -36,12 +35,13 @@
 .card-feeds-text-header {
   text-align: center;
   font-weight: bold;
-  font-size: large;
+  font-size: 1.5rem;
 }
 
 .card-feeds-text-content {
-  max-height: 100px;
-  line-height: 0.8rem;
+  height: 6.5rem;
+  font-size: 0.8rem;
+  line-height: 1.3rem;
   position:relative;
   overflow:hidden;
 }
