@@ -11,3 +11,16 @@
   justify-content:center;
 }
 
+.fix-div{ 
+  position: fixed;
+  top:  3.5rem;
+  right: 1rem;
+  width: 20rem;
+}
+
+.hot-question-container {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 20rem;
+  margin-top: 1rem;
+}
