@@ -15,7 +15,7 @@ declare var editormd: any;
 export class FeedsComponent implements OnInit, AfterViewInit {
 
   // 简略内容显示的 div Id
-  private matCardContentId = 'mat-card-content-console';
+  matCardContentId = 'mat-card-content-console';
 
   // 用于接收 index-feeds 传过来的 id，用于标识每个 feeds
   @Input() content: string;

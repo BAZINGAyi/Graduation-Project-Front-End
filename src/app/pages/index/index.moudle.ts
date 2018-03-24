@@ -15,6 +15,8 @@ import {IndexComponent} from './index.component';
 import {EditorServiceComponent} from '../../shared/editor/editorService.component';
 import { HotQuestionComponent } from './hot-question/hot-question.component';
 import { IndexProfileComponent } from './index-profile/index-profile.component';
+import { JqueryServiceComponent } from '../../shared/jquery/jQueryService.component';
+import { IndexServiceComponent } from './shared/IndexServiceComponent';
 
 @NgModule({
   imports: [
@@ -38,6 +40,6 @@ import { IndexProfileComponent } from './index-profile/index-profile.component';
   ],
   declarations: [ IndexFeedsComponent, FeedsComponent, IndexComponent, HotQuestionComponent, IndexProfileComponent ],
   exports:      [ IndexComponent ],
-  providers:    [ EditorServiceComponent, ]
+  providers:    [ EditorServiceComponent, JqueryServiceComponent, IndexServiceComponent ]
 })
 export class IndexModule {}

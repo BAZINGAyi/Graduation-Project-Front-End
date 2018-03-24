@@ -15,10 +15,12 @@ import {ProgressBarServiceComponent} from '../shared/progressbar/progressBarServ
 import { QuestionModule } from './question/question.module';
 import { QuestionComponent } from './question/question.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { PagesRoutingModule } from './pages-routing.module';
 
 
 @NgModule({
   imports: [
+    PagesRoutingModule,
     BrowserModule,
     CommonModule,
     FormsModule,

@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import { IndexServiceComponent } from './shared/IndexServiceComponent';
 
+declare var $: any;
 
 @Component({
   selector: 'app-pages-index',
@@ -9,9 +11,12 @@ import {Component, OnInit} from '@angular/core';
 
 export class IndexComponent implements OnInit {
 
-  constructor() {
+  constructor(private indexServiceComponent: IndexServiceComponent) {
   }
 
   ngOnInit() {
+      // 调整浮动部分视窗位置
+    this.indexServiceComponent.fixFloatInstructionDivPosition();
   }
+
 }

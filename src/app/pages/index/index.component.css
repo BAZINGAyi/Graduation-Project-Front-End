@@ -1,0 +1,26 @@
+.feeds-container {
+    padding: 1rem;
+    /* 距离导航栏的高度 */
+    padding-top: 3.5rem;
+    display: flex;
+  }
+  
+  .fill-remaining-space {
+    flex: 1 1 auto;
+    align-items:center;
+    justify-content:center;
+  }
+  
+  .fix-div{ 
+    position: fixed;
+    top:  3.5rem;
+    right: 1rem;
+    width: 20rem;
+  }
+  
+  .Instructions {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 20rem;
+    margin-top: 1rem;
+  }
