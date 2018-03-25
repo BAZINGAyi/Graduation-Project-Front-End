@@ -1,0 +1,24 @@
+<mat-card>
+    <div  class="question-header" style="font-size: 2rem">
+        Have you ever lost any respect for someone instantly?
+    </div>
+    <div class="question-content">
+        <button>关注问题</button>
+        <button>写回答</button>
+        <!-- 点击开启 markdown -->
+        <div class="editor">
+        </div>
+    </div>
+</mat-card>
+
+<mat-card style="margin-top:1rem;">
+    <div style="font-size: 1rem">
+        问题的内容描述
+    </div>
+</mat-card>
+
+<mat-card style="margin-top:1rem;">
+    <div style="font-size: 1rem">
+        回答的feed流中，应该具有评论的功能
+    </div>
+</mat-card>
