@@ -16,19 +16,19 @@ import { QuestionModule } from './question/question.module';
 import { QuestionComponent } from './question/question.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { PagesRoutingModule } from './pages-routing.module';
+import {ConnectionComponent} from '../shared/component/connection/connection.component';
 
 
 @NgModule({
   imports: [
     PagesRoutingModule,
-    BrowserModule,
+    // BrowserModule,
+    // BrowserAnimationsModule,
     CommonModule,
-    FormsModule,
+    // FormsModule,
     IndexModule,
     QuestionModule,
-    
     // material
-    BrowserAnimationsModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,

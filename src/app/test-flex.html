@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-           <html>
+<html xmlns:https="http://www.w3.org/1999/xhtml">
            <head>
            <meta charset="UTF-8">
              <style>
@@ -166,6 +166,31 @@
                  background-color: #BD4932;
                  order: 5;
                }
+               .Grid {
+                 display: flex;
+               }
+
+               .Grid-cell {
+                 flex: 1;
+               }
+
+               .Grid-cell.u-full {
+                 flex: 0 0 100%;
+               }
+
+               .Grid-cell.u-1of2 {
+                 flex: 0 0 50%;
+               }
+
+               .Grid-cell.u-1of3 {
+                 flex: 0 0 33.3333%;
+               }
+
+               .Grid-cell.u-1of4 {
+                 background-size: contain;
+                 background: url('http://demo.sc.chinaz.com//Files/DownLoad/moban/201512/moban869/images/banner.jpg') no-repeat
+
+               }
              </style>
 
 </head>
@@ -252,5 +277,14 @@
   <div class="FlexItems FlexHeader">I am content in the Header.</div>
   <div class="FlexItems FlexFooter">I am content in the Footer.</div>
 </div>
+
+<div class="Grid">
+  <div class="Grid-cell u-1of4">zhang left</div>
+  <div class="Grid-cell">123</div>
+</div>
+
+<div class="hyperlink_image u-flex-auto" style="background-image:url('https://qph.ec.quoracdn.net/main-qimg-b3edb70541ffde33485e97001599bdda'); border-radius: 3px; display: block; background-size: cover;
+background-position: center; width:12rem; height: 8rem;" ></div>
+
 </body>
 </html>

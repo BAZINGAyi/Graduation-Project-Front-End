@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {EditorServiceComponent} from './shared/editor/editorService.component';
-import { HotQuestionComponent } from './pages/index/hot-question/hot-question.component';
 import { PagesModule } from './pages/pages.module';
-import { APP_BASE_HREF } from '@angular/common';
+import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import { ErrorComponentComponent } from './authentication/error-component/error-component.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { ConnectionComponent } from './shared/component/connection/connection.component';
+import {MatCardModule} from '@angular/material';
+import {SharedModule} from './shared/component/shared.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,9 @@ import { ErrorComponentComponent } from './authentication/error-component/error-
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    CommonModule,
+    SharedModule,
     AppRoutingModule,
     FormsModule,
     PagesModule,

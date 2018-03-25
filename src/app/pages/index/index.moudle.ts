@@ -17,13 +17,16 @@ import { HotQuestionComponent } from './hot-question/hot-question.component';
 import { IndexProfileComponent } from './index-profile/index-profile.component';
 import { JqueryServiceComponent } from '../../shared/jquery/jQueryService.component';
 import { IndexServiceComponent } from './shared/IndexServiceComponent';
+import {ConnectionComponent} from '../../shared/component/connection/connection.component';
+import {SharedModule} from '../../shared/component/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    // FormsModule,
+    SharedModule,
     // material
-    BrowserAnimationsModule,
+    //BrowserAnimationsModule,
     ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,

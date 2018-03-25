@@ -1,5 +1,5 @@
-.feeds-container {
-  padding: 16px;
+.question-container {
+  padding: 1rem;
 }
 .example-card {
   max-width: 43.5rem;
@@ -19,11 +19,15 @@
 }
 
 .card-feeds-img {
-  width: 14rem;
   height: 8rem;
+  border-radius: 3px;
+  display: block;
+  background-size: cover;
+  background-position: center;
 }
 
 .card-feeds-text {
+  height: 8rem;
   padding-left: 20px;
   flex: 1 1 auto;
   align-items:center;

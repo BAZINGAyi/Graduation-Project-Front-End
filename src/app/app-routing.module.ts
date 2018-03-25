@@ -7,7 +7,7 @@ import { QuestionComponent } from './pages/question/question.component';
 import { ErrorComponentComponent } from './authentication/error-component/error-component.component';
 
 const routes: Routes = [
-  { path:'pages', loadChildren: './pages/pages.module#PagesModule',  },
+  { path: 'pages', loadChildren: 'app/pages/pages.module#PagesModule',  },
   { path: '', redirectTo: '/pages', pathMatch: 'full' },
   { path: '**', component: ErrorComponentComponent },
 ];

@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { IndexServiceComponent } from './shared/IndexServiceComponent';
+import {ConnectionComponent} from '../../shared/component/connection/connection.component';
 
 declare var $: any;
 
 @Component({
   selector: 'app-pages-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  styleUrls: ['./index.component.css'],
 })
 
 export class IndexComponent implements OnInit {

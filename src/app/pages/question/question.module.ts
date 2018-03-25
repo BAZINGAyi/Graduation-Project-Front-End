@@ -6,12 +6,14 @@ import { QuestionComponent } from './question.component';
 import { MatExpansionModule, MatToolbarModule, MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatIconModule, MatAutocompleteModule, MatButtonToggleModule, MatDividerModule, MatProgressBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
+import {SharedModule} from '../../shared/component/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
      // material
-     BrowserAnimationsModule,
+     // BrowserAnimationsModule,
      ReactiveFormsModule,
      MatToolbarModule,
      MatButtonModule,

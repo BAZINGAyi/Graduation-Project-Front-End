@@ -1,24 +1,55 @@
-<mat-card>
-    <div  class="question-header" style="font-size: 2rem">
-        Have you ever lost any respect for someone instantly?
+<mat-card class="question-header">
+  <div  class="" style="font-size: 2rem">
+    Have you ever lost any respect for someone instantly?
+  </div>
+  <div>
+    第一期罗辑思维就上了优酷首页，我刚好看到就看了，然后每一期都看。
+    罗振宇开始搞了个微信公众号，每天发一段语音60秒。（起初也有58和59秒）
+    他多次在语音和线下活动中说：我录60秒每天得六点早起，如果超过了60秒就跳掉了，等于白录，低于60秒我也不发，要刚刚好。
+    当时大家都很佩服他这种“死磕”精神。
+
+    直到有一天，他把前一天的语音重新发了一遍给我们。
+    大家发现了猫腻。
+    第二天，罗振宇的语音就说：被大家发现了，我的语音其实是提前录好的，我们的工作人员昨天在发送语音的时候出了点错误，把先前的语音重新发了一遍。
+
+    至此，罗振宇的谎言被自己闹的乌龙打脸了。
+    为了控制60秒刚好的艰辛，每天6点早起，每天坚持发语音。。。全是骗人的。
+
+    不过我已经忘记是他闹乌龙的哪年哪一天的事儿了。
+    最近和大家聊天时候我说他是个臭不要脸的骗子，大家让我举证，我举不出来。
+    知友们有知道具体是哪天的吗？
+  </div>
+  <div class="question-content">
+    <button>关注问题</button>
+    <button>写回答</button>
+    <button disabled>28条评论</button>
+    <!-- 点击开启 markdown -->
+    <div class="editor">
     </div>
-    <div class="question-content">
-        <button>关注问题</button>
-        <button>写回答</button>
-        <!-- 点击开启 markdown -->
-        <div class="editor">
-        </div>
-    </div>
+  </div>
 </mat-card>
 
-<mat-card style="margin-top:1rem;">
-    <div style="font-size: 1rem">
-        问题的内容描述
-    </div>
-</mat-card>
 
-<mat-card style="margin-top:1rem;">
+<div class="question-container">
+  <span class="fill-remaining-space"></span>
+
+  <div style="width: 43.5rem;">
+    <mat-card >
     <div style="font-size: 1rem">
-        回答的feed流中，应该具有评论的功能
+      回答的feed流中，应该具有评论的功能
     </div>
-</mat-card>
+    </mat-card>
+  </div>
+
+
+    <app-connection></app-connection>
+
+
+  <span class="fill-remaining-space"></span>
+</div>
+
+<div class="question-container">
+</div>
+
+
+
