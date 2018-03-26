@@ -8,8 +8,16 @@ import { EditorServiceComponent } from '../../../shared/editor/editorService.com
 })
 export class CommentComponent implements OnInit, AfterViewInit {
 
+  // 展示评论的评论的页面
+  @ViewChild('commentCommentsList')
+  commentCommentsDiv: ElementRef;
+
+  // 统计对评论的评论的数量统计
+  commentsCountName = '2条评论';
+
   ngAfterViewInit(): void {
     this.init();
+    this.commentCommentsDiv.nativeElement.style.display = 'none';
   }
 
   // 用于接收 index-feeds 传过来的 id，用于标识每个 feeds
@@ -48,4 +56,16 @@ export class CommentComponent implements OnInit, AfterViewInit {
     ctn.appendChild(a);
   }
 
+  /**
+   * 打开对评论的评论页面
+   */
+  openCommentComments() {
+    let divState = this.commentCommentsDiv.nativeElement.style.display;
+    if (divState === 'block') {
+      this.commentCommentsDiv.nativeElement.style.display = 'none';
+    } else if (divState === 'none') {
+      this.commentCommentsDiv.nativeElement.style.display = 'block';
+    }
+    this.commentsCountName = '收起评论列表';
+  }
 }

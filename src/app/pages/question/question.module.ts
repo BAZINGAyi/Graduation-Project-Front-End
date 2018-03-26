@@ -10,6 +10,7 @@ import {SharedModule} from '../../shared/component/shared.module';
 import {MaterialModule} from '../../shared/component/material.module';
 import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.component';
 import { QuestionCommentsComponent } from './question-comments/question-comments.component';
+import { CommentCommentsComponent } from './comment-comments/comment-comments.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { QuestionCommentsComponent } from './question-comments/question-comments
     MaterialModule,
   ],
   exports : [QuestionComponent],
-  declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent],
+  declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent, CommentCommentsComponent],
   providers: [EditorServiceComponent, JqueryServiceComponent],
 })
 export class QuestionModule { }

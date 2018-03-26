@@ -42,6 +42,8 @@ export class EditorServiceComponent {
     const containerInnerText = container.innerText;
     // 证明该页面已经加载过 display editor，不重新进行加载
     if (containerInnerText != null && containerInnerText != '') {
+      const cardContent = document.getElementById(containerId);
+      cardContent.style.display = 'block';
       return;
     }
     // 添加 display editor

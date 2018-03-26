@@ -90,7 +90,7 @@ export class QuestionComponent implements OnInit {
     //alert(content);
     var span = document.createElement("span");     //创建<span>元素
     var a = document.createElement("a");           //创建<a>元素
-    a.style.color = "#FF5252";
+    // a.style.color = "#FF5252";
     span.innerHTML = content.substring(0,len);     //span里的内容为content的前len个字符
 
     a.innerHTML = content.length>len?"... 展开":"";  ////判断显示的字数是否大于默认显示的字数    来设置a的显示

@@ -11,3 +11,8 @@
   right: 1rem;
   width: 20rem;
 }
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+}

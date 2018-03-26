@@ -8,6 +8,7 @@ import {JqueryServiceComponent} from '../jquery/jQueryService.component';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import {MaterialModule} from './material.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import {FormsModule} from '@angular/forms';
   exports: [ConnectionComponent, CommonModule],
   imports: [
     CommonModule,
-    MatCardModule,
+    MaterialModule,
     FormsModule,
   ],
   providers: [ JqueryServiceComponent ]

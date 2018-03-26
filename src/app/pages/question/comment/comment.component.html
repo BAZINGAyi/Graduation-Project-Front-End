@@ -23,21 +23,20 @@
           <i class="material-icons" style="color:#b3e5fc;margin-top: 0rem; margin-right:0.5rem;font-size:1rem;">thumb_down</i>
           Upvote | 210
         </button>
-        <button mat-button >2条评论</button>
+        <button mat-button (click)="openCommentComments()">{{commentsCountName}}</button>
       </div>
       <!--评论列表页-->
       <div>
         <!--评论列表-->
-        <mat-list role="list">
-          <mat-list-item role="listitem">Item 1</mat-list-item>
-          <mat-list-item role="listitem">Item 2</mat-list-item>
-          <mat-list-item role="listitem">Item 3</mat-list-item>
-        </mat-list>
-        <!--翻页控制-->
-        <mat-paginator [length]="100"
-                       [pageSize]="10"
-                       [pageSizeOptions]="[5, 10, 25, 100]">
-        </mat-paginator>
+        <div style="border: 1px solid #ebebeb; box-shadow: 0 1px 3px rgba(26,26,26,.1);" #commentCommentsList>
+          <app-comment-comments></app-comment-comments>
+          <!--翻页控制-->
+                  <mat-paginator [length]="100"
+                                 [pageSize]="10"
+                                 [pageSizeOptions]="[5, 10, 25, 100]">
+                  </mat-paginator>
+        </div>
+
         <!--评论-->
         <div>
           <mat-form-field style="width: 100%;">
