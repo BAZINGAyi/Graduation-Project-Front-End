@@ -6,7 +6,7 @@
       Have you ever lost any respect for someone instantly?
     </div>
     <!--问题内容-->
-    <div id="normal-padding-column">
+    <div id="normal-padding-column" style="margin-bottom: 1rem;">
       第一期罗辑思维就上了优酷首页，我刚好看到就看了，然后每一期都看。
       罗振宇开始搞了个微信公众号，每天发一段语音60秒。（起初也有58和59秒）
       他多次在语音和线下活动中说：我录60秒每天得六点早起，如果超过了60秒就跳掉了，等于白录，低于60秒我也不发，要刚刚好。
@@ -24,12 +24,12 @@
       知友们有知道具体是哪天的吗？
     </div>
     <!-- 点击开启编辑框 -->
-    <div class="editor" id="{{questionAnswerEditorId}}"></div>
-    <!--操作编辑框的按钮-->
-    <div *ngIf="EDITOR_STATE == true" class="question-content" style="display: flex; flex-direction: row-reverse;" >
-      <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;">提交回答</button>
-      <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeEditor()">取消回答</button>
-    </div>
+        <div class="editor" id="{{questionAnswerEditorId}}"></div>
+        <!--操作编辑框的按钮-->
+        <div *ngIf="EDITOR_STATE == true" class="question-content" style="display: flex; flex-direction: row-reverse;" >
+          <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;">提交回答</button>
+          <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeEditor()">取消回答</button>
+        </div>
     <!--激活编辑框的按钮-->
     <div *ngIf="EDITOR_STATE == false" class="question-content" style="margin-top: 1rem;">
       <button mat-raised-button color="primary" STYLE="background-color:#757575;">关注问题</button>

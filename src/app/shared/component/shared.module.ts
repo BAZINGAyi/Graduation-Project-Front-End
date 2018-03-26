@@ -9,17 +9,25 @@ import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
+import {AskQuestionComponent} from './ask-question/ask-question.component';
+import {SendMessageComponent} from './send-message/send-message.component';
 
 @NgModule({
   declarations: [
     ConnectionComponent,
+    AskQuestionComponent,
+    SendMessageComponent,
   ],
-  exports: [ConnectionComponent, CommonModule],
+  exports: [ConnectionComponent, CommonModule, AskQuestionComponent, SendMessageComponent],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
   ],
-  providers: [ JqueryServiceComponent ]
+  providers: [ JqueryServiceComponent ],
+  entryComponents: [
+    AskQuestionComponent,
+    SendMessageComponent,
+  ],
 })
 export class SharedModule { }

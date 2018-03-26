@@ -1,6 +1,6 @@
 .question-header {
-  padding-top: 3.5rem;
-  z-index: 10000;
+  margin-top: 3.5rem;
+  z-index: 100;
 }
 
 .question-header-text-container {
@@ -40,7 +40,7 @@
 
 /*editor*/
 :host /deep/ .editormd {
-
+ z-index: 2147483647 !important;
 }
 
 .fix-editor-div{

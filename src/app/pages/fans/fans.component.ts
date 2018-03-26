@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {EditorServiceComponent} from '../../shared/editor/editorService.component';
 
 @Component({
   selector: 'app-fans',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FansComponent implements OnInit {
 
-  constructor() { }
+  constructor(private editorService: EditorServiceComponent) { }
 
-  ngOnInit() {
+  ngOnInit(){
+    this.editorService.appendEditorToContainer("1zhang");
   }
 
+  openEditor() {
+
+  }
 }

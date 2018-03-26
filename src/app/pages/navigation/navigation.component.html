@@ -1,5 +1,5 @@
 <!--navigation-->
-<mat-toolbar color="primary" class="navigation">
+<mat-toolbar color="primary" class="navigation" id="navigationView" >
   <!-- navigation-container -->
   <div class="navigation-container">
     <!-- navigation-left -->
@@ -31,7 +31,7 @@
       <!--个人中心-->
       <div mat-card-avatar class="example-header-image" style="margin-top: 1rem; margin-left:1rem;"></div>
       <!--发送站内信-->
-      <button mat-button>
+      <button mat-button (click)="openSendMessage()">
         <i class="material-icons">message</i>
       </button>
       <!--关注列表-->

@@ -106,10 +106,19 @@ export class EditorServiceComponent {
       },
       imageUpload : true,
       imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-      imageUploadURL : "/testMarkdown"
+      imageUploadURL : "/testMarkdown",
+      onfullscreen : function() {
+        const element = document.getElementById('navigationView');
+        element.style.zIndex = '0';
+      },
+
+      onfullscreenExit : function() {
+        const element = document.getElementById('navigationView');
+        element.style.zIndex = '200';
+      }
     });
 
-    editor.setToolbarAutoFixed(true);
+
   }
 
   /**
