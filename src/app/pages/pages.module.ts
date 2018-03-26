@@ -18,6 +18,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PagesRoutingModule } from './pages-routing.module';
 import {ConnectionComponent} from '../shared/component/connection/connection.component';
 import {MaterialModule} from '../shared/component/material.module';
+import {SearchModule} from './search/search.module';
+import { FeedComponent } from './shared/feed/feed.component';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import {MaterialModule} from '../shared/component/material.module';
     CommonModule,
     IndexModule,
     QuestionModule,
+    SearchModule,
     // material
     MaterialModule,
   ],
