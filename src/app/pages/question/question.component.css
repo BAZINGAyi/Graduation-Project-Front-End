@@ -1,0 +1,74 @@
+.question-header {
+  padding-top: 3.5rem;
+  z-index: 10000;
+}
+
+.question-header-text-container {
+  display: flex;
+  flex-direction: column;
+  width: 64.5rem;
+  font-size: 1rem;
+  margin: 0 auto;
+}
+
+.question-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+  align-items:center;
+  justify-content:center;
+}
+
+.fix-div{
+  position: fixed;
+  top:  3.5rem;
+  right: 1rem;
+  width: 20rem;
+}
+
+.Instructions {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 20rem;
+  margin-top: 1rem;
+}
+
+/*editor*/
+:host /deep/ .editormd {
+
+}
+
+.fix-editor-div{
+  position: fixed;
+  top:  3.5rem;
+}
+
+/*connection*/
+:host /deep/ .Instructions{
+  margin-top: 0 !important;
+}
+
+/*utils*/
+
+.big-font{
+  font-size: 2rem;
+}
+
+.normal-padding-column {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.test{display: block;padding: 0px; position: relative; line-height: 2rem; max-height: 4rem; overflow: hidden;}
+.test::after{content: "More..."; position: absolute; bottom: 0; right: 0; padding-left: 2rem;
+  background: -webkit-linear-gradient(left, transparent, #fff 55%);
+  background: -o-linear-gradient(right, transparent, #fff 55%);
+  background: -moz-linear-gradient(right, transparent, #fff 55%);
+  background: linear-gradient(to right, transparent, #fff 55%);
+}
+

@@ -1,0 +1,114 @@
+.question-container {
+  padding: 1rem;
+}
+.example-card {
+  max-width: 43.5rem;
+  padding: 0.5rem !important;
+  margin-bottom: 1rem;
+  /* margin-right: auto;
+  margin-left: auto; */
+}
+
+.card-feeds-container {
+  display: flex;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.card-feeds-img {
+  height: 8rem;
+  border-radius: 3px;
+  display: block;
+  background-size: cover;
+  background-position: center;
+}
+
+.card-feeds-text {
+  height: 8rem;
+  padding-left: 1rem;
+  flex: 1 1 auto;
+  align-items:center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.card-feeds-text-header {
+  height: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.card-feeds-text-content {
+  padding: 0;
+  margin: 0;
+  height: 6rem;
+  font-size: 1rem;
+  line-height: 1rem;
+  position:relative;
+  overflow:hidden;
+}
+
+.card-feeds-text-content::after {
+  font-weight:bold;
+  content: "..."; position: absolute; bottom: 0; right: 0rem; padding-left: 0;
+  background: -webkit-linear-gradient(left, transparent, #fff 55%);
+  background: -o-linear-gradient(right, transparent, #fff 55%);
+  background: -moz-linear-gradient(right, transparent, #fff 55%);
+  background: linear-gradient(to right, transparent, #fff 55%);
+}
+
+.clear-padding {
+  margin: 0 !important;
+}
+
+.expansion-panel-description {
+  display:block; text-align: right;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+/*three part*/
+
+:host /deep/ .mat-card {
+  padding: 16px;
+}
+
+:host /deep/ .mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: 0 0 0;
+}
+
+:host /deep/ .mat-expansion-indicator::after {
+  margin-bottom: 5px;
+}
+
+:host /deep/ .mat-expansion-panel-header {
+  height: 1rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+
+#content {
+  width: 500px;
+  background-color: #ccc;
+  line-height: 26px;
+}
+a {
+  text-decoration: none;
+  color: red;
+}

@@ -1,0 +1,18 @@
+.Instructions {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 20rem;
+  margin-top: 1rem;
+}
+
+.fix-div{
+  position: fixed;
+  top:  3.5rem;
+  right: 1rem;
+  width: 20rem;
+}
+
+.button-row {
+  display: flex;
+  flex-direction: column;
+}
