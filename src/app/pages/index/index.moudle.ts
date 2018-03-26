@@ -19,27 +19,12 @@ import { JqueryServiceComponent } from '../../shared/jquery/jQueryService.compon
 import { IndexServiceComponent } from './shared/IndexServiceComponent';
 import {ConnectionComponent} from '../../shared/component/connection/connection.component';
 import {SharedModule} from '../../shared/component/shared.module';
+import {MaterialModule} from '../../shared/component/material.module';
 
 @NgModule({
   imports: [
-    CommonModule,
-    // FormsModule,
     SharedModule,
-    // material
-    //BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatAutocompleteModule,
-    MatDividerModule,
-    MatButtonToggleModule,
-    MatProgressBarModule,
-    MatExpansionModule,
-    MatListModule,
+    MaterialModule,
   ],
   declarations: [ IndexFeedsComponent, FeedsComponent, IndexComponent, HotQuestionComponent, IndexProfileComponent ],
   exports:      [ IndexComponent ],

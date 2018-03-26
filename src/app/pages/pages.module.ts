@@ -17,30 +17,17 @@ import { QuestionComponent } from './question/question.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { PagesRoutingModule } from './pages-routing.module';
 import {ConnectionComponent} from '../shared/component/connection/connection.component';
+import {MaterialModule} from '../shared/component/material.module';
 
 
 @NgModule({
   imports: [
     PagesRoutingModule,
-    // BrowserModule,
-    // BrowserAnimationsModule,
     CommonModule,
-    // FormsModule,
     IndexModule,
     QuestionModule,
     // material
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatIconModule,
-    MatAutocompleteModule,
-    MatDividerModule,
-    MatButtonToggleModule,
-    MatProgressBarModule,
-    MatExpansionModule
+    MaterialModule,
   ],
   declarations: [ NavigationComponent, PagesComponent ],
   exports:      [ PagesComponent ],

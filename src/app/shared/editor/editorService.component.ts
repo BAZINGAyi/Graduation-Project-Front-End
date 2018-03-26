@@ -15,7 +15,7 @@ declare var editormd: any;
  *  1. display editor 类型，用于表示将 markdown 解析成 html 的页面
  *  2. edit editor 类型，用于标识输入 markdown 的输入页面
  */
- 
+
 @Injectable()
 export class EditorServiceComponent {
 
@@ -44,7 +44,7 @@ export class EditorServiceComponent {
     if (containerInnerText != null && containerInnerText != '') {
       return;
     }
-    // 添加 display editor 
+    // 添加 display editor
     // 要想生成一个 editor 解析的页面需要进行两个步骤
     // 1. 在想要添加的 dom 节点内生成 editor 的容器
     // 2. 在生成 editor 的容器内进行初始化 editor 的操作
@@ -57,12 +57,17 @@ export class EditorServiceComponent {
    * 添加输入界面到相应的 div 中
    * @param {string} containerId
    */
-  public appendEditorToContainer(refElement: any) {
-    if (refElement != null) {
+  public appendEditorToContainer(divId: string) {
+    if (divId != null && divId != '') {
       // 添加内容到 div 中
-      refElement.nativeElement.innerHTML = '';
-      refElement.nativeElement.innerHTML = this.editEditoTemplate;
-      this.genernateEditEditor();
+      const editor = $('#' + divId);
+      const containerInnerText = editor.text();
+      if (containerInnerText != null && containerInnerText != '') {
+        this.showEditEditor(divId);
+        return;
+      }
+      editor.innerHTML = this.editEditoTemplate;
+      this.genernateEditEditor(divId);
     }
   }
 
@@ -85,10 +90,10 @@ export class EditorServiceComponent {
    * 生成编辑 Editor 内容的页面
    * 编辑后保存的内容尽量是 html 形式，如果是 markdown 形式，则会造成多次渲染 editor
    */
-  private genernateEditEditor() {
-    editormd(this.editEditorId, {
-      width   : "90%",
-      height  : 640,
+  private genernateEditEditor(editEditorId: string) {
+    let editor = editormd(editEditorId, {
+      width   : "100%",
+      height  : 540,
       syncScrolling : "single",
       path    : "../../../../assets/editor/lib/",
       saveHTMLToTextarea : true,
@@ -101,10 +106,12 @@ export class EditorServiceComponent {
       imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
       imageUploadURL : "/testMarkdown"
     });
+
+    editor.setToolbarAutoFixed(true);
   }
 
   /**
-   * 生成用于显示 display editor 的 div 容器 
+   * 生成用于显示 display editor 的 div 容器
    * @param displayEditorId 用于在显示 editor 的 div 的 id
    */
   private generateDisplayEditorTemplate(displayEditorId:string) {
@@ -117,6 +124,28 @@ export class EditorServiceComponent {
                                     '<textarea style="display:none;" name="">###Hello</textarea>' +
                                 '</div>';
     return displayEditorTemplate;
+  }
+
+  /**
+   * 根据 div id 隐藏内容
+   * @type {string}
+   */
+  hiddenEditEditor(divId: string) {
+    if (divId != null && divId != '') {
+      const editor = $('#' + divId);
+      editor.hide();
+    }
+  }
+
+  /**
+   * 根据 div id 显示内容
+   * @type {string}
+   */
+  showEditEditor(divId: string) {
+    if (divId != null && divId != '') {
+      const editor = $('#' + divId);
+      editor.show();
+    }
   }
 
   private text = 'let markdown = \'# Editor.md\\n\' +\n' +
@@ -444,5 +473,4 @@ export class EditorServiceComponent {
     '      \'```\\n\' +\n' +
     '      \'\\n\' +\n' +
     '      \'### End\';\n';
-
 }

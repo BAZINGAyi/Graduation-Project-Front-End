@@ -4,11 +4,11 @@
   padding-left: 1rem;
   padding-right: 1rem;
   height: 3rem;
-  background-color: #03A9F4;
+  background-color: #303F9F;
   /* 固定导航栏 */
   position:fixed;/*固定作用*/
   top:0px;
-  z-index: 100;
+  z-index: 9999999999;
 }
 
 .navigation-container {

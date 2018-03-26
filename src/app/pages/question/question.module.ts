@@ -7,28 +7,17 @@ import { MatExpansionModule, MatToolbarModule, MatButtonModule, MatCardModule, M
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {SharedModule} from '../../shared/component/shared.module';
+import {MaterialModule} from '../../shared/component/material.module';
+import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.component';
+import { QuestionCommentsComponent } from './question-comments/question-comments.component';
 
 @NgModule({
   imports: [
-    CommonModule,
     SharedModule,
-     // material
-     // BrowserAnimationsModule,
-     ReactiveFormsModule,
-     MatToolbarModule,
-     MatButtonModule,
-     MatCardModule,
-     MatFormFieldModule,
-     MatInputModule,
-     MatIconModule,
-     MatAutocompleteModule,
-     MatDividerModule,
-     MatButtonToggleModule,
-     MatProgressBarModule,
-     MatExpansionModule
+    MaterialModule,
   ],
   exports : [QuestionComponent],
-  declarations: [CommentComponent, QuestionComponent],
-  providers: [EditorServiceComponent],
+  declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent],
+  providers: [EditorServiceComponent, JqueryServiceComponent],
 })
 export class QuestionModule { }

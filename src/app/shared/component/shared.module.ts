@@ -7,17 +7,17 @@ import {IndexServiceComponent} from '../../pages/index/shared/IndexServiceCompon
 import {JqueryServiceComponent} from '../jquery/jQueryService.component';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     ConnectionComponent,
   ],
-  exports: [ConnectionComponent],
+  exports: [ConnectionComponent, CommonModule],
   imports: [
-    // BrowserModule,
-    // BrowserAnimationsModule,
-    // CommonModule,
+    CommonModule,
     MatCardModule,
+    FormsModule,
   ],
   providers: [ JqueryServiceComponent ]
 })
