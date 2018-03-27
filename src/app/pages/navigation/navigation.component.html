@@ -29,13 +29,19 @@
     <div class="navigation-right">
       <!-- <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-left:1rem;">face</i> -->
       <!--个人中心-->
-      <div mat-card-avatar class="example-header-image" style="margin-top: 1rem; margin-left:1rem;"></div>
+      <div mat-card-avatar class="example-header-image" style="margin-top: 1rem; margin-left:1rem;">
+          <button mat-button [matMenuTriggerFor]="menu" style="height: 2rem;width: 2rem;"></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>修改密码</button>
+            <button mat-menu-item>注销</button>
+          </mat-menu>
+      </div>
       <!--发送站内信-->
       <button mat-button (click)="openSendMessage()">
         <i class="material-icons">message</i>
       </button>
       <!--关注列表-->
-      <button mat-button routerLink="fans">
+      <button mat-button routerLink="person">
         <i class="material-icons">person_pin</i>
       </button>
     </div>

@@ -5,7 +5,7 @@ import { QuestionComponent } from './question/question.component';
 import { IndexComponent } from './index/index.component';
 import {DiscoverComponent} from './discover/discover.component';
 import {TopicComponent} from './topic/topic.component';
-import {FansComponent} from './fans/fans.component';
+import {PersonComponent} from './person/person.component';
 
 const routes: Routes =
 [
@@ -18,7 +18,7 @@ const routes: Routes =
           { path: 'question', component: QuestionComponent },
           { path: 'discover', component: DiscoverComponent },
           { path: 'topic', component: TopicComponent },
-          { path: 'fans', component: FansComponent },
+          { path: 'person', component: PersonComponent },
       ]
   },
 {

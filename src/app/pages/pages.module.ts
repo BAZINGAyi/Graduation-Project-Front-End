@@ -19,7 +19,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import {ConnectionComponent} from '../shared/component/connection/connection.component';
 import {MaterialModule} from '../shared/component/material.module';
 import {SearchModule} from './search/search.module';
-import { FeedComponent } from './shared/feed/feed.component';
+import {PersonModule} from './person/person.module';
 
 
 @NgModule({
@@ -29,6 +29,7 @@ import { FeedComponent } from './shared/feed/feed.component';
     IndexModule,
     QuestionModule,
     SearchModule,
+    PersonModule,
     // material
     MaterialModule,
   ],

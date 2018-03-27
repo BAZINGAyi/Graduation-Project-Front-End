@@ -16,7 +16,8 @@ export class IndexProfileComponent implements OnInit {
 
   openAskQuestionDialog() {
     const dialogRef = this.dialog.open(AskQuestionComponent, {
-      height: '350px'
+      width:'60%',
+      height: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -22,10 +22,10 @@ import {SharedModule} from './shared/component/shared.module';
     SharedModule,
     AppRoutingModule,
     PagesModule,
-  ],
-  bootstrap: [AppComponent],
+],
+bootstrap: [AppComponent],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/' },
-  ]
+  { provide: APP_BASE_HREF, useValue: '/' },
+]
 })
 export class AppModule { }

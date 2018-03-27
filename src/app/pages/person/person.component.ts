@@ -3,15 +3,14 @@ import {EditorServiceComponent} from '../../shared/editor/editorService.componen
 
 @Component({
   selector: 'app-fans',
-  templateUrl: './fans.component.html',
-  styleUrls: ['./fans.component.css']
+  templateUrl: './person.component.html',
+  styleUrls: ['./person.component.css']
 })
-export class FansComponent implements OnInit {
+export class PersonComponent implements OnInit {
 
   constructor(private editorService: EditorServiceComponent) { }
 
   ngOnInit(){
-    this.editorService.appendEditorToContainer("1zhang");
   }
 
   openEditor() {

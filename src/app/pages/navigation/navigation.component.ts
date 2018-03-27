@@ -52,8 +52,7 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {
-  }
+  ngAfterViewInit(): void {}
 
   constructor(public dialog: MatDialog) {
     this.stateCtrl = new FormControl();
@@ -72,7 +71,8 @@ export class NavigationComponent implements OnInit {
 
   openSendMessage() {
     const dialogRef = this.dialog.open(SendMessageComponent, {
-      height: '350px'
+      width: '50%',
+      height: '250px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
