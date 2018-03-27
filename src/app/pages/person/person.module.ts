@@ -5,6 +5,9 @@ import {EditorServiceComponent} from '../../shared/editor/editorService.componen
 import {SharedModule} from '../../shared/component/shared.module';
 import {MaterialModule} from '../../shared/component/material.module';
 import {ChatModule} from '../../shared/chat/chat.module';
+import { FollowComponent } from './follow/follow.component';
+import { FansComponent } from './fans/fans.component';
+import { FollowQuestionComponent } from './follow-question/follow-question.component';
 
 @NgModule({
   imports: [
@@ -12,7 +15,7 @@ import {ChatModule} from '../../shared/chat/chat.module';
     MaterialModule,
     ChatModule,
   ],
-  declarations: [PersonComponent],
+  declarations: [PersonComponent, FollowComponent, FansComponent, FollowQuestionComponent],
   providers: [EditorServiceComponent],
   exports: [PersonComponent]
 })
