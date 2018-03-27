@@ -44,7 +44,6 @@ export class QuestionComponent implements OnInit, AfterViewInit {
    */
   openEidtor() {
     this.editorService.appendEditorToContainer(this.questionAnswerEditorId);
-    this.navigationService.setNavigationBarZIndexToZreo();
     // this.fixFloatEditorDivPosition();
     // 显示操作编辑框的 button div 隐藏正常 button
     this.EDITOR_STATE = true;

@@ -24,7 +24,7 @@ import {SendMessageComponent} from './send-message/send-message.component';
     MaterialModule,
     FormsModule,
   ],
-  providers: [ JqueryServiceComponent ],
+  providers: [ JqueryServiceComponent, EditorServiceComponent ],
   entryComponents: [
     AskQuestionComponent,
     SendMessageComponent,

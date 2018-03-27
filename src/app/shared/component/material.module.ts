@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {
   MatAutocompleteModule,
-  MatButtonModule, MatButtonToggleModule, MatCardModule, MatDialogModule, MatDividerModule, MatExpansionModule, MatFormFieldModule,
+  MatButtonModule, MatButtonToggleModule, MatCardModule, MatChipsModule, MatDialogModule, MatDividerModule, MatExpansionModule,
+  MatFormFieldModule,
   MatIconModule,
-  MatInputModule, MatListModule, MatPaginatorModule,
-  MatProgressBarModule, MatToolbarModule
+  MatInputModule, MatListModule, MatMenuModule, MatPaginatorModule,
+  MatProgressBarModule, MatTabsModule, MatToolbarModule
 } from '@angular/material';
 import {ConnectionComponent} from './connection/connection.component';
 import {EditorServiceComponent} from '../editor/editorService.component';
@@ -35,6 +36,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatListModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatChipsModule,
   ],
   imports: [
     // material
@@ -52,6 +56,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatExpansionModule,
     MatListModule,
     MatPaginatorModule,
+    MatTabsModule,
+    MatMenuModule,
+    MatChipsModule,
   ],
   providers: [ ]
 })

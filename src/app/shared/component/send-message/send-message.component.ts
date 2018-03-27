@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-send-message',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SendMessageComponent implements OnInit {
 
-  constructor() { }
+  myControl: FormControl = new FormControl();
+
+  options = [
+    'One',
+    'Two',
+    'Three'
+  ];
+
+
+  constructor(public dialogRef: MatDialogRef<SendMessageComponent>) { }
 
   ngOnInit() {
   }
 
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }

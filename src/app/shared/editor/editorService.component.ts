@@ -63,7 +63,7 @@ export class EditorServiceComponent {
     if (divId != null && divId != '') {
       // 添加内容到 div 中
       const editor = $('#' + divId);
-      const containerInnerText = editor.text();
+      const containerInnerText = editor.text().trim();
       if (containerInnerText != null && containerInnerText != '') {
         this.showEditEditor(divId);
         return;
