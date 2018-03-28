@@ -8,14 +8,17 @@ import {ChatModule} from '../../shared/chat/chat.module';
 import { FollowComponent } from './follow/follow.component';
 import { FansComponent } from './fans/fans.component';
 import { FollowQuestionComponent } from './follow-question/follow-question.component';
+import {PagesSharedModule} from '../shared/pagesShared.module';
+import {PushQuestionComponent} from './push-question/push-question.component';
 
 @NgModule({
   imports: [
     SharedModule,
     MaterialModule,
     ChatModule,
+    PagesSharedModule,
   ],
-  declarations: [PersonComponent, FollowComponent, FansComponent, FollowQuestionComponent],
+  declarations: [PersonComponent, FollowComponent, FansComponent, FollowQuestionComponent, PushQuestionComponent],
   providers: [EditorServiceComponent],
   exports: [PersonComponent]
 })
