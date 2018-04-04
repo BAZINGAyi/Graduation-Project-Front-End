@@ -11,20 +11,31 @@ import {FormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {AskQuestionComponent} from './ask-question/ask-question.component';
 import {SendMessageComponent} from './send-message/send-message.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
     ConnectionComponent,
     AskQuestionComponent,
     SendMessageComponent,
+    ChangePasswordComponent,
   ],
-  exports: [ConnectionComponent, CommonModule, AskQuestionComponent, SendMessageComponent],
+  exports: [
+    ConnectionComponent,
+    CommonModule,
+    AskQuestionComponent,
+    SendMessageComponent,
+    ChangePasswordComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
   ],
-  providers: [ JqueryServiceComponent, EditorServiceComponent ],
+  providers: [
+    JqueryServiceComponent,
+    EditorServiceComponent,
+  ],
   entryComponents: [
     AskQuestionComponent,
     SendMessageComponent,

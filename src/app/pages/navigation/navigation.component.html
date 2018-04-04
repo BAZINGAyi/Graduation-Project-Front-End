@@ -11,7 +11,7 @@
       <span class="example-fill-remaining-space"></span>
       <!--search input-->
       <mat-form-field floatPlaceholder="never">
-        <input matInput [matAutocomplete]="auto" [formControl]="stateCtrl">
+        <input matInput [matAutocomplete]="auto" [formControl]="stateCtrl"  (keydown)="handleSearchEvent($event)">
         <mat-placeholder class="placeholder" style="color: white; font-size: 14px;">搜索....</mat-placeholder>
         <mat-icon matSuffix style="font-size: smaller;">search</mat-icon>
         <!-- drop-down -->
