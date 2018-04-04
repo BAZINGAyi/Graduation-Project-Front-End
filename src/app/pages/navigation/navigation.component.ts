@@ -1,8 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
+import {AskQuestionComponent} from '../../shared/component/ask-question/ask-question.component';
+import {MatDialog} from '@angular/material';
+import {SendMessageComponent} from '../../shared/component/send-message/send-message.component';
 
 export class State {
   constructor(public name: string, public population: string, public flag: string) { }
@@ -49,7 +52,9 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  constructor() {
+  ngAfterViewInit(): void {}
+
+  constructor(public dialog: MatDialog) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
@@ -64,6 +69,16 @@ export class NavigationComponent implements OnInit {
   }
 
 
+  openSendMessage() {
+    const dialogRef = this.dialog.open(SendMessageComponent, {
+      width: '50%',
+      height: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }
 
 

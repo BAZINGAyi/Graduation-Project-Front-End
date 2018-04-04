@@ -63,7 +63,7 @@ export class EditorServiceComponent {
     if (divId != null && divId != '') {
       // 添加内容到 div 中
       const editor = $('#' + divId);
-      const containerInnerText = editor.text();
+      const containerInnerText = editor.text().trim();
       if (containerInnerText != null && containerInnerText != '') {
         this.showEditEditor(divId);
         return;
@@ -106,10 +106,19 @@ export class EditorServiceComponent {
       },
       imageUpload : true,
       imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-      imageUploadURL : "/testMarkdown"
+      imageUploadURL : "/testMarkdown",
+      onfullscreen : function() {
+        const element = document.getElementById('navigationView');
+        element.style.zIndex = '0';
+      },
+
+      onfullscreenExit : function() {
+        const element = document.getElementById('navigationView');
+        element.style.zIndex = '200';
+      }
     });
 
-    editor.setToolbarAutoFixed(true);
+
   }
 
   /**

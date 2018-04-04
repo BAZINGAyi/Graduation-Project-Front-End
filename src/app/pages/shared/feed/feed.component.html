@@ -1,0 +1,44 @@
+<mat-card class="example-card center-card">
+  <!--card-header-->
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Shiba Inu</mat-card-title>
+    <mat-card-subtitle>Dog Breed , 2018.10.2 16:30:22</mat-card-subtitle>
+  </mat-card-header>
+  <!--card-content-->
+  <mat-card-content class="clear-padding">
+    <div id={{matCardContentId}}>
+        <!--评论内容-->
+        <div class="card-feeds-container" >
+            <!--card-left-content-->
+            <img class="card-feeds-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+            <!--card-right-content-->
+            <div class="card-feeds-text">
+              <!--card-content-header-->
+              <h2 class="card-feeds-text-header" (click)="openQuestionDetailPage()">
+                The Shiba Inu is the smallest of
+              </h2>
+              <!--card-content-content-->
+              <div class="card-feeds-text-content">
+               {{testText}}<a *ngIf="aState == true" (click)="openContent()">{{aText}}</a>
+              </div>
+            </div>
+          </div>
+          <!--card-button-->
+        <div style="margin-top: 5px;">
+          <button mat-button style="color:#0288D1;">
+            <i class="material-icons" style="color:#b3e5fc;margin-top: 0rem; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
+              Upvote | 210
+           </button>
+          <button mat-button style="color:#757575;">关注问题</button>
+          <button mat-button disabled>2条评论</button>
+        </div>
+    </div>
+    <!--显示完整内容-->
+    <div id={{content1}}>
+    </div>
+    <!--关闭完整内容的按钮-->
+    <button *ngIf="contentState == true" mat-raised-button color="warn" style="width: 100%;" (click)="closeContent();">收起内容</button>
+    <br>
+  </mat-card-content>
+</mat-card>

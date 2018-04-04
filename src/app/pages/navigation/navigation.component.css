@@ -7,8 +7,8 @@
   background-color: #303F9F;
   /* 固定导航栏 */
   position:fixed;/*固定作用*/
-  top:0px;
-  z-index: 9999999999;
+  top:0;
+  z-index: 200;
 }
 
 .navigation-container {

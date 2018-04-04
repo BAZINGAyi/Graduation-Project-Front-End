@@ -1,8 +1,11 @@
-import { Routes, RouterModule } from "@angular/router";
-import { NgModule } from "@angular/core";
-import { PagesComponent } from "./pages.component";
-import { QuestionComponent } from "./question/question.component";
-import { IndexComponent } from "./index/index.component";
+import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { PagesComponent } from './pages.component';
+import { QuestionComponent } from './question/question.component';
+import { IndexComponent } from './index/index.component';
+import {DiscoverComponent} from './discover/discover.component';
+import {TopicComponent} from './topic/topic.component';
+import {PersonComponent} from './person/person.component';
 
 const routes: Routes =
 [
@@ -12,7 +15,10 @@ const routes: Routes =
       [
           { path: '', component: IndexComponent },
           { path: 'index', component: IndexComponent },
-          { path: 'question', component: QuestionComponent }
+          { path: 'question', component: QuestionComponent },
+          { path: 'discover', component: DiscoverComponent },
+          { path: 'topic', component: TopicComponent },
+          { path: 'person', component: PersonComponent },
       ]
   },
 {

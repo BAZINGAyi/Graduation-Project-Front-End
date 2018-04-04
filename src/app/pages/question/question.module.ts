@@ -11,6 +11,7 @@ import {MaterialModule} from '../../shared/component/material.module';
 import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.component';
 import { QuestionCommentsComponent } from './question-comments/question-comments.component';
 import { CommentCommentsComponent } from './comment-comments/comment-comments.component';
+import {NavigationService} from '../navigation/shared/navigation.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { CommentCommentsComponent } from './comment-comments/comment-comments.co
   ],
   exports : [QuestionComponent],
   declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent, CommentCommentsComponent],
-  providers: [EditorServiceComponent, JqueryServiceComponent],
+  providers: [EditorServiceComponent, JqueryServiceComponent, NavigationService],
 })
 export class QuestionModule { }

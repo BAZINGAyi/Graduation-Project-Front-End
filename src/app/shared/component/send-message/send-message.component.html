@@ -1,0 +1,19 @@
+<h1 style="font-size: 1.5rem; text-align: center;">发送站内信</h1>
+<!--选择话题-->
+<mat-form-field style="width: 100%;">
+    <input type="text" placeholder="输入发送的用户名称" aria-label="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+ </mat-form-field>
+<!--站内信内容-->
+<mat-form-field style="width: 100%;">
+    <textarea matInput placeholder="站内信内容"></textarea>
+</mat-form-field>
+<!--操作 dialog 的按钮-->
+<div style="display: flex; flex-direction: row-reverse;" >
+   <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;">提交问题 </button>
+   <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeDialog()">取消提问</button>
+</div>

@@ -1,13 +1,13 @@
 <!--navigation-->
-<mat-toolbar color="primary" class="navigation">
+<mat-toolbar color="primary" class="navigation" id="navigationView" >
   <!-- navigation-container -->
   <div class="navigation-container">
     <!-- navigation-left -->
     <div class="navigation-left">
       <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-right:1rem;">event_seat</i>
-      <a routerLink="index"><button mat-button>首页</button></a>
-      <a routerLink="question"><button mat-button>发现</button></a>
-      <button mat-button>话题</button>
+      <button mat-button routerLink="index">首页</button>
+      <button mat-button routerLink="discover">发现</button>
+      <button mat-button routerLink="topic">话题</button>
       <span class="example-fill-remaining-space"></span>
       <!--search input-->
       <mat-form-field floatPlaceholder="never">
@@ -28,11 +28,20 @@
     <!-- navigation-right -->
     <div class="navigation-right">
       <!-- <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-left:1rem;">face</i> -->
-      <div mat-card-avatar class="example-header-image" style="margin-top: 1rem; margin-left:1rem;"></div>
-      <button mat-button>
+      <!--个人中心-->
+      <div mat-card-avatar class="example-header-image" style="margin-top: 1rem; margin-left:1rem;">
+          <button mat-button [matMenuTriggerFor]="menu" style="height: 2rem;width: 2rem;"></button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>修改密码</button>
+            <button mat-menu-item>注销</button>
+          </mat-menu>
+      </div>
+      <!--发送站内信-->
+      <button mat-button (click)="openSendMessage()">
         <i class="material-icons">message</i>
       </button>
-      <button mat-button>
+      <!--关注列表-->
+      <button mat-button routerLink="person">
         <i class="material-icons">person_pin</i>
       </button>
     </div>

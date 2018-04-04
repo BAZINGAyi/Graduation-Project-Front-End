@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.component';
 import {EditorServiceComponent} from '../../shared/editor/editorService.component';
+import {NavigationService} from '../navigation/shared/navigation.service';
 
 
 @Component({
@@ -9,7 +10,7 @@ import {EditorServiceComponent} from '../../shared/editor/editorService.componen
   styleUrls: ['./question.component.css']
 })
 
-export class QuestionComponent implements OnInit {
+export class QuestionComponent implements OnInit, AfterViewInit {
 
   // 用于添加 editor 的 id
   questionAnswerEditorId = 'questionAnswerEditorId';
@@ -18,8 +19,13 @@ export class QuestionComponent implements OnInit {
 
   questionHeaderId =  'questionHeaderId';
 
+  ngAfterViewInit(): void {
+  }
+
   constructor(private jQueryService: JqueryServiceComponent,
-              private  editorService: EditorServiceComponent) {
+              private editorService: EditorServiceComponent,
+              private navigationService: NavigationService,
+              private elementRef: ElementRef) {
   }
 
   ngOnInit() {
@@ -38,7 +44,7 @@ export class QuestionComponent implements OnInit {
    */
   openEidtor() {
     this.editorService.appendEditorToContainer(this.questionAnswerEditorId);
-    this.fixFloatEditorDivPosition();
+    // this.fixFloatEditorDivPosition();
     // 显示操作编辑框的 button div 隐藏正常 button
     this.EDITOR_STATE = true;
   }
@@ -74,7 +80,7 @@ export class QuestionComponent implements OnInit {
       }
       fix();
       $(window).scroll(fix);
-    }
+    };
 
     $('#' + this.questionAnswerEditorId).fixedDiv('fix-editor-div');
   }
