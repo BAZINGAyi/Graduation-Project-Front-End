@@ -89,6 +89,7 @@ export class NavigationComponent implements OnInit {
   handleSearchEvent(event) {
     const theEvent = event || window.event;
     const code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+    alert(code);
     if (code === 13) {
       // 路由至搜索页面
       this.router.navigate(['pages/search']);
