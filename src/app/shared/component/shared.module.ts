@@ -11,20 +11,36 @@ import {FormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {AskQuestionComponent} from './ask-question/ask-question.component';
 import {SendMessageComponent} from './send-message/send-message.component';
+import {ChangePasswordComponent} from './change-password/change-password.component';
+import {HttpClientModule} from '@angular/common/http';
+import {FromNowPipe} from '../pipes/from-now.pipe';
 
 @NgModule({
   declarations: [
     ConnectionComponent,
     AskQuestionComponent,
     SendMessageComponent,
+    ChangePasswordComponent,
+    FromNowPipe,
   ],
-  exports: [ConnectionComponent, CommonModule, AskQuestionComponent, SendMessageComponent],
+  exports: [
+    ConnectionComponent,
+    CommonModule,
+    AskQuestionComponent,
+    SendMessageComponent,
+    ChangePasswordComponent,
+    FromNowPipe,
+  ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
+    HttpClientModule,
   ],
-  providers: [ JqueryServiceComponent, EditorServiceComponent ],
+  providers: [
+    JqueryServiceComponent,
+    EditorServiceComponent,
+  ],
   entryComponents: [
     AskQuestionComponent,
     SendMessageComponent,

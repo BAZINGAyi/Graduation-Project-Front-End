@@ -19,7 +19,7 @@
 }
 
 .card-feeds-img {
-  height: 8rem;
+  width: 20rem;
   border-radius: 3px;
   display: block;
   background-size: cover;
@@ -27,7 +27,6 @@
 }
 
 .card-feeds-text {
-  height: 8rem;
   padding-left: 1rem;
   flex: 1 1 auto;
   align-items:center;

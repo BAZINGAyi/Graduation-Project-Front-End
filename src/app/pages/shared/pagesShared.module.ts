@@ -7,7 +7,8 @@ import {SharedModule} from '../../shared/component/shared.module';
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule,
   ],
   exports: [FeedComponent],
   declarations: [FeedComponent]

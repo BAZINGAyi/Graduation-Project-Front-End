@@ -6,6 +6,7 @@ import {map} from 'rxjs/operators/map';
 import {AskQuestionComponent} from '../../shared/component/ask-question/ask-question.component';
 import {MatDialog} from '@angular/material';
 import {SendMessageComponent} from '../../shared/component/send-message/send-message.component';
+import {Router} from '@angular/router';
 
 export class State {
   constructor(public name: string, public population: string, public flag: string) { }
@@ -54,7 +55,8 @@ export class NavigationComponent implements OnInit {
 
   ngAfterViewInit(): void {}
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              public router: Router) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
@@ -79,6 +81,21 @@ export class NavigationComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  /**
+   * 处理回车事件
+   */
+
+  handleSearchEvent(event) {
+    const theEvent = event || window.event;
+    const code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+    alert(code);
+    if (code === 13) {
+      // 路由至搜索页面
+      this.router.navigate(['pages/search']);
+    }
+  }
+
 }
 
 

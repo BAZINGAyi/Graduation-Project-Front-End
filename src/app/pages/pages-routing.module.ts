@@ -6,6 +6,7 @@ import { IndexComponent } from './index/index.component';
 import {DiscoverComponent} from './discover/discover.component';
 import {TopicComponent} from './topic/topic.component';
 import {PersonComponent} from './person/person.component';
+import {SearchComponent} from './search/search.component';
 
 const routes: Routes =
 [
@@ -19,6 +20,7 @@ const routes: Routes =
           { path: 'discover', component: DiscoverComponent },
           { path: 'topic', component: TopicComponent },
           { path: 'person', component: PersonComponent },
+          { path: 'search', component: SearchComponent },
       ]
   },
 {

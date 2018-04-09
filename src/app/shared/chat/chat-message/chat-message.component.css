@@ -1,0 +1,16 @@
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  height: 2rem;
+  width: 2rem;
+}
+
+.base-sent {
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+
+.base-receive {
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
