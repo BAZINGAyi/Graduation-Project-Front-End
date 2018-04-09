@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {IndexData} from '../../../shared/model/index-data.model';
+import {DiscoverService} from '../shared/DiscoverService.service';
+import {HttpClient} from '@angular/common/http';
+import {AppSettings} from '../../../shared/url/AppSettings';
 
 @Component({
   selector: 'app-discover-feeds',
@@ -7,16 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DiscoverFeedsComponent implements OnInit {
 
-  feeds = [1];
+  // feeds 流数据
+  indexDatas: IndexData[];
 
-  ngOnInit(): void {
-    this.feeds.push(2);
-    this.feeds.push(3);
-    this.feeds.push(4);
-    this.feeds.push(5);
+  constructor(private httpClient: HttpClient) {
   }
 
-  constructor() {
+  ngOnInit(): void {
+    this.getQuestion();
+  }
+
+  getQuestion() {
+    const questionUrl = AppSettings.getQuestionsUrl('0');
+    this.httpClient.get<IndexData[]>(questionUrl).subscribe( data => { this.indexDatas = data; });
   }
 
 }

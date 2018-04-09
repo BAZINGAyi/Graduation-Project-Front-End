@@ -15,12 +15,12 @@
             <!--card-right-content-->
             <div class="card-feeds-text">
               <!--card-content-header-->
-              <h2 class="card-feeds-text-header" (click)="openQuestionDetailPage()">
-                The Shiba Inu is the smallest of
+              <h2 class="card-feeds-text-header single-overflow-hidden" (click)="openQuestionDetailPage()">
+                {{feedTitle}}
               </h2>
               <!--card-content-content-->
               <div class="card-feeds-text-content">
-               {{testText}}<a *ngIf="aState == true" (click)="openContent()">{{aText}}</a>
+                {{feedContent}}<a *ngIf="aState == true" (click)="openContent()">{{aText}}</a>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <!--显示完整内容-->
-    <div id={{content1}}>
+    <div id={{feed.user.id}} style="margin: 1rem;">
     </div>
     <!--关闭完整内容的按钮-->
     <button *ngIf="contentState == true" mat-raised-button color="warn" style="width: 100%;" (click)="closeContent();">收起内容</button>
