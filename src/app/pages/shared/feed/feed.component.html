@@ -1,41 +1,41 @@
 <mat-card class="example-card center-card">
   <!--card-header-->
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed , 2018.10.2 16:30:22</mat-card-subtitle>
+    <img mat-card-avatar src="{{feed.user.headUrl}}">
+    <mat-card-title>{{feed.user.name}}</mat-card-title>
+    <mat-card-subtitle>{{feed.user.description}}, {{feed.question.createdDate | fromNow}}</mat-card-subtitle>
   </mat-card-header>
   <!--card-content-->
   <mat-card-content class="clear-padding">
-    <div id={{matCardContentId}}>
+    <div id={{questionAbbreviationDivId}}>
         <!--评论内容-->
         <div class="card-feeds-container" >
+          <!--card-feed-title-->
+          <h2 class="card-feeds-container-header" (click)="openQuestionDetailPage()">
+            {{feedTitle}}
+          </h2>
+          <!--card-feed-content-->
+          <div class="card-feeds-container-content" >
             <!--card-left-content-->
-            <img class="card-feeds-img" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-            <!--card-right-content-->
+            <img *ngIf="feedContentImgSrc != ''" class="card-feeds-img" src="{{feedContentImgSrc}}" alt="Photo of a Shiba Inu">
+            <!--card-content-content-->
             <div class="card-feeds-text">
-              <!--card-content-header-->
-              <h2 class="card-feeds-text-header single-overflow-hidden" (click)="openQuestionDetailPage()">
-                {{feedTitle}}
-              </h2>
-              <!--card-content-content-->
-              <div class="card-feeds-text-content">
-                {{feedContent}}<a *ngIf="aState == true" (click)="openContent()">{{aText}}</a>
-              </div>
+              {{feedContent}}<a *ngIf="aState == true" (click)="openContent()">{{aText}}</a>
             </div>
           </div>
-          <!--card-button-->
-        <div style="margin-top: 5px;">
+        </div>
+        <!--card-button-->
+        <div style="margin-top: 0.5rem;">
           <button mat-button style="color:#0288D1;">
-            <i class="material-icons" style="color:#b3e5fc;margin-top: 0rem; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
-              Upvote | 210
+            <i class="material-icons" style="color:#b3e5fc;margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
+              Upvote | {{feed.followCount}}
            </button>
           <button mat-button style="color:#757575;">关注问题</button>
-          <button mat-button disabled>2条评论</button>
+          <button mat-button disabled>{{feed.question.id}}条评论</button>
         </div>
     </div>
     <!--显示完整内容-->
-    <div id={{feed.user.id}} style="margin: 1rem;">
+    <div id={{questionDetailDivId}} style="margin: 1rem;">
     </div>
     <!--关闭完整内容的按钮-->
     <button *ngIf="contentState == true" mat-raised-button color="warn" style="width: 100%;" (click)="closeContent();">收起内容</button>

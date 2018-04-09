@@ -9,16 +9,30 @@
   margin-left: auto; */
 }
 
-.card-feeds-container {
-  display: flex;
-}
-
-.example-header-image {
+.feed-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
 
+.card-feeds-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-feeds-container-header {
+  font-size: larger;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-feeds-container-content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+}
+
 .card-feeds-img {
+  width: 12rem;
   height: 8rem;
   border-radius: 3px;
   display: block;
@@ -27,14 +41,14 @@
 }
 
 .card-feeds-text {
-  height: 8rem;
+  /*height: 8rem;*/
   padding-left: 1rem;
   flex: 1 1 auto;
   align-items:center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 1rem;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;*/
+  /*font-size: 1rem;*/
 }
 
 .card-feeds-text-header {
