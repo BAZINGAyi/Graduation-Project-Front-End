@@ -9,16 +9,30 @@
   margin-left: auto; */
 }
 
-.card-feeds-container {
-  display: flex;
-}
-
-.example-header-image {
+.feed-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
 
+.card-feeds-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-feeds-container-header {
+  font-size: larger;
+  text-align: center;
+  font-weight: bold;
+}
+
+.card-feeds-container-content {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1rem;
+}
+
 .card-feeds-img {
+  width: 12rem;
   height: 8rem;
   border-radius: 3px;
   display: block;
@@ -27,21 +41,21 @@
 }
 
 .card-feeds-text {
-  height: 8rem;
+  /*height: 8rem;*/
   padding-left: 1rem;
   flex: 1 1 auto;
   align-items:center;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: 1rem;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;*/
+  /*font-size: 1rem;*/
 }
 
 .card-feeds-text-header {
   height: 1.5rem;
   text-align: center;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 0;
   margin: 0;
 }
@@ -65,6 +79,10 @@
   /*background: linear-gradient(to right, transparent, #fff 55%);*/
 }
 
+.detail-feeds-text-header {
+  font-size: large !important;
+}
+
 .clear-padding {
   margin: 0 !important;
 }
@@ -80,6 +98,14 @@
 
 .example-container > * {
   width: 100%;
+}
+
+.single-overflow-hidden {
+  -o-text-overflow: ellipsis;/*兼容opera*/
+  text-overflow: ellipsis;/*这就是省略号喽*/
+  overflow: hidden;/*设置超过的隐藏*/
+  white-space: nowrap;/*设置不折行*/
+  width: 200px;
 }
 
 /*three part*/

@@ -5,6 +5,7 @@ import {SharedModule} from '../../shared/component/shared.module';
 import {MaterialModule} from '../../shared/component/material.module';
 import { TopicFeedsComponent } from './topic-feeds/topic-feeds.component';
 import {PagesSharedModule} from '../shared/pagesShared.module';
+import {TopicService} from './shared/topic-service.service';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import {PagesSharedModule} from '../shared/pagesShared.module';
     MaterialModule,
     PagesSharedModule,
   ],
-  declarations: [TopicComponent, TopicFeedsComponent]
+  declarations: [TopicComponent, TopicFeedsComponent],
+  providers: [TopicService],
 })
 export class TopicModule { }

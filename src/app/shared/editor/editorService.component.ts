@@ -33,9 +33,9 @@ export class EditorServiceComponent {
    * @param {string} refElement
    * @param {string} htmlContent
    */
-  public appendHtmlContentToContainer(containerId: string, htmlContent: string) {
+  public appendHtmlContentToContainer(containerId: string, feedContent: string, feedTitle: string) {
     // 输入不正确，不允许添加
-    if (containerId == null || containerId == '' || htmlContent == null || htmlContent == '') {
+    if (containerId == null || containerId === '') {
       return;
     }
     const container = document.getElementById(containerId);
@@ -51,8 +51,18 @@ export class EditorServiceComponent {
     // 1. 在想要添加的 dom 节点内生成 editor 的容器
     // 2. 在生成 editor 的容器内进行初始化 editor 的操作
     // 这里的需求是在一个单页程序中可以存在多个用于展示的 editor 的内容，所以需要传入 id 进行区分
-    container.innerHTML = this.generateDisplayEditorTemplate(containerId);
-    this.generateDisplayEditor(this.displayEditorId + containerId);
+    // container.innerHTML = this.generateDisplayEditorTemplate(containerId);
+    // this.generateDisplayEditor(this.displayEditorId + containerId);
+
+    const detailHeader = document.createElement('div');
+    detailHeader.innerHTML = feedTitle;
+    detailHeader.style.fontSize = '1.5rem';
+    detailHeader.style.margin = '1rem';
+    const  detailContent = document.createElement('div');
+    detailContent.innerHTML = feedContent;
+    container.appendChild(detailHeader);
+    container.appendChild(detailContent);
+    // 这里可以在数据库定义两个属性，一个是以 markdown 形式保持的内容用于用户更改时使用，一个是以 html 保存的内容用于前台显示时使用
   }
 
   /**
@@ -60,11 +70,11 @@ export class EditorServiceComponent {
    * @param {string} containerId
    */
   public appendEditorToContainer(divId: string) {
-    if (divId != null && divId != '') {
+    if (divId != null && divId !== '') {
       // 添加内容到 div 中
       const editor = $('#' + divId);
       const containerInnerText = editor.text().trim();
-      if (containerInnerText != null && containerInnerText != '') {
+      if (containerInnerText != null && containerInnerText !== '') {
         this.showEditEditor(divId);
         return;
       }
