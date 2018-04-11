@@ -39,6 +39,7 @@ export class EditorServiceComponent {
       return;
     }
     const container = document.getElementById(containerId);
+    container.style.padding = "2rem";
     const containerInnerText = container.innerText;
     // 证明该页面已经加载过 display editor，不重新进行加载
     if (containerInnerText != null && containerInnerText != '') {
@@ -86,9 +87,24 @@ export class EditorServiceComponent {
   /**
    * 生成显示 display Editor 内容的页面
    */
-  private generateDisplayEditor(displayEditorId: string) {
+  public generateDisplayEditor(displayEditorId: string, feedContent: string, feedTitle: string) {
+
+    // 获取显示详细内容的 div ID
+    const editor = $('#' + displayEditorId);
+    // 生成显示标题的节点
+    const titile = $('<h1>' + feedTitle + '</h1>');
+    titile.css('font-size', 'larger');
+    const containerInnerText = editor.text().trim();
+    // 判断是否已经打开过了
+    if (containerInnerText != null && containerInnerText !== '') {
+      this.showEditEditor(displayEditorId);
+      return;
+    }
+    // 添加标题
+    editor.append(titile);
+    // 生成详细内容
     editormd.markdownToHTML(displayEditorId, {
-      markdown        : this.text ,
+      markdown        : feedContent ,
       tocm            : true,    // Using [TOCM]
       emoji           : true,
       taskList        : true,
@@ -127,8 +143,6 @@ export class EditorServiceComponent {
         element.style.zIndex = '200';
       }
     });
-
-
   }
 
   /**

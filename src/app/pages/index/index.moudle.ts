@@ -30,6 +30,6 @@ import {PagesSharedModule} from '../shared/pagesShared.module';
   ],
   declarations: [ IndexFeedsComponent, IndexComponent, HotQuestionComponent, IndexProfileComponent ],
   exports:      [ IndexComponent ],
-  providers:    [ EditorServiceComponent, JqueryServiceComponent, IndexServiceComponent ]
+  providers:    [ EditorServiceComponent, JqueryServiceComponent, IndexServiceComponent, EditorServiceComponent ]
 })
 export class IndexModule {}

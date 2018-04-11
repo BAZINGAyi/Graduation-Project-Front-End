@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {IndexData} from '../../../shared/model/index-data.model';
+import {IndexServiceComponent} from '../../index/shared/IndexServiceComponent';
+import {ProgressBarServiceComponent} from '../../../shared/progressbar/progressBarService.component';
 
 @Component({
   selector: 'app-follow-question',
@@ -7,16 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FollowQuestionComponent implements OnInit {
 
-  feeds = [1];
+  offset = 0;
+
+  // feeds 流数据
+  indexDatas: IndexData[];
 
   ngOnInit(): void {
-    this.feeds.push(2);
-    this.feeds.push(3);
-    this.feeds.push(4);
-    this.feeds.push(5);
+    // 获取主页 question 数据
+    this.getQuestion();
   }
 
-  constructor() { }
+  constructor(private indexServiceComponent: IndexServiceComponent,
+              private progressBarService: ProgressBarServiceComponent) { }
+
+  private getQuestion() {
+    this.progressBarService.openProgressBar();
+    this.indexServiceComponent
+      .getIndexQuestion(this.offset + '')
+      .subscribe( data => {this.indexDatas = data; this.progressBarService.closeProgressBar(); });
+  }
 
 
 }

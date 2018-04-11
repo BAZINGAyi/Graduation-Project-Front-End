@@ -25,7 +25,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
   // 单个评论中需不需要添加 a 标签
   aState = false;
-  aText = '>>展开';
+  aText = '>>阅读全文';
 
   // 用于表示某个问题的所有内容是否被加载
   contentState = false;
@@ -53,7 +53,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
   private initViewId() {
     // 因为每个 feed 中问题的 id 和用户的 id 都不会是重复的，所以用作两个容器的标示
     this.questionAbbreviationDivId = this.feed.question.id + '';
-    this.questionDetailDivId = this.feed.user.id + '';
+    this.questionDetailDivId = 'detail' + this.feed.question.id +  '';
   }
 
   ngAfterViewInit(): void {
@@ -74,7 +74,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
    */
   generateFeedContent() {
     // 定义显示的字符数
-    const contentLength = 230;
+    const contentLength = 150;
     // 获取要显示的问题内容
     const questionContent = this.feed.question.content.trim();
     // 创建节点用于装载 question 的内容
@@ -96,7 +96,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
    * 生成每个 feed 中的 content img 地址
    */
   generateFeedContentImg() {
-    const questionContent = this.feed.question.content.trim();
+    const questionContent = this.feed.question.content.trim() + '<img class="yahoo" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="yahoo logo" />';
     // 匹配图片（g表示匹配所有结果i表示区分大小写）
     const imgReg = /<img.*?(?:>|\/>)/gi;
     // 匹配src属性
@@ -127,10 +127,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
     const cardContent = document.getElementById(this.questionAbbreviationDivId);
     cardContent.style.display = 'none';
     // 显示问题的全部内容
-    this.editorServiceComponent.appendHtmlContentToContainer(this.questionDetailDivId,
-      this.feed.question.content.trim(),
-      this.feed.question.title.trim()
-    );
+    // this.editorServiceComponent.appendHtmlContentToContainer(this.questionDetailDivId,
+    //   this.feed.question.content.trim(),
+    //   this.feed.question.title.trim()
+    // );
+    this.editorServiceComponent.generateDisplayEditor(this.questionDetailDivId, this.feed.question.content.trim(), this.feed.question.title.trim());
     // 显示收起按钮
     this.contentState = true;
   }
@@ -188,4 +189,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
   //   ctn.appendChild(a);
   // }
 
+
+  // Feed 流显示代优化
 }

@@ -19,8 +19,10 @@
             <!--card-left-content-->
             <img *ngIf="feedContentImgSrc != ''" class="card-feeds-img" src="{{feedContentImgSrc}}" alt="Photo of a Shiba Inu">
             <!--card-content-content-->
-            <div class="card-feeds-text">
-              {{feedContent}}<a *ngIf="aState == true" (click)="openContent()">{{aText}}</a>
+            <div class="card-feeds-text"  >
+              <!--<div [innerHtml]="feedContent" ></div>-->
+              {{feedContent}}
+              <a *ngIf="aState == true" (click)="openContent()" style="cursor: pointer; color: #01a0e4;">{{aText}}</a>
             </div>
           </div>
         </div>
@@ -35,10 +37,10 @@
         </div>
     </div>
     <!--显示完整内容-->
-    <div id={{questionDetailDivId}} style="margin: 1rem;">
+    <div id={{questionDetailDivId}}>
     </div>
     <!--关闭完整内容的按钮-->
     <button *ngIf="contentState == true" mat-raised-button color="warn" style="width: 100%;" (click)="closeContent();">收起内容</button>
-    <br>
+
   </mat-card-content>
 </mat-card>

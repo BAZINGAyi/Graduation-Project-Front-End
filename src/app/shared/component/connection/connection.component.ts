@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {JqueryServiceComponent} from '../../jquery/jQueryService.component';
+import {AskQuestionComponent} from '../ask-question/ask-question.component';
+import {MatDialog} from '@angular/material';
+import {Router} from '@angular/router';
+import {PersonComponent} from '../../../pages/person/person.component';
+import {SendMessageComponent} from '../send-message/send-message.component';
 
 @Component({
   selector: 'app-connection',
@@ -8,7 +13,10 @@ import {JqueryServiceComponent} from '../../jquery/jQueryService.component';
 })
 export class ConnectionComponent implements OnInit {
 
-  constructor(private jqueryServiceComponent: JqueryServiceComponent) { }
+  constructor(private jqueryServiceComponent: JqueryServiceComponent,
+              public dialog: MatDialog,
+              private router: Router
+              ) { }
 
   ngOnInit() {
     this.fixFloatInstructionDivPosition();
@@ -43,6 +51,48 @@ export class ConnectionComponent implements OnInit {
     }
 
     $('#fix1').fixedDiv('fix-div');
+  }
+
+  openAskQuestionDialog() {
+    const dialogRef = this.dialog.open(AskQuestionComponent, {
+      width:'60%',
+      height: '800px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openMyFocusProblem() {
+    this.router.navigate(['/pages/person', { id: PersonComponent.FOLLOW_QUESTION }]);
+  }
+
+  openMyFollowPerson() {
+    this.router.navigate(['pages/person', { id: PersonComponent.FOLLOW_PEOPLE }]);
+  }
+
+  openFollowMyPerson() {
+    this.router.navigate(['pages/person', { id: PersonComponent.FANS }]);
+  }
+
+  openSendMessageDialog() {
+    const dialogRef = this.dialog.open(SendMessageComponent, {
+      width: '50%',
+      height: '250px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openPushQuestion() {
+    this.router.navigate(['pages/person', { id: PersonComponent.PUSH_QUESTION }]);
+  }
+
+  openMyStationLetter() {
+    this.router.navigate(['pages/person', { id: PersonComponent.STATION_LETTER} ]);
   }
 
 }

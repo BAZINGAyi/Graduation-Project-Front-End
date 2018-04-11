@@ -1,14 +1,5 @@
 <mat-card class="hot-question-container">
     <mat-list role="list">
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-        <mat-list-item role="listitem"><p class="text-style">The Shiba Inu is the smallest of The Shiba Inu is the smallest of</p></mat-list-item>
-      </mat-list>
+        <mat-list-item role="listitem" *ngFor="let feed of indexDatas" ><p class="text-style" id="{{feed.question.id}}">{{feed.question.title}}</p></mat-list-item>
+    </mat-list>
 </mat-card>
