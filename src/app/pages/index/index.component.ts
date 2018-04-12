@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { IndexServiceComponent } from './shared/IndexServiceComponent';
-import {ConnectionComponent} from '../../shared/component/connection/connection.component';
-
 declare var $: any;
 
 @Component({
@@ -12,7 +10,8 @@ declare var $: any;
 
 export class IndexComponent implements OnInit {
 
-  constructor(private indexServiceComponent: IndexServiceComponent) {
+  constructor(private indexServiceComponent: IndexServiceComponent,
+              ) {
   }
 
   ngOnInit() {

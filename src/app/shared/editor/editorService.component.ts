@@ -132,7 +132,9 @@ export class EditorServiceComponent {
       },
       imageUpload : true,
       imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-      imageUploadURL : "/testMarkdown",
+      imageUploadURL : "api/testMarkdown",
+      crossDomainUpload : true,
+      uploadCallbackURL : "api/Idontknowthiseffectofproperty",
       onfullscreen : function() {
         const element = document.getElementById('navigationView');
         element.style.zIndex = '0';

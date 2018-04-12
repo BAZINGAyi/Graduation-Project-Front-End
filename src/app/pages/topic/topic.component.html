@@ -5,13 +5,7 @@
 <div style="width: 64.5rem; margin: 0 auto; margin-top: 1rem;">
   <mat-divider></mat-divider>
   <mat-chip-list style="margin: 1rem;">
-    <mat-chip>代码</mat-chip>
-    <mat-chip>ios</mat-chip>
-    <mat-chip>Java</mat-chip>
-    <mat-chip>C++</mat-chip>
-    <mat-chip>Android</mat-chip>
-    <mat-chip>English</mat-chip>
-    <mat-chip>Japanese</mat-chip>
+    <mat-chip *ngFor="let topic of topicNameList">{{topic.topic.topicName}}</mat-chip>
   </mat-chip-list>
   <mat-divider></mat-divider>
 </div>
