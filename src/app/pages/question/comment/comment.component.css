@@ -13,8 +13,7 @@
   display: flex;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+.comment-header-image {
   background-size: cover;
 }
 

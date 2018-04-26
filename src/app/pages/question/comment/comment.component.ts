@@ -1,5 +1,6 @@
 import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input} from '@angular/core';
 import { EditorServiceComponent } from '../../../shared/editor/editorService.component';
+import {QuestionComment} from '../../../shared/model/question/question-comment.model';
 
 @Component({
   selector: 'app-comment',
@@ -7,6 +8,15 @@ import { EditorServiceComponent } from '../../../shared/editor/editorService.com
   styleUrls: ['./comment.component.css']
 })
 export class CommentComponent implements OnInit, AfterViewInit {
+
+  // 用于接收 index-feeds 传过来的 id，用于标识每个 feeds
+  @Input() comment: QuestionComment;
+
+  // 用于显示评论的内容 Id
+  SHORT_COMMENT_CONTENT_ID = '';
+
+  // 用于展示详细评论内容的 Id
+  DETAIL_COMMENT_CONTENT_ID = '';
 
   // 展示评论的评论的页面
   @ViewChild('commentCommentsList')
@@ -20,17 +30,17 @@ export class CommentComponent implements OnInit, AfterViewInit {
     this.commentCommentsDiv.nativeElement.style.display = 'none';
   }
 
-  // 用于接收 index-feeds 传过来的 id，用于标识每个 feeds
-  @Input() content: string;
-
   constructor(private editorServiceComponent: EditorServiceComponent) { }
 
-  ngOnInit() {}
-
+  ngOnInit() {
+     this.SHORT_COMMENT_CONTENT_ID = this.comment.comment.commentParent.id + '';
+     this.DETAIL_COMMENT_CONTENT_ID = this.comment.comment.commentParent.id + 'detail';
+     this.commentsCountName = this.comment.comment.commentInCommentCount + '条评论';
+  }
 
   init(){
     var len = 100;      //默认显示字数
-    var ctn = document.getElementById(this.content);  //获取div对象
+    var ctn = document.getElementById(this.SHORT_COMMENT_CONTENT_ID);  //获取div对象
     var content = ctn.innerHTML;                   //获取div里的内容
 
     //alert(content);
@@ -68,4 +78,6 @@ export class CommentComponent implements OnInit, AfterViewInit {
     }
     this.commentsCountName = '收起评论列表';
   }
+
+  // 和主页一样，仅对打开的 comment 应用加载 editor 的内容，其他 comment 仅仅显示缩略图
 }

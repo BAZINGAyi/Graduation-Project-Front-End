@@ -2,6 +2,8 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core
 import {EditorServiceComponent} from '../../../shared/editor/editorService.component';
 import {Router} from '@angular/router';
 import {IndexData} from '../../../shared/model/index-data.model';
+import {PersonComponent} from '../../person/person.component';
+import {FeedActionComponent, NORMAL_FEED} from '../feed-action/feed-action.component';
 
 
 declare var $: any;
@@ -38,6 +40,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
   // 每个 feed 流中内容显示的图片地址
   feedContentImgSrc = '';
+
+  CURRENT_FEED_TYPE = NORMAL_FEED;
 
   constructor(private editorServiceComponent: EditorServiceComponent,
               private elementRef: ElementRef,
@@ -96,7 +100,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
    * 生成每个 feed 中的 content img 地址
    */
   generateFeedContentImg() {
-    const questionContent = this.feed.question.content.trim() + '<img class="yahoo" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="yahoo logo" />';
+    // '<img class="yahoo" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="yahoo logo" />'
+    const questionContent = this.feed.question.content.trim();
     // 匹配图片（g表示匹配所有结果i表示区分大小写）
     const imgReg = /<img.*?(?:>|\/>)/gi;
     // 匹配src属性
@@ -154,7 +159,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
    * 打开 question 页面
    */
   openQuestionDetailPage() {
-    this.router.navigate(['pages/question']);
+    this.router.navigate(['/pages/question', { qid: this.feed.question.id }]);
   }
 
   // /**

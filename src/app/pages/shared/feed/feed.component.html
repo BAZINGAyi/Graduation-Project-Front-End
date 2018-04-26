@@ -27,13 +27,15 @@
           </div>
         </div>
         <!--card-button-->
+      <app-feed-action [followCount]="feed.followCount" [commentCount]="feed.question.commentCount"
+      [CURRENT_FEED_TYPE]="CURRENT_FEED_TYPE"></app-feed-action>
         <div style="margin-top: 0.5rem;">
           <button mat-button style="color:#0288D1;">
             <i class="material-icons" style="color:#b3e5fc;margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
               Upvote | {{feed.followCount}}
            </button>
           <button mat-button style="color:#757575;">关注问题</button>
-          <button mat-button disabled>{{feed.question.id}}条评论</button>
+          <button mat-button disabled>{{feed.question.commentCount}}条评论</button>
         </div>
     </div>
     <!--显示完整内容-->
@@ -41,6 +43,5 @@
     </div>
     <!--关闭完整内容的按钮-->
     <button *ngIf="contentState == true" mat-raised-button color="warn" style="width: 100%;" (click)="closeContent();">收起内容</button>
-
   </mat-card-content>
 </mat-card>

@@ -53,8 +53,6 @@ export class NavigationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(): void {}
-
   constructor(public dialog: MatDialog,
               public router: Router) {
     this.stateCtrl = new FormControl();
@@ -72,6 +70,7 @@ export class NavigationComponent implements OnInit {
 
 
   openSendMessage() {
+
     const dialogRef = this.dialog.open(SendMessageComponent, {
       width: '50%',
       height: '250px'
@@ -80,6 +79,7 @@ export class NavigationComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+
   }
 
   /**
@@ -89,10 +89,10 @@ export class NavigationComponent implements OnInit {
   handleSearchEvent(event) {
     const theEvent = event || window.event;
     const code = theEvent.keyCode || theEvent.which || theEvent.charCode;
-    alert(code);
     if (code === 13) {
+      alert('hhh');
       // 路由至搜索页面
-      this.router.navigate(['pages/search']);
+      this.router.navigate(['/pages/search', { searchContent: event.target.value.trim() }]);
     }
   }
 

@@ -6,8 +6,8 @@
 <mat-form-field style="width: 100%;">
     <input type="text" placeholder="选择话题" aria-label="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of options" [value]="option">
-        {{ option }}
+      <mat-option *ngFor="let option of topicNameList" [value]="option.topic.id">
+        {{ option.topic.topicName }}
       </mat-option>
     </mat-autocomplete>
  </mat-form-field>

@@ -39,7 +39,7 @@ export class EditorServiceComponent {
       return;
     }
     const container = document.getElementById(containerId);
-    container.style.padding = "2rem";
+    container.style.padding = '2rem';
     const containerInnerText = container.innerText;
     // 证明该页面已经加载过 display editor，不重新进行加载
     if (containerInnerText != null && containerInnerText != '') {
@@ -88,7 +88,6 @@ export class EditorServiceComponent {
    * 生成显示 display Editor 内容的页面
    */
   public generateDisplayEditor(displayEditorId: string, feedContent: string, feedTitle: string) {
-
     // 获取显示详细内容的 div ID
     const editor = $('#' + displayEditorId);
     // 生成显示标题的节点
@@ -115,26 +114,52 @@ export class EditorServiceComponent {
   }
 
   /**
+   * 生成显示 display Editor 内容的页面
+   */
+  public generateQuestionDisplayEditor(displayEditorId: string, feedContent: string) {
+    // 获取显示详细内容的 div ID
+    const editor = $('#' + displayEditorId);
+    editor.css('font-size', '1rem');
+    editor.css('padding', '1rem');
+    const containerInnerText = editor.text().trim();
+    // 判断是否已经打开过了
+    if (containerInnerText != null && containerInnerText !== '') {
+      this.showEditEditor(displayEditorId);
+      return;
+    }
+    // 生成详细内容
+    editormd.markdownToHTML(displayEditorId, {
+      markdown        : feedContent ,
+      tocm            : true,    // Using [TOCM]
+      emoji           : true,
+      taskList        : true,
+      tex             : true,  // 默认不解析
+      flowChart       : true,  // 默认不解析
+      sequenceDiagram : true,  // 默认不解析
+    });
+  }
+
+  /**
    * 生成编辑 Editor 内容的页面
    * 编辑后保存的内容尽量是 html 形式，如果是 markdown 形式，则会造成多次渲染 editor
    */
   private genernateEditEditor(editEditorId: string) {
-    let editor = editormd(editEditorId, {
-      width   : "100%",
+    const editor = editormd(editEditorId, {
+      width   : '100%',
       height  : 540,
-      syncScrolling : "single",
-      path    : "../../../../assets/editor/lib/",
+      syncScrolling : 'single',
+      path    : '../../../../assets/editor/lib/',
       saveHTMLToTextarea : true,
       toolbarIcons : function() {
-          return ["undo", "redo", "|", "bold", "hr", "|", "preview",
-           "watch", "|", "fullscreen", "image",'code','code-block','clear',
-           'search','list-ol','reference-link'];
+          return ['undo', 'redo', '|', 'bold', 'hr', '|', 'preview',
+           'watch', '|', 'fullscreen', 'image', 'code', 'code-block', 'clear',
+           'search', 'list-ol', 'reference-link'];
       },
       imageUpload : true,
-      imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-      imageUploadURL : "api/testMarkdown",
+      imageFormats : ['jpg', 'jpeg', 'gif', 'png', 'bmp', 'webp'],
+      imageUploadURL : 'api/uploadQuestionImage',
       crossDomainUpload : true,
-      uploadCallbackURL : "api/Idontknowthiseffectofproperty",
+      uploadCallbackURL : 'api/Idontknowthiseffectofproperty',
       onfullscreen : function() {
         const element = document.getElementById('navigationView');
         element.style.zIndex = '0';
@@ -151,13 +176,13 @@ export class EditorServiceComponent {
    * 生成用于显示 display editor 的 div 容器
    * @param displayEditorId 用于在显示 editor 的 div 的 id
    */
-  private generateDisplayEditorTemplate(displayEditorId:string) {
+  private generateDisplayEditorTemplate(displayEditorId: string) {
 
     if (displayEditorId == null || displayEditorId == '') {
       return null;
     }
 
-    let displayEditorTemplate = '<div id="displayEditorId' + displayEditorId + '">' +
+    const displayEditorTemplate = '<div id="displayEditorId' + displayEditorId + '">' +
                                     '<textarea style="display:none;" name="">###Hello</textarea>' +
                                 '</div>';
     return displayEditorTemplate;

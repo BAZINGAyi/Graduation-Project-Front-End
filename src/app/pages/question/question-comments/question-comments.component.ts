@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {IndexData} from '../../../shared/model/index-data.model';
+import {QuestionComment} from '../../../shared/model/question/question-comment.model';
 
 @Component({
   selector: 'app-question-comments',
@@ -7,15 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionCommentsComponent implements OnInit {
 
-  data = ['12312asd3'];
+  @Input() comments: QuestionComment[];
 
   constructor() { }
 
   ngOnInit() {
-    this.data.push('12312388asd');
-    this.data.push('12312asd3asd88asd');
-    this.data.push('1231238998asd');
-
   }
 
 }

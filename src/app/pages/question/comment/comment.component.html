@@ -1,18 +1,19 @@
 <mat-card class="example-card center-card">
   <!--card-header-->
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed , 2018.10.2 16:30:22</mat-card-subtitle>
+    <img mat-card-avatar class="comment-header-image" src="{{comment.user.headUrl}}">
+    <mat-card-title>{{comment.user.name}}</mat-card-title>
+    <mat-card-subtitle>{{comment.user.description}}, 2018.10.2 16:30:22</mat-card-subtitle>
   </mat-card-header>
 
   <!--card-content-->
   <mat-card-content class="clear-padding">
     <div>
       <!--expansion panel-->
-      <div id="{{content}}" style="font-size: 1rem;">
+      <div id="{{SHORT_COMMENT_CONTENT_ID}}" style="font-size: 1rem;">
         2005年以后，互联网进入Web2.0时代，各种类似桌面软件的Web应用大量涌现，网站的前端由此发生了翻天覆地的变化。网页不再只是承载单一的文字和图片，各种富媒体让网页的内容更加生动，网页上软件化的交互形式为用户提供了更好的使用体验，这些都是基于前端技术实现的。以前会Photoshop和Dreamweaver就可以制作网页，现在只掌握这些已经远远不够了。
       </div>
+      <div id="{{DETAIL_COMMENT_CONTENT_ID}}" style="font-size: 1rem;"></div>
       <!--card-button-->
       <div style="margin-top: 5px;">
         <button mat-button style="color:#0288D1;">
@@ -21,7 +22,7 @@
         </button>
         <button mat-button style="color:#0288D1;">
           <i class="material-icons" style="color:#b3e5fc;margin-top: 0rem; margin-right:0.5rem;font-size:1rem;">thumb_down</i>
-          Upvote | 210
+          Downvote | 210
         </button>
         <button mat-button (click)="openCommentComments()">{{commentsCountName}}</button>
       </div>
@@ -29,14 +30,13 @@
       <div>
         <!--评论列表-->
         <div style="border: 1px solid #ebebeb; box-shadow: 0 1px 3px rgba(26,26,26,.1);" #commentCommentsList>
-          <app-comment-comments></app-comment-comments>
+          <app-comment-comments [commentListInComment]="comment.comment.commentSon"></app-comment-comments>
           <!--翻页控制-->
-                  <mat-paginator [length]="100"
-                                 [pageSize]="10"
-                                 [pageSizeOptions]="[5, 10, 25, 100]">
-                  </mat-paginator>
+          <mat-paginator [length]="100"
+                         [pageSize]="10"
+                         [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator>
         </div>
-
         <!--评论-->
         <div>
           <mat-form-field style="width: 100%;">

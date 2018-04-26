@@ -1,7 +1,8 @@
 <div class="index-container">
   <span class="fill-remaining-space"></span>
   <div>
-    <app-pages-feed *ngFor="let feed of feeds" [feed] = "feed"></app-pages-feed>
+    <app-pages-feed *ngFor="let feed of searchDataList" [feed] = "feed"></app-pages-feed>
+    <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData"></app-not-found-data>
   </div>
   <div>
     <app-connection></app-connection>

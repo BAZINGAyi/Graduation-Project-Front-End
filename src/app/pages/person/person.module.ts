@@ -10,6 +10,7 @@ import { FansComponent } from './fans/fans.component';
 import { FollowQuestionComponent } from './follow-question/follow-question.component';
 import {PagesSharedModule} from '../shared/pagesShared.module';
 import {PushQuestionComponent} from './push-question/push-question.component';
+import { MyCommentQuestionsComponent } from './my-comment-questions/my-comment-questions.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,14 @@ import {PushQuestionComponent} from './push-question/push-question.component';
     ChatModule,
     PagesSharedModule,
   ],
-  declarations: [PersonComponent, FollowComponent, FansComponent, FollowQuestionComponent, PushQuestionComponent],
+  declarations: [
+    PersonComponent,
+    FollowComponent,
+    FansComponent,
+    FollowQuestionComponent,
+    PushQuestionComponent,
+    MyCommentQuestionsComponent
+  ],
   providers: [EditorServiceComponent],
   exports: [PersonComponent]
 })

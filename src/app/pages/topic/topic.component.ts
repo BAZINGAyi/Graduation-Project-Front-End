@@ -11,7 +11,12 @@ import {IndexTopic} from '../../shared/model/topicIndex.model';
   styleUrls: ['./topic.component.css']
 })
 export class TopicComponent implements OnInit {
+
+  // topic 列表
   topicNameList: IndexTopic[];
+
+  // 当前选择的 topic
+  topicId = 0;
 
   constructor(public topicService: TopicService) {}
 
@@ -25,4 +30,11 @@ export class TopicComponent implements OnInit {
       .subscribe( data => {  this.topicNameList = data; });
   }
 
+  // 选择了对应的 topic
+  selectTopic(topic: any) {
+    if (topic.topic.id != null) {
+      this.topicId = topic.topic.id;
+      alert(this.topicId);
+    }
+  }
 }

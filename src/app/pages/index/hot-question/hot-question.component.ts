@@ -4,6 +4,7 @@ import {IndexData} from '../../../shared/model/index-data.model';
 import {HttpClient} from '@angular/common/http';
 import {forEach} from '@angular/router/src/utils/collection';
 import {AskQuestionComponent} from '../../../shared/component/ask-question/ask-question.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-hot-question',
@@ -15,7 +16,8 @@ export class HotQuestionComponent implements OnInit {
   // feeds 流数据
   indexDatas: IndexData[];
 
-  constructor(private  httpClient: HttpClient) { }
+  constructor(private  httpClient: HttpClient,
+              private router: Router) { }
 
   ngOnInit() {
     this.getQuestion();
@@ -24,6 +26,13 @@ export class HotQuestionComponent implements OnInit {
   getQuestion() {
     const questionUrl = AppSettings.getQuestionsUrl('0');
     this.httpClient.get<IndexData[]>(questionUrl).subscribe( data => { this.indexDatas = data; });
+  }
+
+  /**
+   * 打开 question 页面
+   */
+  openQuestionDetailPage(questionId: number) {
+    this.router.navigate(['/pages/question', { qid: questionId }]);
   }
 
 }

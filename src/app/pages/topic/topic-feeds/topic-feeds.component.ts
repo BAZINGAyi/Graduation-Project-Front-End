@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {IndexData} from '../../../shared/model/index-data.model';
 import {AppSettings} from '../../../shared/url/AppSettings';
 import {HttpClient} from '@angular/common/http';
@@ -13,22 +13,19 @@ export class TopicFeedsComponent implements OnInit {
   // feeds 流数据
   indexDatas: IndexData[];
 
-  feeds = [1];
+  // 接收选择的 topic Id
+  @Input()topicId;
 
   constructor(private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {
-    this.feeds.push(2);
-    this.feeds.push(3);
-    this.feeds.push(4);
-    this.feeds.push(5);
     // 获取主页 question 数据
-    this.getQuestion();
+    this.getTopicQuestionListByTid(this.topicId);
   }
 
-  private getQuestion() {
-    const questionUrl = AppSettings.getQuestionsUrl('0');
-    this.httpClient.get<IndexData[]>(questionUrl).subscribe( data => { this.indexDatas = data; });
+  getTopicQuestionListByTid(id: number) {
+    const questionUrl = AppSettings.getTopicQuestionList(id, 0);
+    this.httpClient.get<IndexData[]>(questionUrl).subscribe( data => { this.indexDatas = data; console.log(this.indexDatas); });
   }
 }

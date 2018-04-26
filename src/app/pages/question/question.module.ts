@@ -12,6 +12,8 @@ import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.componen
 import { QuestionCommentsComponent } from './question-comments/question-comments.component';
 import { CommentCommentsComponent } from './comment-comments/comment-comments.component';
 import {NavigationService} from '../navigation/shared/navigation.service';
+import {QuestionService} from './question.service';
+import {FeedUtilService} from '../shared/feed-util.service';
 
 @NgModule({
   imports: [
@@ -20,6 +22,6 @@ import {NavigationService} from '../navigation/shared/navigation.service';
   ],
   exports : [QuestionComponent],
   declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent, CommentCommentsComponent],
-  providers: [EditorServiceComponent, JqueryServiceComponent, NavigationService],
+  providers: [EditorServiceComponent, JqueryServiceComponent, NavigationService, QuestionService, FeedUtilService],
 })
 export class QuestionModule { }

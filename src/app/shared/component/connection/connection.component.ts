@@ -95,4 +95,8 @@ export class ConnectionComponent implements OnInit {
     this.router.navigate(['pages/person', { id: PersonComponent.STATION_LETTER} ]);
   }
 
+  openMyCommentQuestions() {
+    this.router.navigate(['pages/person', { id: PersonComponent.MY_COMMENT_QUESTIONS} ]);
+  }
+
 }

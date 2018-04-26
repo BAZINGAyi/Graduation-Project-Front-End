@@ -2,6 +2,8 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {EditorServiceComponent} from '../../editor/editorService.component';
 import {MatDialogRef} from '@angular/material';
+import {TopicService} from '../../../pages/topic/shared/topic.service';
+import {IndexTopic} from '../../model/topicIndex.model';
 
 @Component({
   selector: 'app-ask-question',
@@ -10,6 +12,8 @@ import {MatDialogRef} from '@angular/material';
 })
 export class AskQuestionComponent implements OnInit, AfterViewInit {
   myControl: FormControl = new FormControl();
+
+  topicNameList: IndexTopic[];
 
   options = [
     'One',
@@ -26,9 +30,11 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
 
   constructor(private editorServiceComponent: EditorServiceComponent,
-              public dialogRef: MatDialogRef<AskQuestionComponent>) { }
+              public dialogRef: MatDialogRef<AskQuestionComponent>,
+              private topicService: TopicService) { }
 
   ngOnInit() {
+    this.getTopicList();
   }
 
   initEditor() {
@@ -37,5 +43,11 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
   closeDialog() {
     this.dialogRef.close();
+  }
+
+  private getTopicList() {
+    this.topicService
+      .getTopicList()
+      .subscribe( data => {  this.topicNameList = data; });
   }
 }
