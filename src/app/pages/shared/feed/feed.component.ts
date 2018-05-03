@@ -41,7 +41,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
   // 每个 feed 流中内容显示的图片地址
   feedContentImgSrc = '';
 
-  CURRENT_FEED_TYPE = NORMAL_FEED;
+  @Input() CURRENT_FEED_TYPE: string;
 
   constructor(private editorServiceComponent: EditorServiceComponent,
               private elementRef: ElementRef,
@@ -52,6 +52,10 @@ export class FeedComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.initViewId();
     this.generateFeed();
+    // 显示 feed 类型
+    if (this.CURRENT_FEED_TYPE === '') {
+      this.CURRENT_FEED_TYPE = NORMAL_FEED;
+    }
   }
 
   private initViewId() {

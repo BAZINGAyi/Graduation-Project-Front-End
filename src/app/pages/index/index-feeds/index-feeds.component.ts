@@ -15,6 +15,8 @@ export class IndexFeedsComponent implements OnInit {
   // feeds 流数据
   indexDatas: IndexData[];
 
+  public  NORMAL_FEED = 'NORMAL_FEED';
+
   offset = 0;
 
   // 判断是否滚动到底部

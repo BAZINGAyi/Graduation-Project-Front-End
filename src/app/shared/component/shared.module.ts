@@ -45,6 +45,7 @@ import {TopicService} from '../../pages/topic/shared/topic.service';
   entryComponents: [
     AskQuestionComponent,
     SendMessageComponent,
+    ChangePasswordComponent,
   ],
 })
 export class SharedModule { }

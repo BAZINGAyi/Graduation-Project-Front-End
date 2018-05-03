@@ -53,6 +53,11 @@ export class IndexServiceComponent {
     return this.httpClient.get<IndexData[]>(questionUrl);
   }
 
+  getMyCommentQuestionList(offset: string) {
+    const questionUrl = AppSettings.getMyCommentQuestionList(offset);
+    return this.httpClient.get<IndexData[]>(questionUrl);
+  }
+
   // 文档高度
    getDocumentTop() {
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;

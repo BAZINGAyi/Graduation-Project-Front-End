@@ -6,7 +6,9 @@ export class AppSettings {
   private static API_GET_QUESTION_TOPIC_LIST = AppSettings.API_URL + 'getTopicQuestion?tId=';
   private static API_GET_QUESTION_SEARCH_LIST = AppSettings.API_URL + 'getSearchQuestionList?searchContent=';
   private static API_GET_TIMELINE_FEEDS = AppSettings.API_URL + 'pullUserFeeds';
-  private static API_GET_MY_COMMENT_QUESTION_LIST = AppSettings.API_URL + 'api/queryUserCommentQuestionList';
+  private static API_GET_MY_COMMENT_QUESTION_LIST = AppSettings.API_URL + 'queryUserCommentQuestionList?offset=';
+  private static API_GET_LOGIN = AppSettings.API_URL + 'login/';
+  private static API_GET_REGISTER = AppSettings.API_URL + 'reg/';
 
   /**
    * @param {string} offset 查询数据库相对与问题的偏移量
@@ -48,9 +50,16 @@ export class AppSettings {
     return this.API_GET_TIMELINE_FEEDS;
   }
 
-  static getMyCommentQuestionList() {
-    return this.API_GET_MY_COMMENT_QUESTION_LIST;
+  static getMyCommentQuestionList(offset: string) {
+    return this.API_GET_MY_COMMENT_QUESTION_LIST + offset;
   }
 
+  static getLoginUrl() {
+    return this.API_GET_LOGIN;
+  }
+
+  static getRegister() {
+    return this.API_GET_REGISTER;
+  }
 
 }

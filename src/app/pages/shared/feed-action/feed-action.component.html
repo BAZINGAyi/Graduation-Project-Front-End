@@ -1,6 +1,6 @@
 <!--正常feed流-->
 <div style="margin-top: 0.5rem;" *ngIf="CURRENT_FEED_TYPE == NORMAL_FEED">
-  <button mat-button style="color:#0288D1;">
+  <button mat-button style="color:#0288D1;" disabled>
     <i class="material-icons" style="color:#b3e5fc;margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
     Upvote | {{followCount}}
   </button>
@@ -9,11 +9,20 @@
 </div>
 <!--修改问题feed流-->
 <div style="margin-top: 0.5rem;" *ngIf="CURRENT_FEED_TYPE == MY_QUESTION">
-  <button mat-button style="color:#0288D1;">
+  <button mat-button style="color:#0288D1;" disabled>
     <i class="material-icons" style="color:#b3e5fc;margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
     Upvote | {{followCount}}
   </button>
   <button mat-button style="color:#757575;">修改问题</button>
   <button mat-button style="color:#757575;">删除问题</button>
+  <button mat-button disabled>{{commentCount}}条评论</button>
+</div>
+<!--关注问题feed流-->
+<div style="margin-top: 0.5rem;" *ngIf="CURRENT_FEED_TYPE == MY_FOLLOW_QUESTION">
+  <button mat-button style="color:#0288D1;" disabled>
+    <i class="material-icons" style="color:#b3e5fc;margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
+    Upvote | {{followCount}}
+  </button>
+  <button mat-button style="color:#757575;">取消关注</button>
   <button mat-button disabled>{{commentCount}}条评论</button>
 </div>

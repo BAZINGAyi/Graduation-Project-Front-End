@@ -13,6 +13,8 @@ import {ConnectionComponent} from '../shared/component/connection/connection.com
 import {MaterialModule} from '../shared/component/material.module';
 import {SearchModule} from './search/search.module';
 import {PersonModule} from './person/person.module';
+import {AuthenticationService} from '../authentication/authentication.service';
+import {WendaUtils} from '../shared/util/wendaUtil.service';
 
 
 @NgModule({
@@ -28,6 +30,9 @@ import {PersonModule} from './person/person.module';
   ],
   declarations: [ NavigationComponent, PagesComponent ],
   exports:      [ PagesComponent ],
-  providers:    [ ProgressBarServiceComponent ]
+  providers:
+    [ProgressBarServiceComponent,
+      AuthenticationService,
+      WendaUtils]
 })
 export class PagesModule {}

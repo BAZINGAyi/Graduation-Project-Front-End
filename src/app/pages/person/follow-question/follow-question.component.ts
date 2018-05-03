@@ -10,6 +10,8 @@ import {ProgressBarServiceComponent} from '../../../shared/progressbar/progressB
 })
 export class FollowQuestionComponent implements OnInit {
 
+  public MY_FOLLOW_QUESTION = 'MY_FOLLOW_QUESTION';
+
   offset = 0;
 
   // feeds 流数据

@@ -10,6 +10,8 @@ import {ProgressBarServiceComponent} from '../../../shared/progressbar/progressB
 })
 export class PushQuestionComponent implements OnInit {
 
+  public  MY_QUESTION = 'MY_QUESTION_FEED';
+
   offset = 0;
 
   // feeds 流数据

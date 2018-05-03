@@ -5,6 +5,8 @@ export class User {
               public headUrl: string,
               public name: string,
               public password: string,
-              public salt: string) {
+              public salt: string,
+              public mail: string,
+              public describe: string) {
   }
 }

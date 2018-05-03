@@ -16,6 +16,8 @@ export class TopicFeedsComponent implements OnInit {
   // 接收选择的 topic Id
   @Input()topicId;
 
+  public  NORMAL_FEED = 'NORMAL_FEED';
+
   constructor(private httpClient: HttpClient) {
   }
 
