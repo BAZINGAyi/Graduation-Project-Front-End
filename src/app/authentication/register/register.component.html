@@ -1,0 +1,16 @@
+<div style="display:flex; flex-direction: column; justify-content: center; align-items: center;">
+  <i class="material-icons" style="font-size: 48px; color: #303F9F;">touch_app</i>
+  <mat-form-field style="width: 80%;">
+    <input matInput placeholder="用户名" value="" #username>
+  </mat-form-field>
+  <mat-form-field style="width: 80%;">
+    <input matInput placeholder="密码" value="" #password>
+  </mat-form-field>
+  <mat-form-field style="width: 80%;">
+    <input matInput placeholder="邮箱" value="" #mail>
+  </mat-form-field >
+  <mat-form-field style="width: 80%;">
+    <input matInput placeholder="自我描述" value="" #describe>
+  </mat-form-field>
+  <button mat-button (click)="register(username.value, password.value, mail.value, describe.value)">注册</button>
+</div>

@@ -3,10 +3,14 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
-import {AskQuestionComponent} from '../../shared/component/ask-question/ask-question.component';
 import {MatDialog} from '@angular/material';
 import {SendMessageComponent} from '../../shared/component/send-message/send-message.component';
 import {Router} from '@angular/router';
+import {LoginComponent} from '../../authentication/login/login.component';
+import {RegisterComponent} from '../../authentication/register/register.component';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {WendaUtils} from '../../shared/util/wendaUtil.service';
+import {ChangePasswordComponent} from '../../shared/component/change-password/change-password.component';
 
 export class State {
   constructor(public name: string, public population: string, public flag: string) { }
@@ -50,17 +54,28 @@ export class NavigationComponent implements OnInit {
     }
   ];
 
+  // 判断当前用户是否登陆
+  IS_LOGIN = false;
+
   ngOnInit(): void {
   }
 
   constructor(public dialog: MatDialog,
-              public router: Router) {
+              public router: Router,
+              public authenticationService: AuthenticationService,
+              public wendaUtil: WendaUtils) {
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
       .pipe(
         startWith(''),
         map(state => state ? this.filterStates(state) : this.states.slice())
       );
+    // 判断是否登录
+    if (this.authenticationService.isLogin() === true) {
+      this.IS_LOGIN = true;
+    } else {
+      this.IS_LOGIN = false;
+    }
   }
 
   filterStates(name: string) {
@@ -94,6 +109,58 @@ export class NavigationComponent implements OnInit {
       // 路由至搜索页面
       this.router.navigate(['/pages/search', { searchContent: event.target.value.trim() }]);
     }
+  }
+
+  /**
+   * 打开登陆注册框
+   */
+  openLoginPage() {
+
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '40%',
+      height: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
+  }
+
+  /**
+   * 打开注册对话框
+   */
+  openRegisterPage() {
+
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      width: '40%',
+      height: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
+  }
+
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/pages/']);
+    this.wendaUtil.reloadPage();
+  }
+
+  /**
+   * 打开修改密码 dialog
+   */
+  openChangePasswordDialog() {
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+      width: '40%',
+      height: '350px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 }
