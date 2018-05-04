@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           this.wendaUtil.reloadPage();
         },
         error => {
-          alert("登录失败");
+          alert('登录失败');
         });
   }
 

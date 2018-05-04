@@ -9,7 +9,6 @@ import { QuestionModule } from './question/question.module';
 import { QuestionComponent } from './question/question.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { PagesRoutingModule } from './pages-routing.module';
-import {ConnectionComponent} from '../shared/component/connection/connection.component';
 import {MaterialModule} from '../shared/component/material.module';
 import {SearchModule} from './search/search.module';
 import {PersonModule} from './person/person.module';

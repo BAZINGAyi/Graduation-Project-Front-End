@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {AppSettings} from '../../../shared/url/AppSettings';
 
 export const NORMAL_FEED = 'NORMAL_FEED';
 export const MY_QUESTION = 'MY_QUESTION_FEED';
@@ -23,9 +25,17 @@ export class FeedActionComponent implements OnInit {
 
   @Input() commentCount: number;
 
-  constructor() { }
+  @Input() questionId: number;
+
+  constructor(public http: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  followQuestion() {
+    const url = AppSettings.getFollowQuestionUrl();
+    this.http.post<any>(url, { questionId: this.questionId})
+      .subscribe( data => {console.log(data); });
   }
 
 }

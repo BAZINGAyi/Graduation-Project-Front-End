@@ -16,13 +16,13 @@
       <div id="{{DETAIL_COMMENT_CONTENT_ID}}" style="font-size: 1rem;"></div>
       <!--card-button-->
       <div style="margin-top: 5px;">
-        <button mat-button style="color:#0288D1;">
+        <button mat-button style="color:#0288D1;" (click)="likeComment()">
           <i class="material-icons" style="color:#b3e5fc;margin-top: 0rem; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
-          Upvote | 210
+          Upvote | {{likeCount}}
         </button>
-        <button mat-button style="color:#0288D1;">
+        <button mat-button style="color:#0288D1;" (click)="dislikeComment()">
           <i class="material-icons" style="color:#b3e5fc;margin-top: 0rem; margin-right:0.5rem;font-size:1rem;">thumb_down</i>
-          Downvote | 210
+          Downvote | {{dislikeCount}}
         </button>
         <button mat-button (click)="openCommentComments()">{{commentsCountName}}</button>
       </div>

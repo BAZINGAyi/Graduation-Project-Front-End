@@ -16,4 +16,24 @@ export class QuestionService {
     const questionDetailUrl = AppSettings.getQuestionDetail(qid);
     return this.httpClient.get<QuestionIndex>(questionDetailUrl);
   }
+
+  followQuestion(qid: number) {
+    const url = AppSettings.getFollowQuestionUrl();
+    return this.httpClient.post<any>(url, { questionId: qid});
+  }
+
+  unFollowQuestion(qid: number) {
+    const url = AppSettings.getUnFollowQuestionUrl();
+    return this.httpClient.post<any>(url, { questionId: qid});
+  }
+
+  likeComment(userId: number, commentId: number) {
+    const url = AppSettings.getLikeCommentUrl();
+    return this.httpClient.post<any>(url, { userId: userId, commentId: commentId});
+  }
+
+  dislikeComment(userId: number, commentId: number) {
+    const url = AppSettings.getDisLikeCommentUrl();
+    return this.httpClient.post<any>(url, { userId: userId, commentId: commentId});
+  }
 }

@@ -24,7 +24,10 @@
         </div>
     <!--激活编辑框的按钮-->
     <div *ngIf="EDITOR_STATE == false" class="question-content" style="display: flex;">
-      <button mat-raised-button color="primary" STYLE="background-color:#757575;">关注问题</button>
+      <button *ngIf="FOLLOWEE_QUESTION_STATE == false" mat-raised-button color="primary"
+      STYLE="background-color:#757575;" (click)="followQuestion()">关注问题</button>
+       <button *ngIf="FOLLOWEE_QUESTION_STATE == true" mat-raised-button color="primary"
+       STYLE="background-color:#757575;" (click)="cancelFollowQuestion()">取消关注问题</button>
       <button mat-raised-button color="primary" style="margin-left: 1rem;background-color: #757575" (click)="openEidtor()">写回答</button>
       <button  mat-button disabled style="margin-left: 1rem;">{{questionCommentCount}}条评论</button>
       <span style="flex: 1 1 auto;"></span>

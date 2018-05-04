@@ -1,6 +1,8 @@
 import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input} from '@angular/core';
 import { EditorServiceComponent } from '../../../shared/editor/editorService.component';
 import {QuestionComment} from '../../../shared/model/question/question-comment.model';
+import {AuthenticationService} from '../../../authentication/authentication.service';
+import {QuestionService} from '../question.service';
 
 @Component({
   selector: 'app-comment',
@@ -25,17 +27,28 @@ export class CommentComponent implements OnInit, AfterViewInit {
   // 统计对评论的评论的数量统计
   commentsCountName = '2条评论';
 
+  likeCount = 0;
+
+  dislikeCount = 0;
+
+  isLiked = 0;
+
   ngAfterViewInit(): void {
     this.init();
     this.commentCommentsDiv.nativeElement.style.display = 'none';
   }
 
-  constructor(private editorServiceComponent: EditorServiceComponent) { }
+  constructor(private editorServiceComponent: EditorServiceComponent,
+              private authenticationService: AuthenticationService,
+              private questionService: QuestionService) { }
 
   ngOnInit() {
      this.SHORT_COMMENT_CONTENT_ID = this.comment.comment.commentParent.id + '';
      this.DETAIL_COMMENT_CONTENT_ID = this.comment.comment.commentParent.id + 'detail';
      this.commentsCountName = this.comment.comment.commentInCommentCount + '条评论';
+     this.likeCount = this.comment.likeCount;
+     this.dislikeCount = this.comment.dislikeCount;
+     this.isLiked = this.comment.liked;
   }
 
   init(){
@@ -70,13 +83,55 @@ export class CommentComponent implements OnInit, AfterViewInit {
    * 打开对评论的评论页面
    */
   openCommentComments() {
-    let divState = this.commentCommentsDiv.nativeElement.style.display;
+    const divState = this.commentCommentsDiv.nativeElement.style.display;
     if (divState === 'block') {
       this.commentCommentsDiv.nativeElement.style.display = 'none';
     } else if (divState === 'none') {
       this.commentCommentsDiv.nativeElement.style.display = 'block';
     }
     this.commentsCountName = '收起评论列表';
+  }
+
+  likeComment() {
+    const currentUser = this.authenticationService.getCurrentUserInfo();
+    const userId = currentUser.id;
+    const commentId = this.comment.comment.commentParent.id;
+    // 等于 1 证明用户已经点过赞了
+    if (this.isLiked === 1) {
+      alert('您已经点过赞了');
+      return;
+    }
+    this.questionService.likeComment(userId, commentId)
+      .subscribe( data => {
+        if (data.code === 200) {
+          this.likeCount = data.likeCount;
+          this.dislikeCount = data.dislikeCount;
+          this.isLiked = 1;
+        } else {
+          alert(data.msg);
+        }
+      });
+  }
+
+  dislikeComment() {
+    const currentUser = this.authenticationService.getCurrentUserInfo();
+    const userId = currentUser.id;
+    const commentId = this.comment.comment.commentParent.id;
+    // 等于 0 证明用户已经点过踩了
+    if (this.isLiked === -1) {
+      alert('您已经恶心过这个回答了');
+      return;
+    }
+    this.questionService.dislikeComment(userId, commentId)
+      .subscribe( data => {
+        if (data.code === 200) {
+          this.likeCount = data.likeCount;
+          this.dislikeCount = data.dislikeCount;
+          this.isLiked = -1;
+        } else {
+          alert(data.msg);
+        }
+      });
   }
 
   // 和主页一样，仅对打开的 comment 应用加载 editor 的内容，其他 comment 仅仅显示缩略图
