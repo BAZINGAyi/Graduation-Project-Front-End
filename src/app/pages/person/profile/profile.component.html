@@ -8,11 +8,22 @@
     </mat-card-header>
     <!--card-content-->
     <mat-card-content>
-      <div>
-
+      <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+        <div>
+          <span>粉丝：</span><button mat-button><b>20人</b></button>
+        </div>
+        <div>
+          <span>关注：</span><button mat-button><b>20人</b></button>
+        </div>
+        <div>
+          <span>回答：</span><button mat-button><b>20人</b></button>
+        </div>
+        <div>
+          <span>赞同：</span><button mat-button><b>20人</b></button>
+        </div>
       </div>
     </mat-card-content>
   </mat-card>
-
-      <app-pages-feed *ngFor="let feed of indexDatas" [feed] = "feed" [CURRENT_FEED_TYPE]="NORMAL_FEED" [isNeedHeader]="false"></app-pages-feed>
+  <!--个人TIMELINE-->
+  <app-pages-feed *ngFor="let feed of indexDatas" [feed] = "feed" [CURRENT_FEED_TYPE]="NORMAL_FEED" [isNeedHeader]="false"></app-pages-feed>
 </div>

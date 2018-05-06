@@ -3,12 +3,8 @@
 <div style="margin-top: 3rem;">
   <mat-tab-group style="width:  64.5rem; margin: 0 auto;"  [selectedIndex]="activeIndexPage" >
 
-    <mat-tab label="关注的人">
-     <app-follow></app-follow>
-    </mat-tab>
-
-    <mat-tab label="粉丝">
-      <app-fans></app-fans>
+    <mat-tab label="个人档案">
+      <app-profile></app-profile>
     </mat-tab>
 
     <mat-tab label="关注的问题">
@@ -27,8 +23,12 @@
       <app-chat></app-chat>
     </mat-tab>
 
-    <mat-tab label="个人档案">
-       <app-profile></app-profile>
+    <mat-tab label="关注的人">
+      <app-follow></app-follow>
+    </mat-tab>
+
+    <mat-tab label="粉丝">
+      <app-fans></app-fans>
     </mat-tab>
 
   </mat-tab-group>

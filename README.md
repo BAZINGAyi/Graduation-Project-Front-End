@@ -31,18 +31,12 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## 用户登陆、注册、登出、修改密码
 
-## 增加我的回答栏目
-
 ## 站内信逻辑
 
 ## 问题的提问的存储
 
 ## 回答的提问的存储
 
-## 发布问题的修改，和删除，对应 question 增加属性
-
-## 用户个人的 feed 流 差美化
-
-## 个人中心的粉丝、站内信美化
+## 发布问题的修改，和删除，实现 评论修改删除实现；
 
 ## 网站的响应式设计
