@@ -9,6 +9,7 @@ export class AppSettings {
   private static API_GET_MY_COMMENT_QUESTION_LIST = AppSettings.API_URL + 'queryUserCommentQuestionList?offset=';
   private static API_GET_LOGIN = AppSettings.API_URL + 'login/';
   private static API_GET_REGISTER = AppSettings.API_URL + 'reg/';
+  private static API_SUBMMIT_QUESTION = AppSettings.API_URL + 'question/add';
 
   /**
    * @param {string} offset 查询数据库相对与问题的偏移量
@@ -60,6 +61,10 @@ export class AppSettings {
 
   static getRegister() {
     return this.API_GET_REGISTER;
+  }
+
+  static getSubmitQuestionUrl() {
+    return this.API_SUBMMIT_QUESTION;
   }
 
 }

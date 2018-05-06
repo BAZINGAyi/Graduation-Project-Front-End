@@ -4,6 +4,8 @@ import {EditorServiceComponent} from '../../editor/editorService.component';
 import {MatDialogRef} from '@angular/material';
 import {TopicService} from '../../../pages/topic/shared/topic.service';
 import {IndexTopic} from '../../model/topicIndex.model';
+import {AppSettings} from '../../url/AppSettings';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-ask-question',
@@ -15,14 +17,16 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
   topicNameList: IndexTopic[];
 
+  questionTitle = '';
+
+  topicContent = '';
+
   options = [
-    'One',
-    'Two',
-    'Three'
+    '加载中',
   ];
 
   // 用于添加 editor 的 id
-  askQuestionEditorId = 'askQuestionViewId';
+  ASK_QUESTION_EDITOR_ID = 'askQuestionViewId';
 
   ngAfterViewInit(): void {
     this.initEditor();
@@ -31,14 +35,15 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
   constructor(private editorServiceComponent: EditorServiceComponent,
               public dialogRef: MatDialogRef<AskQuestionComponent>,
-              private topicService: TopicService) { }
+              private topicService: TopicService,
+              private http: HttpClient) { }
 
   ngOnInit() {
     this.getTopicList();
   }
 
   initEditor() {
-    this.editorServiceComponent.appendEditorToContainer(this.askQuestionEditorId);
+    this.editorServiceComponent.appendEditorToContainer(this.ASK_QUESTION_EDITOR_ID);
   }
 
   closeDialog() {
@@ -49,5 +54,22 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
     this.topicService
       .getTopicList()
       .subscribe( data => {  this.topicNameList = data; });
+  }
+
+  /**
+   * 提交问题
+   */
+  submitQuestion() {
+
+    const url = AppSettings.getSubmitQuestionUrl();
+
+    alert(this.questionTitle);
+    alert(this.topicContent);
+    this.editorServiceComponent.getEditEditorHtml();
+    this.editorServiceComponent.getEditEditorMarkdown();
+
+    this.http.post<any>(url, { title: this.questionTitle, content: this.editorServiceComponent.getEditEditorHtml(),
+      markdownContent: this.editorServiceComponent.getEditEditorMarkdown(), topicId: this.topicContent})
+      .subscribe(data => { console.log(data); });
   }
 }
