@@ -6,6 +6,9 @@ import {ActivatedRoute} from '@angular/router';
 import {QuestionService} from './question.service';
 import {QuestionIndex} from '../../shared/model/question/question-index.model';
 import {FeedUtilService} from '../shared/feed-util.service';
+import {LoginComponent} from '../../authentication/login/login.component';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-question',
@@ -34,7 +37,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   // 问题内容
   questionContent: string;
   // 评论问题数量
-  questionCommentCount: string;
+  questionCommentCount: number;
   // 评论内容
   questionComment: QuestionComponent[];
 
@@ -45,6 +48,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   // 控制收起问题按钮的显示状态
   packUpButtonState = false;
 
+  // 控制显示关注问题或者取消关注问题
+  FOLLOWEE_QUESTION_STATE = false;
+
+  notFoundDataState = false;
+  notFoundData = '写下评论，成为第一个吃螃蟹的人的吧';
+
   ngAfterViewInit(): void {
   }
 
@@ -54,7 +63,9 @@ export class QuestionComponent implements OnInit, AfterViewInit {
               private elementRef: ElementRef,
               private route: ActivatedRoute,
               private questionService: QuestionService,
-              private feedUtilService: FeedUtilService) {
+              private feedUtilService: FeedUtilService,
+              public authenticationService: AuthenticationService,
+              public dialog: MatDialog) {
     this.qId = this.route.snapshot.paramMap.get('qid');
   }
 
@@ -69,7 +80,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   getQuestionDetailById() {
     const id: number = +this.qId;
     this.questionService
-      .getQuestionDetailById( id )
+      .getQuestionDetailById(id)
       .subscribe( data => { this.generateData(data); this.questionDetail = data; });
   }
 
@@ -102,15 +113,15 @@ export class QuestionComponent implements OnInit, AfterViewInit {
    * 设置 instruction div 滑动位置
    */
   fixFloatEditorDivPosition() {
-    let $ = this.jQueryService.getJqueryObject();
+    const $ = this.jQueryService.getJqueryObject();
 
     $.fn.fixedDiv = function(actCls){
-      var that = $(this),
+      let that = $(this),
         offsetTop = that.offset().top,
         scrollTop;
       // 用于记录正常滚动状态时，距离视窗左侧的高度
-      var normalLeftWidth = '';
-      function fix(){
+      const normalLeftWidth = '';
+      function fix() {
         scrollTop = $(document).scrollTop();
         // 滑动的距离大于到视窗顶部的高度 - 减去导航栏的高度
         if (scrollTop > offsetTop - (3.5 * 16) ) {
@@ -196,8 +207,13 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     this.questionContent = data.question.content;
     this.questionCommentCount = data.question.commentCount;
     this.questionComment = data.comments;
+    this.FOLLOWEE_QUESTION_STATE = data.followed;
     // 显示问题的内容描述
     this.init(data);
+    // 判断是否有评论
+    if (this.questionCommentCount === 0) {
+      this.notFoundDataState = true;
+    }
   }
 
   openDetailQuestionContent() {
@@ -220,6 +236,49 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     this.aState = true;
     this.packUpButtonState = false;
   }
+
+  followQuestion() {
+
+    if (!this.authenticationService.isLogin()) {
+      const dialogRef = this.dialog.open(LoginComponent, {
+        width: '40%',
+        height: '350px'
+      });
+      return;
+    }
+
+    const qid: number = +this.qId;
+    this.questionService.followQuestion(qid)
+      .subscribe( data => {
+        if (data.code !== undefined && data.code === 200) {
+          this.FOLLOWEE_QUESTION_STATE = true;
+        } else {
+          alert(data.msg);
+        }
+      });
+  }
+
+  cancelFollowQuestion() {
+
+    if (!this.authenticationService.isLogin()) {
+      const dialogRef = this.dialog.open(LoginComponent, {
+        width: '40%',
+        height: '350px'
+      });
+      return;
+    }
+
+    const  qid: number = +this.qId;
+    this.questionService.unFollowQuestion(qid)
+      .subscribe( data => {
+        if (data.code !== undefined && data.code === 200) {
+          this.FOLLOWEE_QUESTION_STATE = false;
+        } else {
+          alert(data.msg);
+        }
+      });
+  }
+
   // 点击展开和加载后的内容应该是互为隐藏的
 
   // TODO 点击展开后肯定是通过 editor 加载内容，因为是由 editor 产生的数据，产生的 html 类需要通过 editor 生成

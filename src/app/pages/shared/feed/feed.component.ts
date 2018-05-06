@@ -41,6 +41,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
   // 每个 feed 流中内容显示的图片地址
   feedContentImgSrc = '';
 
+  @Input() isNeedHeader = true;
+
   @Input() CURRENT_FEED_TYPE: string;
 
   constructor(private editorServiceComponent: EditorServiceComponent,

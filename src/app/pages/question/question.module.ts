@@ -14,14 +14,22 @@ import { CommentCommentsComponent } from './comment-comments/comment-comments.co
 import {NavigationService} from '../navigation/shared/navigation.service';
 import {QuestionService} from './question.service';
 import {FeedUtilService} from '../shared/feed-util.service';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {PagesSharedModule} from '../shared/pagesShared.module';
 
 @NgModule({
   imports: [
     SharedModule,
     MaterialModule,
+    PagesSharedModule,
   ],
   exports : [QuestionComponent],
   declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent, CommentCommentsComponent],
-  providers: [EditorServiceComponent, JqueryServiceComponent, NavigationService, QuestionService, FeedUtilService],
+  providers: [EditorServiceComponent,
+    JqueryServiceComponent,
+    NavigationService,
+    QuestionService,
+    FeedUtilService,
+    AuthenticationService],
 })
 export class QuestionModule { }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthenticationService} from '../authentication.service';
-import {MatDialogRef} from '@angular/material';
+import {MatDialog, MatDialogRef} from '@angular/material';
 import {WendaUtils} from '../../shared/util/wendaUtil.service';
+import {RegisterComponent} from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +20,11 @@ export class LoginComponent implements OnInit {
               private router: Router,
               private authenticationService: AuthenticationService,
               public dialogRef: MatDialogRef<LoginComponent>,
-              public wendaUtil: WendaUtils) { }
+              public wendaUtil: WendaUtils,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
+
     // reset login status
     this.authenticationService.logout();
 
@@ -30,6 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(username, password) {
+
     this.loading = true;
     this.authenticationService.login(username, password)
       .subscribe(
@@ -38,8 +42,19 @@ export class LoginComponent implements OnInit {
           this.wendaUtil.reloadPage();
         },
         error => {
-          alert("登录失败");
+          alert('登录失败');
         });
+  }
+
+  openRegisterPage() {
+
+    const dialogRef = this.dialog.open(RegisterComponent, {
+      width: '40%',
+      height: '350px',
+      panelClass: 'no-padding-dialog',
+    });
+
+    this.dialogRef.close();
   }
 
 }

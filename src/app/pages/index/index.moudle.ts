@@ -22,6 +22,7 @@ import {MaterialModule} from '../../shared/component/material.module';
 import {PagesModule} from '../pages.module';
 import {PagesSharedModule} from '../shared/pagesShared.module';
 import {TopicService} from '../topic/shared/topic.service';
+import {AuthenticationService} from '../../authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,6 @@ import {TopicService} from '../topic/shared/topic.service';
   ],
   declarations: [ IndexFeedsComponent, IndexComponent, HotQuestionComponent, IndexProfileComponent ],
   exports:      [ IndexComponent ],
-  providers:    [ EditorServiceComponent, JqueryServiceComponent, IndexServiceComponent, EditorServiceComponent, TopicService ]
+  providers:    [ EditorServiceComponent, JqueryServiceComponent, IndexServiceComponent, EditorServiceComponent, TopicService, AuthenticationService ]
 })
 export class IndexModule {}

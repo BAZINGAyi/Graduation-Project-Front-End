@@ -1,27 +1,29 @@
-<h1 style="font-size: 1.5rem; text-align: center;">请仔细描述你遇到的答题</h1>
-<mat-form-field style="width: 100%;">
-    <textarea matInput placeholder="问题标题" [(ngModel)]="questionTitle" name="questionTitle"></textarea>
-</mat-form-field>
-<!--选择话题-->
-<!--<mat-form-field style="width: 100%;">-->
-    <!--<input type="text" placeholder="选择话题" aria-label="text" matInput [formControl]="myControl" [matAutocomplete]="auto">-->
-    <!--<mat-autocomplete #auto="matAutocomplete">-->
-      <!--<mat-option *ngFor="let option of topicNameList" [value]="option.topic.id">-->
-        <!--{{ option.topic.topicName }}-->
-      <!--</mat-option>-->
-    <!--</mat-autocomplete>-->
- <!--</mat-form-field>-->
-<mat-form-field style="width: 100%;">
-  <mat-select placeholder="选择话题" [(value)]="topicContent">
-    <mat-option *ngFor="let option of topicNameList" [value]="option.topic.topicName">
-      {{ option.topic.topicName }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-<!--问题内容-->
-<div id="{{ASK_QUESTION_EDITOR_ID}}"></div>
-<!--操作 dialog 的按钮-->
-<div style="display: flex; flex-direction: row-reverse;" >
-   <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;" (click)="submitQuestion()">提交问题 </button>
-   <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeDialog()">取消提问</button>
+<div style="display:flex; flex-direction: column; justify-content: center; align-items: center; margin: 1rem;">
+  <h1 style="font-size: 1.5rem; text-align: center;" >请仔细描述你遇到的答题</h1>
+  <mat-form-field style="width: 100%;">
+      <textarea matInput placeholder="问题标题" [(ngModel)]="questionTitle" name="questionTitle"></textarea>
+  </mat-form-field>
+  <!--选择话题-->
+  <!--<mat-form-field style="width: 100%;">-->
+      <!--<input type="text" placeholder="选择话题" aria-label="text" matInput [formControl]="myControl" [matAutocomplete]="auto">-->
+      <!--<mat-autocomplete #auto="matAutocomplete">-->
+        <!--<mat-option *ngFor="let option of topicNameList" [value]="option.topic.id">-->
+          <!--{{ option.topic.topicName}}-->
+        <!--</mat-option>-->
+      <!--</mat-autocomplete>-->
+   <!--</mat-form-field>-->
+  <mat-form-field style="width: 100%;">
+    <mat-select placeholder="选择话题" [(value)]="topicContent">
+      <mat-option *ngFor="let option of topicNameList" [value]="option.topic.topicName">
+        {{ option.topic.topicName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!--问题内容-->
+  <div id="{{ASK_QUESTION_EDITOR_ID}}"></div>
+  <!--操作 dialog 的按钮-->
+  <div style="display: flex; flex-direction: row-reverse;" >
+     <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;" (click)="submitQuestion()">提交问题 </button>
+     <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeDialog()">取消提问</button>
+  </div>
 </div>

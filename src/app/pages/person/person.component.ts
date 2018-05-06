@@ -13,8 +13,9 @@ export class PersonComponent implements OnInit {
   public static  FANS = 1;
   public static  FOLLOW_QUESTION = 2;
   public static  PUSH_QUESTION = 3;
-  public static  STATION_LETTER = 4;
-  public static MY_COMMENT_QUESTIONS = 5;
+  public static  MY_COMMENT_QUESTIONS = 4;
+  public static  STATION_LETTER = 5;
+  public static  MY_PROFILE = 6;
   // 动态选择第几个 tab 页面
   activeIndexPage = '0';
 

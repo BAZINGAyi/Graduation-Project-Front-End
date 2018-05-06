@@ -1,6 +1,10 @@
 import {Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input} from '@angular/core';
 import { EditorServiceComponent } from '../../../shared/editor/editorService.component';
 import {QuestionComment} from '../../../shared/model/question/question-comment.model';
+import {AuthenticationService} from '../../../authentication/authentication.service';
+import {QuestionService} from '../question.service';
+import {LoginComponent} from '../../../authentication/login/login.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-comment',
@@ -25,17 +29,33 @@ export class CommentComponent implements OnInit, AfterViewInit {
   // 统计对评论的评论的数量统计
   commentsCountName = '2条评论';
 
+  likeCount = 0;
+
+  dislikeCount = 0;
+
+  isLiked = 0;
+
+  // 子评论的数量
+  sonCommentCount = 100;
+
   ngAfterViewInit(): void {
     this.init();
     this.commentCommentsDiv.nativeElement.style.display = 'none';
   }
 
-  constructor(private editorServiceComponent: EditorServiceComponent) { }
+  constructor(private editorServiceComponent: EditorServiceComponent,
+              private authenticationService: AuthenticationService,
+              private questionService: QuestionService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
      this.SHORT_COMMENT_CONTENT_ID = this.comment.comment.commentParent.id + '';
      this.DETAIL_COMMENT_CONTENT_ID = this.comment.comment.commentParent.id + 'detail';
      this.commentsCountName = this.comment.comment.commentInCommentCount + '条评论';
+     this.likeCount = this.comment.likeCount;
+     this.dislikeCount = this.comment.dislikeCount;
+     this.isLiked = this.comment.liked;
+     this.sonCommentCount = this.comment.comment.commentInCommentCount;
   }
 
   init(){
@@ -70,13 +90,79 @@ export class CommentComponent implements OnInit, AfterViewInit {
    * 打开对评论的评论页面
    */
   openCommentComments() {
-    let divState = this.commentCommentsDiv.nativeElement.style.display;
+    const divState = this.commentCommentsDiv.nativeElement.style.display;
     if (divState === 'block') {
       this.commentCommentsDiv.nativeElement.style.display = 'none';
     } else if (divState === 'none') {
       this.commentCommentsDiv.nativeElement.style.display = 'block';
     }
     this.commentsCountName = '收起评论列表';
+  }
+
+  likeComment() {
+
+    if (!this.authenticationService.isLogin()) {
+        const dialogRef = this.dialog.open(LoginComponent, {
+          width: '40%',
+          height: '350px'
+        });
+        return;
+    }
+
+    const currentUser = this.authenticationService.getCurrentUserInfo();
+    const userId = currentUser.id;
+    const commentId = this.comment.comment.commentParent.id;
+    // 等于 1 证明用户已经点过赞了
+    if (this.isLiked === 1) {
+      alert('您已经点过赞了');
+      return;
+    }
+
+    this.questionService.likeComment(userId, commentId)
+      .subscribe( data => {
+        if (data.code === 200) {
+          this.likeCount = data.likeCount;
+          this.dislikeCount = data.dislikeCount;
+          this.isLiked = 1;
+        } else {
+          alert(data.msg);
+        }
+      });
+  }
+
+  dislikeComment() {
+
+    if (!this.authenticationService.isLogin()) {
+      const dialogRef = this.dialog.open(LoginComponent, {
+        width: '40%',
+        height: '350px'
+      });
+      return;
+    }
+
+    const currentUser = this.authenticationService.getCurrentUserInfo();
+    const userId = currentUser.id;
+    const commentId = this.comment.comment.commentParent.id;
+    // 等于 0 证明用户已经点过踩了
+    if (this.isLiked === -1) {
+      alert('您已经恶心过这个回答了');
+      return;
+    }
+
+    this.questionService.dislikeComment(userId, commentId)
+      .subscribe( data => {
+        if (data.code === 200) {
+          this.likeCount = data.likeCount;
+          this.dislikeCount = data.dislikeCount;
+          this.isLiked = -1;
+        } else {
+          alert(data.msg);
+        }
+      });
+  }
+
+  submitSonComment() {
+
   }
 
   // 和主页一样，仅对打开的 comment 应用加载 editor 的内容，其他 comment 仅仅显示缩略图

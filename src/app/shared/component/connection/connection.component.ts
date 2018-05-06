@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 import {PersonComponent} from '../../../pages/person/person.component';
 import {SendMessageComponent} from '../send-message/send-message.component';
+import {AppSettings} from '../../url/AppSettings';
 
 @Component({
   selector: 'app-connection',
@@ -54,17 +55,14 @@ export class ConnectionComponent implements OnInit {
   }
 
   openAskQuestionDialog() {
-    const dialogRef = this.dialog.open(AskQuestionComponent, {
-      width:'60%',
-      height: '800px'
-    });
+    const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
   }
 
-  openMyFocusProblem() {
+  openMyFollowProblem() {
     this.router.navigate(['/pages/person', { id: PersonComponent.FOLLOW_QUESTION }]);
   }
 
@@ -77,10 +75,7 @@ export class ConnectionComponent implements OnInit {
   }
 
   openSendMessageDialog() {
-    const dialogRef = this.dialog.open(SendMessageComponent, {
-      width: '50%',
-      height: '250px'
-    });
+    const dialogRef = this.dialog.open(SendMessageComponent, AppSettings.getDialogSendMessageConfig());
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -99,4 +94,7 @@ export class ConnectionComponent implements OnInit {
     this.router.navigate(['pages/person', { id: PersonComponent.MY_COMMENT_QUESTIONS} ]);
   }
 
+  openMyProfile() {
+    this.router.navigate(['pages/person', { id: PersonComponent.MY_PROFILE} ]);
+  }
 }

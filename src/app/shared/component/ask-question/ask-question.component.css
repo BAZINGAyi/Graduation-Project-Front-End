@@ -1,8 +1,12 @@
 :host /deep/ .mat-dialog-container {
   z-index: 9999999999;
+  padding: 0 !important;
 }
 
 /*editor*/
 :host /deep/ .editormd {
   z-index: 2147483647 !important;
 }
+
+
+

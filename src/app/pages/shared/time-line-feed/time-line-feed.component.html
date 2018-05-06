@@ -1,19 +1,19 @@
 <mat-card class="feed-card center-card">
   <!--关注用户评论了问题-->
   <div *ngIf="CURRENT_FEED_TYPE == USER_COMMENT_QUESTION_SEND_MESSAGE_TO_ATTENTION_USER">
-    <p>你关注的用户<b>{{feed.data.userName}}</b>于{{feed.createdDate | fromNow}}评论了<b>{{feed.data.questionTitle}}</b>问题，<a>请点此查看</a></p>
+    <p>你关注的用户 <b>{{feed.data.userName}}</b> 于 {{feed.createdDate | fromNow}} 评论了 <b>{{feed.data.questionTitle}}</b> 问题。<button mat-button>请点此查看</button></p>
   </div>
   <!--有人关注你-->
   <div *ngIf="CURRENT_FEED_TYPE == FOLLOW_USER">
-    <p>你关注的用户<b>{{feed.data.userName}}</b>于{{feed.createdDate | fromNow}}关注了你，<a>请点此查看</a></p>
+    <p>你关注的用户 <b>{{feed.data.userName}}</b> 于 {{feed.createdDate | fromNow}} 关注了你。<button mat-button="">请点此查看</button></p>
   </div>
   <!--有人喜欢你的评论-->
   <div *ngIf="CURRENT_FEED_TYPE == LIKE_COMMENT">
-    <p>用户<b>{{feed.data.userName}}</b>于{{feed.createdDate | fromNow}}为你评论的问题 <b>{{feed.data.questionTitle}}</b> 点赞，<a>请点此查看</a></p>
+    <p>用户 <b>{{feed.data.userName}}</b> 于 {{feed.createdDate | fromNow}} 为你评论的问题 <b>{{feed.data.questionTitle}}</b> 点赞。<button mat-button>请点此查看</button></p>
   </div>
   <!--关注的问题有人评论-->
   <div *ngIf="CURRENT_FEED_TYPE == USER_COMMENT_QUESTION_SEND_MESSAGE_TO_FANS">
-    <p>你关注的问题<b>{{feed.data.questionTitle}}</b>于{{feed.createdDate | fromNow}}有新的评论，<a>请点此查看</a></p>
+    <p>你关注的问题 <b>{{feed.data.questionTitle}}</b> 于 {{feed.createdDate | fromNow}} 有新的评论。<button mat-button>请点此查看</button></p>
   </div>
   <!--&lt;!&ndash;发布的提问有人回答&ndash;&gt;-->
   <!--<p>用户XXX回答了你的提问</p>-->

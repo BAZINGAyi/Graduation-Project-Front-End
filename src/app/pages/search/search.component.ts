@@ -22,7 +22,11 @@ export class SearchComponent implements OnInit {
 
   notFoundData = '没有找到对应的问题' ;
 
+  public  NORMAL_FEED = 'NORMAL_FEED';
+
   ngOnInit(): void {
+    // 重载后页面滚动到最上面
+    document.documentElement.scrollTop = 0;
     this.getSearchResult();
   }
 
@@ -36,7 +40,7 @@ export class SearchComponent implements OnInit {
 
   getSearchResult() {
     if (this.searchContent != null && this.searchContent !== '') {
-      const searchUrl = AppSettings.getSearchQuestionList(this.searchContent, 10);
+      const searchUrl = AppSettings.getSearchQuestionList(this.searchContent, 0);
       this.httpClient
         .get<IndexData[]>(searchUrl)
         .subscribe( data => { this.dealReturnResult(data); });

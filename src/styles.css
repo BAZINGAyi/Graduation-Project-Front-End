@@ -54,3 +54,16 @@ html {overflow-y: scroll;}
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+.primary-color {
+  color: #303F9F !important;
+}
+
+.accent-color {
+  color: #448AFF !important;
+}
+
+.no-padding-dialog .mat-dialog-container {
+  padding: 0;
+  background: cornflowerblue !important;
+}
