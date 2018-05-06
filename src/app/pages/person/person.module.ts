@@ -11,6 +11,7 @@ import { FollowQuestionComponent } from './follow-question/follow-question.compo
 import {PagesSharedModule} from '../shared/pagesShared.module';
 import {PushQuestionComponent} from './push-question/push-question.component';
 import { MyCommentQuestionsComponent } from './my-comment-questions/my-comment-questions.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { MyCommentQuestionsComponent } from './my-comment-questions/my-comment-q
     FansComponent,
     FollowQuestionComponent,
     PushQuestionComponent,
-    MyCommentQuestionsComponent
+    MyCommentQuestionsComponent,
+    ProfileComponent
   ],
   providers: [EditorServiceComponent],
   exports: [PersonComponent]
