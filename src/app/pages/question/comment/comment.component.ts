@@ -33,6 +33,9 @@ export class CommentComponent implements OnInit, AfterViewInit {
 
   isLiked = 0;
 
+  // 子评论的数量
+  sonCommentCount = 100;
+
   ngAfterViewInit(): void {
     this.init();
     this.commentCommentsDiv.nativeElement.style.display = 'none';
@@ -49,6 +52,7 @@ export class CommentComponent implements OnInit, AfterViewInit {
      this.likeCount = this.comment.likeCount;
      this.dislikeCount = this.comment.dislikeCount;
      this.isLiked = this.comment.liked;
+     this.sonCommentCount = this.comment.comment.commentInCommentCount;
   }
 
   init(){
@@ -132,6 +136,10 @@ export class CommentComponent implements OnInit, AfterViewInit {
           alert(data.msg);
         }
       });
+  }
+
+  submitSonComment() {
+
   }
 
   // 和主页一样，仅对打开的 comment 应用加载 editor 的内容，其他 comment 仅仅显示缩略图

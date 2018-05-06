@@ -34,7 +34,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   // 问题内容
   questionContent: string;
   // 评论问题数量
-  questionCommentCount: string;
+  questionCommentCount: number;
   // 评论内容
   questionComment: QuestionComponent[];
 
@@ -47,6 +47,9 @@ export class QuestionComponent implements OnInit, AfterViewInit {
 
   // 控制显示关注问题或者取消关注问题
   FOLLOWEE_QUESTION_STATE = false;
+
+  notFoundDataState = false;
+  notFoundData = '写下评论，成为第一个吃螃蟹的人的吧';
 
   ngAfterViewInit(): void {
   }
@@ -105,14 +108,14 @@ export class QuestionComponent implements OnInit, AfterViewInit {
    * 设置 instruction div 滑动位置
    */
   fixFloatEditorDivPosition() {
-    let $ = this.jQueryService.getJqueryObject();
+    const $ = this.jQueryService.getJqueryObject();
 
     $.fn.fixedDiv = function(actCls){
-      var that = $(this),
+      let that = $(this),
         offsetTop = that.offset().top,
         scrollTop;
       // 用于记录正常滚动状态时，距离视窗左侧的高度
-      var normalLeftWidth = '';
+      const normalLeftWidth = '';
       function fix() {
         scrollTop = $(document).scrollTop();
         // 滑动的距离大于到视窗顶部的高度 - 减去导航栏的高度
@@ -202,6 +205,10 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     this.FOLLOWEE_QUESTION_STATE = data.followed;
     // 显示问题的内容描述
     this.init(data);
+    // 判断是否有评论
+    if (this.questionCommentCount === 0) {
+      this.notFoundDataState = true;
+    }
   }
 
   openDetailQuestionContent() {

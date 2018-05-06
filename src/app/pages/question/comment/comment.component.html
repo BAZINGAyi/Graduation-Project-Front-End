@@ -11,7 +11,7 @@
     <div>
       <!--expansion panel-->
       <div id="{{SHORT_COMMENT_CONTENT_ID}}" style="font-size: 1rem;">
-        2005年以后，互联网进入Web2.0时代，各种类似桌面软件的Web应用大量涌现，网站的前端由此发生了翻天覆地的变化。网页不再只是承载单一的文字和图片，各种富媒体让网页的内容更加生动，网页上软件化的交互形式为用户提供了更好的使用体验，这些都是基于前端技术实现的。以前会Photoshop和Dreamweaver就可以制作网页，现在只掌握这些已经远远不够了。
+        {{comment.comment.commentParent.content}}
       </div>
       <div id="{{DETAIL_COMMENT_CONTENT_ID}}" style="font-size: 1rem;"></div>
       <!--card-button-->
@@ -32,7 +32,7 @@
         <div style="border: 1px solid #ebebeb; box-shadow: 0 1px 3px rgba(26,26,26,.1);" #commentCommentsList>
           <app-comment-comments [commentListInComment]="comment.comment.commentSon"></app-comment-comments>
           <!--翻页控制-->
-          <mat-paginator [length]="100"
+          <mat-paginator [length]="sonCommentCount"
                          [pageSize]="10"
                          [pageSizeOptions]="[5, 10, 25, 100]">
           </mat-paginator>
@@ -40,10 +40,10 @@
         <!--评论-->
         <div>
           <mat-form-field style="width: 100%;">
-            <textarea matInput placeholder="Leave a comment"></textarea>
+            <textarea matInput placeholder="写下你的评论"></textarea>
           </mat-form-field>
           <div style="display: flex; flex-direction: row-reverse;">
-            <button mat-raised-button color="primary">评论</button>
+            <button mat-raised-button color="primary" (click)="submitSonComment()">评论</button>
           </div>
         </div>
       </div>

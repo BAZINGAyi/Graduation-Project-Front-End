@@ -15,11 +15,13 @@ import {NavigationService} from '../navigation/shared/navigation.service';
 import {QuestionService} from './question.service';
 import {FeedUtilService} from '../shared/feed-util.service';
 import {AuthenticationService} from '../../authentication/authentication.service';
+import {PagesSharedModule} from '../shared/pagesShared.module';
 
 @NgModule({
   imports: [
     SharedModule,
     MaterialModule,
+    PagesSharedModule,
   ],
   exports : [QuestionComponent],
   declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent, CommentCommentsComponent],

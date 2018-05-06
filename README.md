@@ -33,10 +33,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## 增加我的回答栏目
 
-## 关注问题的取消
-
-## 点赞点踩的发送
-
 ## 站内信逻辑
 
 ## 问题的提问的存储

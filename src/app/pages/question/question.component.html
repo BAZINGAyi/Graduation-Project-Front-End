@@ -42,6 +42,7 @@
 <div class="question-container">
   <span class="fill-remaining-space"></span>
   <div style="width: 43.5rem;">
+    <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData"></app-not-found-data>
     <app-question-comments [comments]="questionComment" ></app-question-comments>
   </div>
   <app-connection></app-connection>

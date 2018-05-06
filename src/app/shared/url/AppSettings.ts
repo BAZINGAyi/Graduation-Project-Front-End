@@ -14,6 +14,7 @@ export class AppSettings {
   private static API_POST_UNFOLLOW_QUESTION = AppSettings.API_URL + 'unfollowQuestion';
   private static API_POST_LIKE_COMMENT = AppSettings.API_URL + 'like';
   private static API_POST_DISLIKE_COMMENT = AppSettings.API_URL + 'dislike';
+  private static API_POST_SUBMIT_COMMENT_OF_COMMENT = AppSettings.API_URL + 'addCommentOfComment';
 
   /**
    * @param {string} offset 查询数据库相对与问题的偏移量
@@ -83,4 +84,7 @@ export class AppSettings {
     return this.API_POST_DISLIKE_COMMENT;
   }
 
+  static getCommentOfCommentUrl() {
+    return this.API_POST_SUBMIT_COMMENT_OF_COMMENT;
+  }
 }
