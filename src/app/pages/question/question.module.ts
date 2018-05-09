@@ -16,6 +16,8 @@ import {QuestionService} from './question.service';
 import {FeedUtilService} from '../shared/feed-util.service';
 import {AuthenticationService} from '../../authentication/authentication.service';
 import {PagesSharedModule} from '../shared/pagesShared.module';
+import {WendaUtils} from '../../shared/util/wendaUtil.service';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
 
 @NgModule({
   imports: [
@@ -30,6 +32,9 @@ import {PagesSharedModule} from '../shared/pagesShared.module';
     NavigationService,
     QuestionService,
     FeedUtilService,
-    AuthenticationService],
+    WendaUtils,
+    AuthenticationService,
+    ProgressBarServiceComponent,
+  ],
 })
 export class QuestionModule { }

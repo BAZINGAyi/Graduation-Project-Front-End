@@ -6,7 +6,7 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule, MatListModule, MatMenuModule, MatPaginatorModule,
-  MatProgressBarModule, MatSelectModule, MatSidenavModule, MatTabsModule, MatToolbarModule
+  MatProgressBarModule, MatSelectModule, MatSidenavModule, MatTabsModule, MatToolbarModule, MatProgressSpinnerModule
 } from '@angular/material';
 import {ConnectionComponent} from './connection/connection.component';
 import {EditorServiceComponent} from '../editor/editorService.component';
@@ -41,6 +41,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatChipsModule,
     MatSidenavModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
   ],
   imports: [
     // material
@@ -63,6 +64,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     MatChipsModule,
     MatSidenavModule,
     MatSelectModule,
+    MatProgressSpinnerModule,
   ],
   providers: [ ]
 })

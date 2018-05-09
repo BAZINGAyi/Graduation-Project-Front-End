@@ -37,7 +37,6 @@ export class NavigationComponent implements OnInit {
   IS_LOGIN = false;
 
   ngOnInit(): void {
-    this.initUserData();
   }
 
   constructor(public dialog: MatDialog,
@@ -51,6 +50,7 @@ export class NavigationComponent implements OnInit {
     // 判断是否登录
     if (this.authenticationService.isLogin() === true) {
       this.IS_LOGIN = true;
+      this.initUserData();
     } else {
       this.IS_LOGIN = false;
     }

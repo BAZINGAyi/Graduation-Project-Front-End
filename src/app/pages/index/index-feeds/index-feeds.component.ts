@@ -17,16 +17,22 @@ export class IndexFeedsComponent implements OnInit {
 
   public  NORMAL_FEED = 'NORMAL_FEED';
 
+  SPINNER_STATE = false;
+
   offset = 0;
 
   // 判断是否滚动到底部
   @HostListener("window:scroll", [])
   onScroll(): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 1) {
+      this.progressBarService.openProgressBar();
       this.offset = this.offset + 10;
       this.indexServiceComponent
         .getIndexQuestion(this.offset + '')
-        .subscribe( data => { this.indexDatas = this.indexDatas.concat(data); });
+        .subscribe( data => {
+          this.indexDatas = this.indexDatas.concat(data);
+          this.progressBarService.closeProgressBar();
+        });
     }
   }
 

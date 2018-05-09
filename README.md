@@ -29,11 +29,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # 目前存在的问题
 
-## 用户登陆、注册、登出、修改密码
+## 用户登修改密码
 
 ## 站内信逻辑
 
-## 问题的提问的存储
+## html展开内容和收起内容，都应该是 html 而不是纯文本
 
 ## 回答的提问的存储
 

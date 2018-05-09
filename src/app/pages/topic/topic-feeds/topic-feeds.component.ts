@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {IndexData} from '../../../shared/model/index-data.model';
 import {AppSettings} from '../../../shared/url/AppSettings';
 import {HttpClient} from '@angular/common/http';
+import {ProgressBarServiceComponent} from '../../../shared/progressbar/progressBarService.component';
 
 @Component({
   selector: 'app-topic-feeds',
@@ -18,7 +19,8 @@ export class TopicFeedsComponent implements OnInit {
 
   public  NORMAL_FEED = 'NORMAL_FEED';
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient,
+              private progressBar: ProgressBarServiceComponent) {
   }
 
   ngOnInit(): void {
@@ -27,7 +29,10 @@ export class TopicFeedsComponent implements OnInit {
   }
 
   getTopicQuestionListByTid(id: number) {
+    this.progressBar.openProgressBar();
     const questionUrl = AppSettings.getTopicQuestionList(id, 0);
-    this.httpClient.get<IndexData[]>(questionUrl).subscribe( data => { this.indexDatas = data; console.log(this.indexDatas); });
+    this.httpClient.get<IndexData[]>(questionUrl).subscribe( data => {
+      this.indexDatas = data; console.log(this.indexDatas); this.progressBar.closeProgressBar();
+    });
   }
 }

@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {IndexData} from '../../../shared/model/index-data.model';
 import {PersonComponent} from '../../person/person.component';
 import {FeedActionComponent, NORMAL_FEED} from '../feed-action/feed-action.component';
+import {WendaUtils} from '../../../shared/util/wendaUtil.service';
 
 
 declare var $: any;
@@ -47,7 +48,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
 
   constructor(private editorServiceComponent: EditorServiceComponent,
               private elementRef: ElementRef,
-              private router: Router) {
+              private router: Router,
+              private wendaUtils: WendaUtils) {
 
   }
 
@@ -86,7 +88,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
     // 定义显示的字符数
     const contentLength = 150;
     // 获取要显示的问题内容
-    const questionContent = this.feed.question.content.trim();
+    const questionContent = this.wendaUtils.HTMLDecode(this.feed.question.content.trim());
     // 创建节点用于装载 question 的内容
     const contentDom = document.createElement('div');
     contentDom.innerHTML = questionContent;
@@ -107,18 +109,10 @@ export class FeedComponent implements OnInit, AfterViewInit {
    */
   generateFeedContentImg() {
     // '<img class="yahoo" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="yahoo logo" />'
-    const questionContent = this.feed.question.content.trim();
-    // 匹配图片（g表示匹配所有结果i表示区分大小写）
-    const imgReg = /<img.*?(?:>|\/>)/gi;
-    // 匹配src属性
-    const srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-    const arr = questionContent.match(imgReg);
-    if (arr != null && arr.length !== 0) {
-      const src = arr[0].match(srcReg);
-      // 获取图片地址
-      if (src[1]) {
-        this.feedContentImgSrc = src[1];
-      }
+    const questionContent = this.wendaUtils.HTMLDecode(this.feed.question.content.trim());
+    const imageUrl = this.wendaUtils.extractFirstImageUrl(questionContent);
+    if (imageUrl !== undefined) {
+      this.feedContentImgSrc = imageUrl;
     }
   }
 
@@ -137,12 +131,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
     // 隐藏问题的简述内容
     const cardContent = document.getElementById(this.questionAbbreviationDivId);
     cardContent.style.display = 'none';
-    // 显示问题的全部内容
-    // this.editorServiceComponent.appendHtmlContentToContainer(this.questionDetailDivId,
-    //   this.feed.question.content.trim(),
-    //   this.feed.question.title.trim()
-    // );
-    this.editorServiceComponent.generateDisplayEditor(this.questionDetailDivId, this.feed.question.content.trim(), this.feed.question.title.trim());
+    this.editorServiceComponent.generateDisplayEditor(
+      this.questionDetailDivId,
+      this.wendaUtils.HTMLDecode(this.feed.question.content.trim()),
+      this.feed.question.title.trim()
+    );
     // 显示收起按钮
     this.contentState = true;
   }

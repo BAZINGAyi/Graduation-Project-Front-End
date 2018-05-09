@@ -9,6 +9,8 @@ import {FeedUtilService} from '../shared/feed-util.service';
 import {LoginComponent} from '../../authentication/login/login.component';
 import {AuthenticationService} from '../../authentication/authentication.service';
 import {MatDialog} from '@angular/material';
+import {WendaUtils} from '../../shared/util/wendaUtil.service';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
 
 @Component({
   selector: 'app-question',
@@ -63,14 +65,15 @@ export class QuestionComponent implements OnInit, AfterViewInit {
               private elementRef: ElementRef,
               private route: ActivatedRoute,
               private questionService: QuestionService,
+              private wendaUtils: WendaUtils,
               private feedUtilService: FeedUtilService,
+              private progressBar: ProgressBarServiceComponent,
               public authenticationService: AuthenticationService,
               public dialog: MatDialog) {
     this.qId = this.route.snapshot.paramMap.get('qid');
   }
 
   ngOnInit() {
-    document.documentElement.scrollTop = 0;
     this.getQuestionDetailById();
   }
 
@@ -78,10 +81,15 @@ export class QuestionComponent implements OnInit, AfterViewInit {
    *  获取问题页面的详细信息
    */
   getQuestionDetailById() {
+    this.progressBar.openProgressBar();
     const id: number = +this.qId;
     this.questionService
       .getQuestionDetailById(id)
-      .subscribe( data => { this.generateData(data); this.questionDetail = data; });
+      .subscribe( data => {
+        this.generatePageData(data);
+        this.questionDetail = data;
+        this.progressBar.closeProgressBar();
+      });
   }
 
   /**
@@ -137,62 +145,101 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     $('#' + this.QUESTION_ANSWER_EDITOR).fixedDiv('fix-editor-div');
   }
 
+  private new_generatePageData(data: any | undefined) {
+    // 获取显示的 html 文本
+    // const questionConetent = (data.question.content.trim());
+    // const shortDiv = document.getElementById(this.DETAIL_DESCRIBE_QUESTION);
+    //shortDiv.innerHTML = questionConetent.substring(0, 200);
+    //
+    // const btn = document.createElement("a");
+    // btn.innerHTML = questionConetent.length > 200 ? "...显示全部" : "";
+    // btn.href = "###";
+    // btn.onclick = function(){
+    //   if (btn.innerHTML == "...显示全部"){
+    //     btn.innerHTML = "收起";
+    //     this.editorService.generateQuestionDisplayEditor(this.DETAIL_DESCRIBE_QUESTION,
+    //       this.wendaUtils.HTMLDecode(questionConetent));
+    //   } else {
+    //     btn.innerHTML = "...显示全部";
+    //     this.editorService.generateQuestionDisplayEditor(this.DETAIL_DESCRIBE_QUESTION,
+    //       this.wendaUtils.HTMLDecode(questionConetent.substring(0, 200)));
+    //   }
+    // };
+    // this.editorService.generateQuestionDisplayEditor(this.DETAIL_DESCRIBE_QUESTION,
+    //   this.wendaUtils.HTMLDecode(questionConetent.substring(0, 200)));
+
+    // 获取 HTML
+    const questionContent = (data.question.content.trim());
+    const questionDiv = document.createElement('div');
+    questionDiv.innerHTML = questionContent;
+    // a 标签
+    const btn = document.createElement('a');
+    btn.innerHTML = questionContent.length > 200 ? "...显示全部" : "";
+    // btn.href = "###";
+    btn.style.color = 'red';
+    btn.style.cursor = 'pointer';
+    btn.onclick = function(){
+        btn.innerHTML = "收起";
+    }
+
+    const a = document.createElement('a');
+    // a.style.color = "#FF5252";
+    // span里的内容为content的前len个字符
+    // 判断显示的字数是否大于默认显示的字数    来设置a的显示
+    a.innerHTML = "sda";
+    // 让a链接点击不跳转
+    a.href = 'javascript:void(0)';
+    a.onclick = function(){
+      alert(123);
+    };
+
+    // 创建 div 用于 存放 HTML 和 是否展开按钮
+    const testContent = document.createElement('div');
+    testContent.appendChild(a);
+    // testContent.appendChild(questionDiv);
+    const totalContent = testContent.innerHTML;
+    console.log(totalContent);
+    const hh = this.wendaUtils.HTMLDecode(totalContent);
+    console.log(hh);
+    this.editorService.generateQuestionDisplayEditor(this.DETAIL_DESCRIBE_QUESTION,
+      questionContent.substring(0,200));
+    const editor = document.getElementById(this.DETAIL_DESCRIBE_QUESTION);
+    editor.appendChild(btn);
+
+
+  }
+
+  private generatePageData(data: any | undefined) {
+    console.log(data);
+    this.questionTitle = data.question.title;
+    // this.questionContent = data.question.content;
+    this.questionCommentCount = data.question.commentCount;
+    this.questionComment = data.comments;
+    this.FOLLOWEE_QUESTION_STATE = data.followed;
+    // 显示问题的内容描述
+    this.initQuestionContent(data.question.content);
+    //this.new_generatePageData(data);
+    // 判断是否有评论
+    if (this.questionCommentCount === 0) {
+      this.notFoundDataState = true;
+    }
+  }
+
   /**
    *  控制头部文字的隐藏
    */
-  init(data) {
-    // 通过自己的创建的节点，来提取传入 html 数据中的纯文本
-    // const dom = document.createElement('div');
-    // dom.innerHTML = data;
-    // const pureText = dom.innerText;
-    //
-    // // 默认显示字数
-    // const len = 100;
-    // // 获取div对象
-    // const ctn = document.getElementById('normal-padding-column');
-    // console.log(ctn);
-    // // 获取div里的内容
-    // // const content = ctn.innerHTML;
-    // const content: string = pureText;
-    // console.log('zzz' + content);
-    // // 创建<span>元素
-    // const span = document.createElement('span');
-    // // 创建<a>元素
-    // const a = document.createElement('a');
-    // // a.style.color = "#FF5252";
-    // // span里的内容为content的前len个字符
-    // span.innerHTML = content.substring(0, len);
-    // // 判断显示的字数是否大于默认显示的字数    来设置a的显示
-    // a.innerHTML = content.length > len ? '... 展开' : '';
-    // // 让a链接点击不跳转
-    // a.href = 'javascript:void(0)';
-    //
-    // a.onclick = function(){
-    //   // 如果a中含有"展开"则显示"收起"
-    //   if (a.innerHTML.indexOf('展开') > 0 ) {
-    //     a.innerHTML = '<<&nbsp;收起';
-    //     span.innerHTML = content;
-    //   } else {
-    //     a.innerHTML = '... 展开';
-    //     span.innerHTML = content.substring(0, len);
-    //   }
-    // };
-    // // 设置div内容为空，span元素 a元素加入到div中
-    // ctn.innerHTML = '';
-    // ctn.appendChild(span);
-    // ctn.appendChild(a);
-
+  initQuestionContent(questionContent) {
     // 定义显示的字符数
     const contentLength = 200;
     // 获取要显示的问题内容
-    const questionContent = data.question.content.trim();
+    questionContent =  this.wendaUtils.HTMLDecode(questionContent.trim());
     // 创建节点用于装载 question 的内容
     const contentDom = document.createElement('div');
     contentDom.innerHTML = questionContent;
     // 从创建的节点中取出 text 文本的前 n 个汉字，作为现实内容的缩略版
     const contentText = contentDom.innerText.trim();
     // 判断是否将内容隐藏
-    if (contentText.length > contentLength) {
+    if (contentText.length > contentLength || this.isIncludeImage(questionContent)) {
       this.questionContent = contentText.substr(0, contentLength);
       this.aState = true;
     } else {
@@ -201,18 +248,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private generateData(data: any | undefined) {
-    console.log(data);
-    this.questionTitle = data.question.title;
-    this.questionContent = data.question.content;
-    this.questionCommentCount = data.question.commentCount;
-    this.questionComment = data.comments;
-    this.FOLLOWEE_QUESTION_STATE = data.followed;
-    // 显示问题的内容描述
-    this.init(data);
-    // 判断是否有评论
-    if (this.questionCommentCount === 0) {
-      this.notFoundDataState = true;
+  isIncludeImage(questionContent) {
+    const imgUrl = this.wendaUtils.extractFirstImageUrl(questionContent);
+    if (imgUrl === undefined) {
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -221,7 +262,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     const detailContent = document.getElementById(this.SHORT_DESCRIBE_QUESTION);
     detailContent.style.display = 'none';
     this.editorService.generateQuestionDisplayEditor(this.DETAIL_DESCRIBE_QUESTION,
-      this.questionDetail.question.content);
+      this.wendaUtils.HTMLDecode(this.questionDetail.question.content));
     this.aState = false;
     this.packUpButtonState = true;
   }
@@ -282,5 +323,4 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   // 点击展开和加载后的内容应该是互为隐藏的
 
   // TODO 点击展开后肯定是通过 editor 加载内容，因为是由 editor 产生的数据，产生的 html 类需要通过 editor 生成
-
 }

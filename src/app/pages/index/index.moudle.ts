@@ -23,6 +23,7 @@ import {PagesModule} from '../pages.module';
 import {PagesSharedModule} from '../shared/pagesShared.module';
 import {TopicService} from '../topic/shared/topic.service';
 import {AuthenticationService} from '../../authentication/authentication.service';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,6 @@ import {AuthenticationService} from '../../authentication/authentication.service
   ],
   declarations: [ IndexFeedsComponent, IndexComponent, HotQuestionComponent, IndexProfileComponent ],
   exports:      [ IndexComponent ],
-  providers:    [ EditorServiceComponent, JqueryServiceComponent, IndexServiceComponent, EditorServiceComponent, TopicService, AuthenticationService ]
+  providers:    [ EditorServiceComponent, JqueryServiceComponent, IndexServiceComponent, EditorServiceComponent, TopicService, AuthenticationService, ProgressBarServiceComponent ]
 })
 export class IndexModule {}

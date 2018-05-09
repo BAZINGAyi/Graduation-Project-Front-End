@@ -38,8 +38,13 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(username, password)
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
-          this.wendaUtil.reloadPage();
+          console.log(data);
+          if (data.status !== undefined && data.status === 'success') {
+            this.router.navigate([this.returnUrl]);
+            this.wendaUtil.reloadPage();
+          } else {
+            alert(data.msg);
+          }
         },
         error => {
           alert('登录失败');

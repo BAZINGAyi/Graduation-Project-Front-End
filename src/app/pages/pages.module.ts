@@ -14,6 +14,7 @@ import {SearchModule} from './search/search.module';
 import {PersonModule} from './person/person.module';
 import {AuthenticationService} from '../authentication/authentication.service';
 import {WendaUtils} from '../shared/util/wendaUtil.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {WendaUtils} from '../shared/util/wendaUtil.service';
     PersonModule,
     // material
     MaterialModule,
+    HttpClientModule,
   ],
   declarations: [ NavigationComponent, PagesComponent ],
   exports:      [ PagesComponent ],

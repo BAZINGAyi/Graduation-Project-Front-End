@@ -93,8 +93,8 @@ export class EditorServiceComponent {
     // 获取显示详细内容的 div ID
     const editor = $('#' + displayEditorId);
     // 生成显示标题的节点
-    const titile = $('<h1>' + feedTitle + '</h1>');
-    titile.css('font-size', 'larger');
+    // const titile = $('<h1>' + feedTitle + '</h1>');
+    // titile.css('font-size', 'larger');
     const containerInnerText = editor.text().trim();
     // 判断是否已经打开过了
     if (containerInnerText != null && containerInnerText !== '') {
@@ -102,7 +102,7 @@ export class EditorServiceComponent {
       return;
     }
     // 添加标题
-    editor.append(titile);
+    // editor.append(titile);
     // 生成详细内容
     editormd.markdownToHTML(displayEditorId, {
       markdown        : feedContent ,
@@ -138,6 +138,7 @@ export class EditorServiceComponent {
       tex             : true,  // 默认不解析
       flowChart       : true,  // 默认不解析
       sequenceDiagram : true,  // 默认不解析
+      htmlDecode : true,
     });
   }
 

@@ -17,8 +17,6 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     // 调整浮动部分视窗位置
     this.indexServiceComponent.fixFloatInstructionDivPosition();
-    // 重载后页面滚动到最上面
-    document.documentElement.scrollTop = 0;
   }
 
 }
