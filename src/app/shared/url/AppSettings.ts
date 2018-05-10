@@ -17,6 +17,7 @@ export class AppSettings {
   private static API_POST_LIKE_COMMENT = AppSettings.API_URL + 'like';
   private static API_POST_DISLIKE_COMMENT = AppSettings.API_URL + 'dislike';
   private static API_POST_SUBMIT_COMMENT_OF_COMMENT = AppSettings.API_URL + 'addCommentOfComment';
+  private static API_POST_SUBMIT_COMEENT = AppSettings.API_URL + 'addQuestionComment';
 
 
   ///////////////// dialog config /////////////////////////////
@@ -137,4 +138,7 @@ export class AppSettings {
     return this.DIALOG_REGISTER_CONFIG;
   }
 
+  static getSubmitCommentUrl() {
+    return this.API_POST_SUBMIT_COMEENT;
+  }
 }

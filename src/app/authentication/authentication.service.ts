@@ -17,7 +17,6 @@ export class AuthenticationService {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user.user));
         }
-
         return user;
       });
   }
@@ -38,5 +37,18 @@ export class AuthenticationService {
 
   public getCurrentUserInfo() {
     return JSON.parse(localStorage.getItem('currentUser'));
+  }
+
+  /**
+   * 获取 httpHeader
+   */
+  public getHttpHeader() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'token': localStorage.getItem('token_')
+      })
+    };
+    return httpOptions;
   }
 }

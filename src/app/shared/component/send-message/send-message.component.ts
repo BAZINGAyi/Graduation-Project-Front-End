@@ -6,6 +6,7 @@ import {AppSettings} from '../../url/AppSettings';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../../model/user.model';
 import {HttpClient} from '@angular/common/http';
+import {AuthenticationService} from '../../../authentication/authentication.service';
 
 @Component({
   selector: 'app-send-message',
@@ -27,7 +28,8 @@ export class SendMessageComponent implements OnInit {
 
 
   constructor(public dialogRef: MatDialogRef<SendMessageComponent>,
-              public httpClient: HttpClient) { }
+              public httpClient: HttpClient,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -39,6 +41,6 @@ export class SendMessageComponent implements OnInit {
   getSearchResult(event) {
     const searchUrl = AppSettings.getSearchUserList(event.target.value, 0);
     this.httpClient
-      .get<any>(searchUrl).subscribe( data => { this.searchValue = data.userList; } );
+      .get<any>(searchUrl, this.authenticationService.getHttpHeader()).subscribe( data => { this.searchValue = data.userList; } );
   }
 }

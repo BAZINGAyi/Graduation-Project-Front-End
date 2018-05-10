@@ -48,4 +48,26 @@ export class WendaUtils {
       return undefined;
     }
   }
+
+  /**
+   * 获取 html 中的文本
+   * @param {string} html
+   * @returns {string}
+   */
+  public getTextInHTML(html: string) {
+    // 创建节点用于装载 question 的内容
+    const contentDom = document.createElement('div');
+    contentDom.innerHTML = html;
+    // 从创建的节点中取出 text 文本的前 n 个汉字，作为现实内容的缩略版
+    return contentDom.innerText.trim();
+  }
+
+  isIncludeImage(questionContent) {
+    const imgUrl = this.extractFirstImageUrl(questionContent);
+    if (imgUrl === undefined) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

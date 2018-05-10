@@ -6,6 +6,7 @@ import {AppSettings} from '../../../shared/url/AppSettings';
 import {DiscoverData} from '../../../shared/model/disvocer/DiscoverData';
 import {Feeds} from '../../../shared/model/disvocer/feeds.model';
 import {ProgressBarServiceComponent} from '../../../shared/progressbar/progressBarService.component';
+import {AuthenticationService} from '../../../authentication/authentication.service';
 
 @Component({
   selector: 'app-discover-feeds',
@@ -18,7 +19,8 @@ export class DiscoverFeedsComponent implements OnInit {
   feeds: Feeds[];
 
   constructor(private httpClient: HttpClient,
-              private progressBar: ProgressBarServiceComponent) {
+              private progressBar: ProgressBarServiceComponent,
+              private authenticationService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class DiscoverFeedsComponent implements OnInit {
     this.progressBar.openProgressBar();
     const feedsUrl = AppSettings.getTimeLineFeeds();
     this.httpClient
-      .get<DiscoverData>(feedsUrl)
+      .get<DiscoverData>(feedsUrl, this.authenticationService.getHttpHeader())
       .subscribe(data => { this.feeds = data.feeds; console.log(data); this.progressBar.closeProgressBar(); });
   }
 

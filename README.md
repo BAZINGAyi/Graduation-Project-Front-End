@@ -33,8 +33,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## 站内信逻辑
 
-## html展开内容和收起内容，都应该是 html 而不是纯文本
-
 ## 回答的提问的存储
 
 ## 发布问题的修改，和删除，实现 评论修改删除实现；

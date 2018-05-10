@@ -11,7 +11,19 @@
     <div>
       <!--expansion panel-->
       <div id="{{SHORT_COMMENT_CONTENT_ID}}" style="font-size: 1rem;">
-        {{comment.comment.commentParent.content}}
+        <!--评论内容-->
+        <div class="card-feeds-container" >
+          <!--card-feed-content-->
+          <div class="card-feeds-container-content" >
+            <!--card-left-content-->
+             <img *ngIf="feedContentImgSrc != ''" class="card-feeds-img" src="{{feedContentImgSrc}}" alt="Photo of a Shiba Inu">
+             <!--card-content-content-->
+             <div class="card-feeds-text"  >
+                {{commentContent}}
+                <a *ngIf="aState == true" (click)="openCommentDetailContent()" style="cursor: pointer;" class="primary-color">{{aText}}</a>
+             </div>
+           </div>
+         </div>
       </div>
       <div id="{{DETAIL_COMMENT_CONTENT_ID}}" style="font-size: 1rem;"></div>
       <!--card-button-->
@@ -25,6 +37,7 @@
           Downvote | {{dislikeCount}}
         </button>
         <button mat-button (click)="openCommentComments()">{{commentsCountName}}</button>
+        <button *ngIf="contentState == true" mat-button (click)="hiddenCommentContent()">收起</button>
       </div>
       <!--评论列表页-->
       <div>

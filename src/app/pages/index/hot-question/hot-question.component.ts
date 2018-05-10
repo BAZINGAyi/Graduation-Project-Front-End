@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 import {forEach} from '@angular/router/src/utils/collection';
 import {AskQuestionComponent} from '../../../shared/component/ask-question/ask-question.component';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../../authentication/authentication.service';
 
 @Component({
   selector: 'app-hot-question',
@@ -17,7 +18,8 @@ export class HotQuestionComponent implements OnInit {
   indexDatas: IndexData[];
 
   constructor(private  httpClient: HttpClient,
-              private router: Router) { }
+              private router: Router,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.getQuestion();
@@ -25,7 +27,7 @@ export class HotQuestionComponent implements OnInit {
 
   getQuestion() {
     const questionUrl = AppSettings.getQuestionsUrl('0');
-    this.httpClient.get<IndexData[]>(questionUrl).subscribe( data => { this.indexDatas = data; });
+    this.httpClient.get<IndexData[]>(questionUrl, this.authenticationService.getHttpHeader()).subscribe( data => { this.indexDatas = data; });
   }
 
   /**

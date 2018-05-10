@@ -8,6 +8,7 @@ import {AppSettings} from '../../url/AppSettings';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WendaUtils} from '../../util/wendaUtil.service';
+import {AuthenticationService} from '../../../authentication/authentication.service';
 
 @Component({
   selector: 'app-ask-question',
@@ -41,7 +42,8 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
               private http: HttpClient,
               private wendaUtils: WendaUtils,
               private route: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
     this.getTopicList();
@@ -67,11 +69,17 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   submitQuestion() {
 
     const url = AppSettings.getSubmitQuestionUrl();
-    this.editorServiceComponent.getEditEditorHtml();
-    this.editorServiceComponent.getEditEditorMarkdown();
 
-    this.http.post<any>(url, { title: this.questionTitle, content: this.editorServiceComponent.getEditEditorHtml(),
-      markdownContent: this.editorServiceComponent.getEditEditorMarkdown(), topicId: this.topicId})
+    this.http.post<any>(
+      url,
+      {
+        title: this.questionTitle,
+        content: this.editorServiceComponent.getEditEditorHtml(),
+        markdownContent: this.editorServiceComponent.getEditEditorMarkdown(),
+        topicId: this.topicId
+      },
+      this.authenticationService.getHttpHeader()
+    )
       .subscribe(data => {
         if (data.status !== undefined && data.status === 'success') {
           alert(data.msg);
