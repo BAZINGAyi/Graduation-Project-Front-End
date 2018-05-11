@@ -2,39 +2,38 @@
 <mat-card class="question-header" id="{{questionHeaderId}}">
   <div class="question-header-text-container">
     <!--问题题目-->
-    <div class="big-font" >
-      Have you ever lost any respect for someone instantly?
+    <div class="big-font" style="cursor: pointer;" >
+      {{questionTitle}}
     </div>
     <!--问题内容-->
-    <div id="normal-padding-column" style="margin-bottom: 1rem;">
-      第一期罗辑思维就上了优酷首页，我刚好看到就看了，然后每一期都看。
-      罗振宇开始搞了个微信公众号，每天发一段语音60秒。（起初也有58和59秒）
-      他多次在语音和线下活动中说：我录60秒每天得六点早起，如果超过了60秒就跳掉了，等于白录，低于60秒我也不发，要刚刚好。
-      当时大家都很佩服他这种“死磕”精神。
-
-      直到有一天，他把前一天的语音重新发了一遍给我们。
-      大家发现了猫腻。
-      第二天，罗振宇的语音就说：被大家发现了，我的语音其实是提前录好的，我们的工作人员昨天在发送语音的时候出了点错误，把先前的语音重新发了一遍。
-
-      至此，罗振宇的谎言被自己闹的乌龙打脸了。
-      为了控制60秒刚好的艰辛，每天6点早起，每天坚持发语音。。。全是骗人的。
-
-      不过我已经忘记是他闹乌龙的哪年哪一天的事儿了。
-      最近和大家聊天时候我说他是个臭不要脸的骗子，大家让我举证，我举不出来。
-      知友们有知道具体是哪天的吗？
+    <div id="{{SHORT_DESCRIBE_QUESTION}}" style="padding: 1rem;">
+      {{questionContent}}
+      <a *ngIf="aState == true" (click)="openDetailQuestionContent()" style="cursor: pointer;" class="primary-color">{{aText}}</a>
     </div>
+    <div id="{{DETAIL_DESCRIBE_QUESTION}}"></div>
     <!-- 点击开启编辑框 -->
-        <div class="editor" id="{{questionAnswerEditorId}}"></div>
+        <div class="editor" id="{{QUESTION_ANSWER_EDITOR}}"></div>
         <!--操作编辑框的按钮-->
         <div *ngIf="EDITOR_STATE == true" class="question-content" style="display: flex; flex-direction: row-reverse;" >
-          <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;">提交回答</button>
+          <button *ngIf="packUpButtonState == true" mat-button style="margin-left: 1rem;" (click)="closeDetailQuestionContent()">
+            收起<i class="material-icons">keyboard_arrow_up</i>
+          </button>
+          <span style="flex: 1 1 auto;"></span>
+          <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;" (click)="submitComment()">提交回答</button>
           <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeEditor()">取消回答</button>
         </div>
     <!--激活编辑框的按钮-->
-    <div *ngIf="EDITOR_STATE == false" class="question-content" style="margin-top: 1rem;">
-      <button mat-raised-button color="primary" STYLE="background-color:#757575;">关注问题</button>
+    <div *ngIf="EDITOR_STATE == false" class="question-content" style="display: flex;">
+      <button *ngIf="FOLLOWEE_QUESTION_STATE == false" mat-raised-button color="primary"
+      STYLE="background-color:#757575;" (click)="followQuestion()">关注问题</button>
+       <button *ngIf="FOLLOWEE_QUESTION_STATE == true" mat-raised-button color="primary"
+       STYLE="background-color:#757575;" (click)="cancelFollowQuestion()">取消关注问题</button>
       <button mat-raised-button color="primary" style="margin-left: 1rem;background-color: #757575" (click)="openEidtor()">写回答</button>
-      <button  mat-button disabled style="margin-left: 1rem;">28条评论</button>
+      <button  mat-button disabled style="margin-left: 1rem;">{{questionCommentCount}}条评论</button>
+      <span style="flex: 1 1 auto;"></span>
+      <button *ngIf="packUpButtonState == true" mat-button style="margin-left: 1rem;" (click)="closeDetailQuestionContent()">
+        收起<i class="material-icons">keyboard_arrow_up</i>
+      </button>
     </div>
   </div>
 </mat-card>
@@ -43,7 +42,8 @@
 <div class="question-container">
   <span class="fill-remaining-space"></span>
   <div style="width: 43.5rem;">
-    <app-question-comments></app-question-comments>
+    <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData"></app-not-found-data>
+    <app-question-comments [comments]="questionComment" ></app-question-comments>
   </div>
   <app-connection></app-connection>
   <span class="fill-remaining-space"></span>

@@ -1,44 +1,43 @@
 <mat-card class="example-card center-card">
   <!--card-header-->
-  <mat-card-header>
+  <mat-card-header *ngIf="isNeedHeader == true">
     <img mat-card-avatar src="{{feed.user.headUrl}}">
     <mat-card-title>{{feed.user.name}}</mat-card-title>
     <mat-card-subtitle>{{feed.user.description}}, {{feed.question.createdDate | fromNow}}</mat-card-subtitle>
   </mat-card-header>
   <!--card-content-->
   <mat-card-content class="clear-padding">
+  <!--card-feed-title-->
+    <h2 class="card-feeds-container-header" (click)="openQuestionDetailPage()">
+      {{feedTitle}}
+    </h2>
     <div id={{questionAbbreviationDivId}}>
         <!--评论内容-->
         <div class="card-feeds-container" >
-          <!--card-feed-title-->
-          <h2 class="card-feeds-container-header" (click)="openQuestionDetailPage()">
-            {{feedTitle}}
-          </h2>
           <!--card-feed-content-->
           <div class="card-feeds-container-content" >
             <!--card-left-content-->
             <img *ngIf="feedContentImgSrc != ''" class="card-feeds-img" src="{{feedContentImgSrc}}" alt="Photo of a Shiba Inu">
             <!--card-content-content-->
-            <div class="card-feeds-text">
-              {{feedContent}}<a *ngIf="aState == true" (click)="openContent()">{{aText}}</a>
+            <div class="card-feeds-text"  >
+              <!--<div [innerHtml]="feedContent" ></div>-->
+              {{feedContent}}
+              <a *ngIf="aState == true" (click)="openContent()" style="cursor: pointer;" class="primary-color">{{aText}}</a>
             </div>
           </div>
         </div>
-        <!--card-button-->
-        <div style="margin-top: 0.5rem;">
-          <button mat-button style="color:#0288D1;">
-            <i class="material-icons" style="color:#b3e5fc;margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
-              Upvote | {{feed.followCount}}
-           </button>
-          <button mat-button style="color:#757575;">关注问题</button>
-          <button mat-button disabled>{{feed.question.id}}条评论</button>
-        </div>
     </div>
     <!--显示完整内容-->
-    <div id={{questionDetailDivId}} style="margin: 1rem;">
+    <div id={{questionDetailDivId}}>
     </div>
     <!--关闭完整内容的按钮-->
     <button *ngIf="contentState == true" mat-raised-button color="warn" style="width: 100%;" (click)="closeContent();">收起内容</button>
-    <br>
+    <!--card-button-->
+    <app-feed-action [followCount]="feed.followCount"
+                      [commentCount]="feed.question.commentCount"
+                      [CURRENT_FEED_TYPE]="CURRENT_FEED_TYPE"
+                      [questionId]="feed.question.id">
+
+    </app-feed-action>
   </mat-card-content>
 </mat-card>

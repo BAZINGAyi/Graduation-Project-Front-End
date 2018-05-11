@@ -1,6 +1,7 @@
 .question-container {
   padding: 1rem;
 }
+
 .example-card {
   max-width: 43.5rem;
   padding: 0.5rem !important;
@@ -20,9 +21,10 @@
 }
 
 .card-feeds-container-header {
-  font-size: larger;
+  font-size: large;
   text-align: center;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .card-feeds-container-content {
@@ -32,8 +34,8 @@
 }
 
 .card-feeds-img {
-  width: 12rem;
-  height: 8rem;
+  width: 10rem;
+  height: 6rem;
   border-radius: 3px;
   display: block;
   background-size: cover;
@@ -41,7 +43,7 @@
 }
 
 .card-feeds-text {
-  /*height: 8rem;*/
+  /*height: 6rem;*/
   padding-left: 1rem;
   flex: 1 1 auto;
   align-items:center;

@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TopicComponent } from './topic.component';
 import {SharedModule} from '../../shared/component/shared.module';
 import {MaterialModule} from '../../shared/component/material.module';
 import { TopicFeedsComponent } from './topic-feeds/topic-feeds.component';
 import {PagesSharedModule} from '../shared/pagesShared.module';
-import {TopicService} from './shared/topic-service.service';
+import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.component';
+import {EditorServiceComponent} from '../../shared/editor/editorService.component';
+import {TopicService} from './shared/topic.service';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
+
 
 @NgModule({
   imports: [
@@ -14,6 +17,6 @@ import {TopicService} from './shared/topic-service.service';
     PagesSharedModule,
   ],
   declarations: [TopicComponent, TopicFeedsComponent],
-  providers: [TopicService],
+  providers: [EditorServiceComponent, JqueryServiceComponent, TopicService, EditorServiceComponent, ProgressBarServiceComponent ],
 })
 export class TopicModule { }

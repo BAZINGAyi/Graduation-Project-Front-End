@@ -18,7 +18,6 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.progressBarServiceComponent.closeProgressBar();
   }
 
 }

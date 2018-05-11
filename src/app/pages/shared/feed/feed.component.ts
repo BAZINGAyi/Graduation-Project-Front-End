@@ -2,6 +2,9 @@ import {AfterViewInit, Component, ElementRef, Input, OnInit} from '@angular/core
 import {EditorServiceComponent} from '../../../shared/editor/editorService.component';
 import {Router} from '@angular/router';
 import {IndexData} from '../../../shared/model/index-data.model';
+import {PersonComponent} from '../../person/person.component';
+import {FeedActionComponent, NORMAL_FEED} from '../feed-action/feed-action.component';
+import {WendaUtils} from '../../../shared/util/wendaUtil.service';
 
 
 declare var $: any;
@@ -39,21 +42,30 @@ export class FeedComponent implements OnInit, AfterViewInit {
   // 每个 feed 流中内容显示的图片地址
   feedContentImgSrc = '';
 
+  @Input() isNeedHeader = true;
+
+  @Input() CURRENT_FEED_TYPE: string;
+
   constructor(private editorServiceComponent: EditorServiceComponent,
               private elementRef: ElementRef,
-              private router: Router) {
+              private router: Router,
+              private wendaUtils: WendaUtils) {
 
   }
 
   ngOnInit(): void {
     this.initViewId();
     this.generateFeed();
+    // 显示 feed 类型
+    if (this.CURRENT_FEED_TYPE === '') {
+      this.CURRENT_FEED_TYPE = NORMAL_FEED;
+    }
   }
 
   private initViewId() {
     // 因为每个 feed 中问题的 id 和用户的 id 都不会是重复的，所以用作两个容器的标示
     this.questionAbbreviationDivId = this.feed.question.id + '';
-    this.questionDetailDivId = this.feed.user.id + '';
+    this.questionDetailDivId = 'detail' + this.feed.question.id +  '';
   }
 
   ngAfterViewInit(): void {
@@ -74,14 +86,10 @@ export class FeedComponent implements OnInit, AfterViewInit {
    */
   generateFeedContent() {
     // 定义显示的字符数
-    const contentLength = 230;
+    const contentLength = 150;
     // 获取要显示的问题内容
-    const questionContent = this.feed.question.content.trim();
-    // 创建节点用于装载 question 的内容
-    const contentDom = document.createElement('div');
-    contentDom.innerHTML = questionContent;
-    // 从创建的节点中取出 text 文本的前 n 个汉字，作为现实内容的缩略版
-    const contentText = contentDom.innerText.trim();
+    const questionContent = this.wendaUtils.HTMLDecode(this.feed.question.content.trim());
+    const contentText = this.wendaUtils.getTextInHTML(questionContent);
     // 判断是否将内容隐藏
     if (contentText.length > contentLength) {
       this.feedContent = contentText.substr(0, contentLength);
@@ -96,18 +104,11 @@ export class FeedComponent implements OnInit, AfterViewInit {
    * 生成每个 feed 中的 content img 地址
    */
   generateFeedContentImg() {
-    const questionContent = this.feed.question.content.trim();
-    // 匹配图片（g表示匹配所有结果i表示区分大小写）
-    const imgReg = /<img.*?(?:>|\/>)/gi;
-    // 匹配src属性
-    const srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-    const arr = questionContent.match(imgReg);
-    if (arr != null && arr.length !== 0) {
-      const src = arr[0].match(srcReg);
-      // 获取图片地址
-      if (src[1]) {
-        this.feedContentImgSrc = src[1];
-      }
+    // '<img class="yahoo" src="https://material.angular.io/assets/img/examples/shiba1.jpg" alt="yahoo logo" />'
+    const questionContent = this.wendaUtils.HTMLDecode(this.feed.question.content.trim());
+    const imageUrl = this.wendaUtils.extractFirstImageUrl(questionContent);
+    if (imageUrl !== undefined) {
+      this.feedContentImgSrc = imageUrl;
     }
   }
 
@@ -115,8 +116,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
    * 生成每个 feed 的标题
    */
   generateFeedTitle() {
-    const feedTitle = this.feed.question.title.trim();
-    this.feedTitle = feedTitle;
+    this.feedTitle = this.feed.question.title.trim();
   }
 
   /**
@@ -126,9 +126,9 @@ export class FeedComponent implements OnInit, AfterViewInit {
     // 隐藏问题的简述内容
     const cardContent = document.getElementById(this.questionAbbreviationDivId);
     cardContent.style.display = 'none';
-    // 显示问题的全部内容
-    this.editorServiceComponent.appendHtmlContentToContainer(this.questionDetailDivId,
-      this.feed.question.content.trim(),
+    this.editorServiceComponent.generateDisplayEditor(
+      this.questionDetailDivId,
+      this.wendaUtils.HTMLDecode(this.feed.question.content.trim()),
       this.feed.question.title.trim()
     );
     // 显示收起按钮
@@ -153,39 +153,9 @@ export class FeedComponent implements OnInit, AfterViewInit {
    * 打开 question 页面
    */
   openQuestionDetailPage() {
-    this.router.navigate(['pages/question']);
+    this.router.navigate(['/pages/question', { qid: this.feed.question.id }]);
   }
 
-  // /**
-  //  *  控制头部文字的隐藏
-  //  */
-  // init() {
-  //   var len = 100;      //默认显示字数
-  //   var ctn = document.getElementById('normal-padding-column');  //获取div对象
-  //   var content = ctn.innerHTML;                   //获取div里的内容
-  //
-  //   //alert(content);
-  //   var span = document.createElement('span');     //创建<span>元素
-  //   var a = document.createElement('a');           //创建<a>元素
-  //   // a.style.color = "#FF5252";
-  //   span.innerHTML = content.substring(0, len);     //span里的内容为content的前len个字符
-  //
-  //   a.innerHTML = content.length > len ? '... 展开' : '';  ////判断显示的字数是否大于默认显示的字数    来设置a的显示
-  //   a.href = 'javascript:void(0)';//让a链接点击不跳转
-  //
-  //   a.onclick = function () {
-  //     if (a.innerHTML.indexOf('展开') > 0) {      //如果a中含有"展开"则显示"收起"
-  //       a.innerHTML = '<<&nbsp;收起';
-  //       span.innerHTML = content;
-  //     } else {
-  //       a.innerHTML = '... 展开';
-  //       span.innerHTML = content.substring(0, len);
-  //     }
-  //   };
-  //   // 设置div内容为空，span元素 a元素加入到div中
-  //   ctn.innerHTML = '';
-  //   ctn.appendChild(span);
-  //   ctn.appendChild(a);
-  // }
 
+  // Feed 流显示代优化
 }

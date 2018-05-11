@@ -12,14 +12,29 @@ import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.componen
 import { QuestionCommentsComponent } from './question-comments/question-comments.component';
 import { CommentCommentsComponent } from './comment-comments/comment-comments.component';
 import {NavigationService} from '../navigation/shared/navigation.service';
+import {QuestionService} from './question.service';
+import {FeedUtilService} from '../shared/feed-util.service';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {PagesSharedModule} from '../shared/pagesShared.module';
+import {WendaUtils} from '../../shared/util/wendaUtil.service';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
 
 @NgModule({
   imports: [
     SharedModule,
     MaterialModule,
+    PagesSharedModule,
   ],
   exports : [QuestionComponent],
   declarations: [CommentComponent, QuestionComponent, QuestionCommentsComponent, CommentCommentsComponent],
-  providers: [EditorServiceComponent, JqueryServiceComponent, NavigationService],
+  providers: [EditorServiceComponent,
+    JqueryServiceComponent,
+    NavigationService,
+    QuestionService,
+    FeedUtilService,
+    WendaUtils,
+    AuthenticationService,
+    ProgressBarServiceComponent,
+  ],
 })
 export class QuestionModule { }

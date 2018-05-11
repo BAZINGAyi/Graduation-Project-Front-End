@@ -21,18 +21,17 @@
 .card-feeds-img {
   width: 20rem;
   border-radius: 3px;
-  display: block;
   background-size: cover;
   background-position: center;
+  flex-shrink:0;
+  display: flex;
 }
 
 .card-feeds-text {
   padding-left: 1rem;
   flex: 1 1 auto;
-  align-items:center;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
   font-size: 1rem;
 }
 

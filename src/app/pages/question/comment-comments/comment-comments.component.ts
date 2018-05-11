@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {QuestionComment} from '../../../shared/model/question/question-comment.model';
+import {Comment} from '../../../shared/model/question/comment.model';
+import {CommentSon} from '../../../shared/model/question/commentSon.model';
+import {AuthenticationService} from '../../../authentication/authentication.service';
 
 @Component({
   selector: 'app-comment-comments',
@@ -7,13 +11,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommentCommentsComponent implements OnInit {
 
-  datas = [1];
-  constructor() { }
+  // 用于接收 index-feeds 传过来的 id，用于标识每个 feeds
+  @Input() commentListInComment: CommentSon[];
+
+  IS_LOGIN = false;
+
+  constructor(private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.datas.push(2);
-    this.datas.push(3);
-    this.datas.push(4);
+    this.IS_LOGIN = this.authenticationService.isLogin();
   }
 
 }

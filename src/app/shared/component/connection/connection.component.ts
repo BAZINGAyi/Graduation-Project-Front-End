@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {JqueryServiceComponent} from '../../jquery/jQueryService.component';
+import {AskQuestionComponent} from '../ask-question/ask-question.component';
+import {MatDialog} from '@angular/material';
+import {Router} from '@angular/router';
+import {PersonComponent} from '../../../pages/person/person.component';
+import {SendMessageComponent} from '../send-message/send-message.component';
+import {AppSettings} from '../../url/AppSettings';
 
 @Component({
   selector: 'app-connection',
@@ -8,7 +14,11 @@ import {JqueryServiceComponent} from '../../jquery/jQueryService.component';
 })
 export class ConnectionComponent implements OnInit {
 
-  constructor(private jqueryServiceComponent: JqueryServiceComponent) { }
+  constructor(private jqueryServiceComponent: JqueryServiceComponent,
+              public dialog: MatDialog,
+              private router: Router
+              ) {
+  }
 
   ngOnInit() {
     this.fixFloatInstructionDivPosition();
@@ -26,13 +36,15 @@ export class ConnectionComponent implements OnInit {
         scrollTop;
       // 用于记录正常滚动状态时，距离视窗左侧的高度
       var normalLeftWidth = '';
-      function fix(){
-
+      function fix() {
         scrollTop = $(document).scrollTop();
         // 滑动的距离大于到视窗顶部的高度
         if (scrollTop > offsetTop ) {
           that.addClass(actCls);
-          that.css('left',normalLeftWidth);
+          // 获取屏幕宽度
+          let width = document.body.clientWidth;
+          width = (width - (43.5 + 22) * 16) / 2 + 44.5 * 16;
+          that.css('left', width);
         } else {
           that.removeClass(actCls);
           normalLeftWidth = that.offset().left;
@@ -40,9 +52,53 @@ export class ConnectionComponent implements OnInit {
       }
       fix();
       $(window).scroll(fix);
-    }
+    };
 
     $('#fix1').fixedDiv('fix-div');
   }
 
+  openAskQuestionDialog() {
+    const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
+    dialogRef.componentInstance.CURRENT_PAGE_TYPE = 'NORMAL_ASK_QUESTION';
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  openMyFollowProblem() {
+    this.router.navigate(['/pages/person', { id: PersonComponent.FOLLOW_QUESTION }]);
+  }
+
+  openMyFollowPerson() {
+    this.router.navigate(['pages/person', { id: PersonComponent.FOLLOW_PEOPLE }]);
+  }
+
+  openFollowMyPerson() {
+    this.router.navigate(['pages/person', { id: PersonComponent.FANS }]);
+  }
+
+  openSendMessageDialog() {
+    const dialogRef = this.dialog.open(SendMessageComponent, AppSettings.getDialogSendMessageConfig());
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+  // openPushQuestion() {
+  //   this.router.navigate(['pages/person', { id: PersonComponent.PUSH_QUESTION }]);
+  // }
+
+  openMyStationLetter() {
+    this.router.navigate(['pages/person', { id: PersonComponent.STATION_LETTER} ]);
+  }
+
+  openMyCommentQuestions() {
+    this.router.navigate(['pages/person', { id: PersonComponent.MY_COMMENT_QUESTIONS} ]);
+  }
+
+  openMyProfile() {
+    this.router.navigate(['pages/person', { id: PersonComponent.MY_PROFILE} ]);
+  }
 }

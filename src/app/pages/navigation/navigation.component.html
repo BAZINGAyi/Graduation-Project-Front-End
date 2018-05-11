@@ -4,9 +4,9 @@
   <div class="navigation-container">
     <!-- navigation-left -->
     <div class="navigation-left">
-      <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-right:1rem;">event_seat</i>
+      <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-right:1rem;">highlight</i>
       <button mat-button routerLink="index">首页</button>
-      <button mat-button routerLink="discover">发现</button>
+      <button mat-button routerLink="discover">新鲜事</button>
       <button mat-button routerLink="topic">话题</button>
       <span class="example-fill-remaining-space"></span>
       <!--search input-->
@@ -16,26 +16,33 @@
         <mat-icon matSuffix style="font-size: smaller;">search</mat-icon>
         <!-- drop-down -->
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-            <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
-            <span>{{ state.name }}</span> |
-            <small>Population: {{state.population}}</small>
+          <mat-option *ngFor="let data of searchValue | async" [value]="data.question.title">
+            <span>{{ data.question.title }}</span>
             <mat-divider></mat-divider>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>
     <!-- navigation-right -->
-    <div class="navigation-right">
+    <div *ngIf="IS_LOGIN == true" class="navigation-right">
       <!-- <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-left:1rem;">face</i> -->
       <!--个人中心-->
-      <div mat-card-avatar class="example-header-image" style="margin-top: 1rem; margin-left:1rem;">
-          <button mat-button [matMenuTriggerFor]="menu" style="height: 2rem;width: 2rem;"></button>
-          <mat-menu #menu="matMenu">
-            <button mat-menu-item>修改密码</button>
-            <button mat-menu-item>注销</button>
-          </mat-menu>
-      </div>
+      <!--<div mat-card-avatar class="example-header-image" style="margin-top: 1rem; margin-left:1rem;">-->
+
+          <!--<button mat-button [matMenuTriggerFor]="menu" style="height: 2rem;width: 2rem;"></button>-->
+          <!--<mat-menu #menu="matMenu">-->
+            <!--<button mat-menu-item (click)="openChangePasswordDialog()">修改密码</button>-->
+            <!--<button mat-menu-item (click)="logout()">注销</button>-->
+          <!--</mat-menu>-->
+      <!--</div>-->
+      <button mat-button [matMenuTriggerFor]="menu">
+        <img mat-card-avatar class="navigation-img" src="{{headUrl}}">
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openChangePasswordDialog()">修改密码</button>
+        <button mat-menu-item (click)="openMyProfile()">个人信息</button>
+        <button mat-menu-item (click)="logout()">注销</button>
+      </mat-menu>
       <!--发送站内信-->
       <button mat-button (click)="openSendMessage()">
         <i class="material-icons">message</i>
@@ -45,5 +52,18 @@
         <i class="material-icons">person_pin</i>
       </button>
     </div>
+
+    <!-- navigation-right -->
+    <div *ngIf="IS_LOGIN == false" class="navigation-right">
+      <!--登陆-->
+      <button mat-button (click)="openLoginPage()">
+        登录
+      </button>
+      <!--注册-->
+      <button mat-button (click)="openRegisterPage()">
+        注册
+      </button>
+    </div>
+
   </div>
 </mat-toolbar>

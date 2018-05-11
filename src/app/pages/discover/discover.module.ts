@@ -7,6 +7,9 @@ import {SharedModule} from '../../shared/component/shared.module';
 import { DiscoverFeedsComponent } from './discover-feeds/discover-feeds.component';
 import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.component';
 import {DiscoverService} from './shared/DiscoverService.service';
+import {EditorServiceComponent} from '../../shared/editor/editorService.component';
+import {AuthenticationService} from '../../authentication/authentication.service';
+
 
 @NgModule({
   imports: [
@@ -16,7 +19,7 @@ import {DiscoverService} from './shared/DiscoverService.service';
   ],
   declarations: [ DiscoverComponent, DiscoverFeedsComponent ],
   exports:      [ DiscoverComponent ],
-  providers:    [ DiscoverService ]
+  providers:    [ EditorServiceComponent, JqueryServiceComponent, EditorServiceComponent, ProgressBarServiceComponent, DiscoverService, AuthenticationService ]
 })
 export class DiscoverModule { }
 

@@ -14,7 +14,8 @@ import {SendMessageComponent} from './send-message/send-message.component';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FromNowPipe} from '../pipes/from-now.pipe';
-
+import {TopicService} from '../../pages/topic/shared/topic.service';
+import {WendaUtils} from '../util/wendaUtil.service';
 @NgModule({
   declarations: [
     ConnectionComponent,
@@ -40,10 +41,13 @@ import {FromNowPipe} from '../pipes/from-now.pipe';
   providers: [
     JqueryServiceComponent,
     EditorServiceComponent,
+    TopicService,
+    WendaUtils,
   ],
   entryComponents: [
     AskQuestionComponent,
     SendMessageComponent,
+    ChangePasswordComponent,
   ],
 })
 export class SharedModule { }

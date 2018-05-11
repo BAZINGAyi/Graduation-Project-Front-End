@@ -25,3 +25,16 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+# 目前存在的问题
+
+## 用户登修改密码
+
+## 站内信逻辑
+
+## 回答的提问的存储
+
+## 发布问题的修改，和删除，实现 评论修改删除实现；
+
+## 网站的响应式设计

@@ -10,6 +10,9 @@ import { FansComponent } from './fans/fans.component';
 import { FollowQuestionComponent } from './follow-question/follow-question.component';
 import {PagesSharedModule} from '../shared/pagesShared.module';
 import {PushQuestionComponent} from './push-question/push-question.component';
+import { MyCommentQuestionsComponent } from './my-comment-questions/my-comment-questions.component';
+import { ProfileComponent } from './profile/profile.component';
+import {AuthenticationService} from '../../authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -18,8 +21,16 @@ import {PushQuestionComponent} from './push-question/push-question.component';
     ChatModule,
     PagesSharedModule,
   ],
-  declarations: [PersonComponent, FollowComponent, FansComponent, FollowQuestionComponent, PushQuestionComponent],
-  providers: [EditorServiceComponent],
+  declarations: [
+    PersonComponent,
+    FollowComponent,
+    FansComponent,
+    FollowQuestionComponent,
+    PushQuestionComponent,
+    MyCommentQuestionsComponent,
+    ProfileComponent
+  ],
+  providers: [EditorServiceComponent, AuthenticationService],
   exports: [PersonComponent]
 })
 export class PersonModule { }
