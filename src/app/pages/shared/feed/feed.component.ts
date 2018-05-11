@@ -90,7 +90,6 @@ export class FeedComponent implements OnInit, AfterViewInit {
     // 获取要显示的问题内容
     const questionContent = this.wendaUtils.HTMLDecode(this.feed.question.content.trim());
     const contentText = this.wendaUtils.getTextInHTML(questionContent);
-    console.log(contentText.length);
     // 判断是否将内容隐藏
     if (contentText.length > contentLength) {
       this.feedContent = contentText.substr(0, contentLength);

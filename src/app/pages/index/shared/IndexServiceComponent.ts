@@ -28,13 +28,13 @@ export class IndexServiceComponent {
                 scrollTop;
             // 用于记录正常滚动状态时，距离视窗左侧的高度
             var normalLeftWidth = '';
-            function fix(){
+            function fix() {
 
                 scrollTop = $(document).scrollTop();
                 // 滑动的距离大于到视窗顶部的高度
                 if (scrollTop > offsetTop ) {
                     that.addClass(actCls);
-                    that.css('left',normalLeftWidth);
+                    that.css('left', normalLeftWidth);
                 } else {
                     that.removeClass(actCls);
                     normalLeftWidth = that.offset().left;
@@ -52,10 +52,15 @@ export class IndexServiceComponent {
    */
   getIndexQuestion(offset: string): Observable<IndexData[]> {
     const questionUrl = AppSettings.getQuestionsUrl(offset);
+    return this.httpClient.get<IndexData[]>(questionUrl);
+  }
+
+  getLoginUserQuestionList(offset: string): Observable<IndexData[]> {
+    const questionUrl = AppSettings.getLoginUserQuestionList(offset);
     return this.httpClient.get<IndexData[]>(questionUrl, this.authenticationService.getHttpHeader());
   }
 
-  getMyCommentQuestionList(offset: string) {
+  getMyCommentQuestionList(offset: string): Observable<IndexData[]> {
     const questionUrl = AppSettings.getMyCommentQuestionList(offset);
     return this.httpClient.get<IndexData[]>(questionUrl, this.authenticationService.getHttpHeader());
   }

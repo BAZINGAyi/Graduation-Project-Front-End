@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, Input, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {EditorServiceComponent} from '../../editor/editorService.component';
 import {MatDialogRef} from '@angular/material';
@@ -31,6 +31,11 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   // 用于添加 editor 的 id
   ASK_QUESTION_EDITOR_ID = 'askQuestionViewId';
 
+  NORMAL_ASK_QUESTION = 'NORMAL_ASK_QUESTION';
+  EDIT_ASK_QUESTION = 'EDIT_ASK_QUESTION';
+  EDIT_COMMENT = 'EDIT_COMMENT';
+  CURRENT_PAGE_TYPE = '';
+
   ngAfterViewInit(): void {
     this.initEditor();
   }
@@ -43,7 +48,8 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
               private wendaUtils: WendaUtils,
               private route: ActivatedRoute,
               private router: Router,
-              private authenticationService: AuthenticationService) { }
+              private authenticationService: AuthenticationService) {
+  }
 
   ngOnInit() {
     this.getTopicList();
@@ -88,5 +94,13 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
           alert(data.msg);
         }
       });
+  }
+
+  editQuestion() {
+
+  }
+
+  editComment() {
+
   }
 }

@@ -25,6 +25,6 @@ export class MyCommentQuestionsComponent implements OnInit {
   private getCommentQuestionList() {
     this.indexServiceComponent
       .getMyCommentQuestionList(0 + '')
-      .subscribe( data => {this.indexDatas = data;});
+      .subscribe( data => {this.indexDatas = data; });
   }
 }

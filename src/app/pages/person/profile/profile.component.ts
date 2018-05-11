@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   // feeds 流数据
   indexDatas: IndexData[];
 
-  public  NORMAL_FEED = 'NORMAL_FEED';
+  public  MY_QUESTION = 'MY_QUESTION_FEED';
 
   offset = 0;
 
@@ -23,12 +23,12 @@ export class ProfileComponent implements OnInit {
   name = '';
 
   // 判断是否滚动到底部
-  @HostListener("window:scroll", [])
+  @HostListener('window:scroll', [])
   onScroll(): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.offset = this.offset + 10;
       this.indexServiceComponent
-        .getIndexQuestion(this.offset + '')
+        .getLoginUserQuestionList(this.offset + '')
         .subscribe( data => { this.indexDatas = this.indexDatas.concat(data); });
     }
   }
@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
   private getQuestion() {
     this.progressBarService.openProgressBar();
     this.indexServiceComponent
-      .getIndexQuestion(this.offset + '')
+      .getLoginUserQuestionList(this.offset + '')
       .subscribe( data => {this.indexDatas = data; this.progressBarService.closeProgressBar(); });
   }
 

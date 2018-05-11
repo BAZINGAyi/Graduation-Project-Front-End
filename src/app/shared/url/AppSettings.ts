@@ -18,6 +18,7 @@ export class AppSettings {
   private static API_POST_DISLIKE_COMMENT = AppSettings.API_URL + 'dislike';
   private static API_POST_SUBMIT_COMMENT_OF_COMMENT = AppSettings.API_URL + 'addCommentOfComment';
   private static API_POST_SUBMIT_COMEENT = AppSettings.API_URL + 'addQuestionComment';
+  private static API_POST_GET_LOGIN_USER_PUSH_QUESTIONS = AppSettings.API_URL + '/LoginUserQuestionList?offset=';
 
 
   ///////////////// dialog config /////////////////////////////
@@ -25,6 +26,7 @@ export class AppSettings {
     width: '60%',
     height: '700px',
     panelClass: 'no-padding-dialog',
+    data: {}
   };
   private static DIALOG_SEND_MESSAGE_CONFIG = {
     width: '50%',
@@ -41,6 +43,11 @@ export class AppSettings {
     height: '350px',
     panelClass: 'no-padding-dialog',
   };
+
+  ////////////////////// http code status ///////////////////////////////////
+  private static SUCCESS_STATUS = 200;
+  private static NO_CONTENT = 201;
+  private static Unauthorized = 401;
 
   /**
    * @param {string} offset 查询数据库相对与问题的偏移量
@@ -140,5 +147,21 @@ export class AppSettings {
 
   static getSubmitCommentUrl() {
     return this.API_POST_SUBMIT_COMEENT;
+  }
+
+  static getLoginUserQuestionList(offset: string) {
+    return this.API_POST_GET_LOGIN_USER_PUSH_QUESTIONS + offset;
+  }
+
+  static getSuccessHttpResponseCode() {
+    return this.SUCCESS_STATUS;
+  }
+
+  static getNoContentHttpResponseCode() {
+    return this.NO_CONTENT;
+  }
+
+  static getUnauthorizedResponseCode() {
+    return this.Unauthorized;
   }
 }

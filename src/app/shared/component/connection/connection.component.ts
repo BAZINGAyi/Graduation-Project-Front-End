@@ -59,6 +59,7 @@ export class ConnectionComponent implements OnInit {
 
   openAskQuestionDialog() {
     const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
+    dialogRef.componentInstance.CURRENT_PAGE_TYPE = 'NORMAL_ASK_QUESTION';
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -85,9 +86,9 @@ export class ConnectionComponent implements OnInit {
     });
   }
 
-  openPushQuestion() {
-    this.router.navigate(['pages/person', { id: PersonComponent.PUSH_QUESTION }]);
-  }
+  // openPushQuestion() {
+  //   this.router.navigate(['pages/person', { id: PersonComponent.PUSH_QUESTION }]);
+  // }
 
   openMyStationLetter() {
     this.router.navigate(['pages/person', { id: PersonComponent.STATION_LETTER} ]);

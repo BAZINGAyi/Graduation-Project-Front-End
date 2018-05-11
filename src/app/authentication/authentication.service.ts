@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {AppSettings} from '../shared/url/AppSettings';
+import head = require('lodash/fp/head');
 
 @Injectable()
 export class AuthenticationService {
@@ -16,14 +16,16 @@ export class AuthenticationService {
           console.log(user);
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user.user));
+          localStorage.setItem('token', JSON.stringify(user.token));
         }
         return user;
       });
   }
 
-  logout() {
+   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
   }
 
   public isLogin() {
@@ -43,10 +45,11 @@ export class AuthenticationService {
    * 获取 httpHeader
    */
   public getHttpHeader() {
+    const token = JSON.parse(localStorage.getItem('token'));
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'token': localStorage.getItem('token_')
+        'token': '' + token
       })
     };
     return httpOptions;

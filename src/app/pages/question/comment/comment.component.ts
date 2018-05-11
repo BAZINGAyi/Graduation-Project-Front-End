@@ -6,6 +6,8 @@ import {QuestionService} from '../question.service';
 import {LoginComponent} from '../../../authentication/login/login.component';
 import {MatDialog} from '@angular/material';
 import {WendaUtils} from '../../../shared/util/wendaUtil.service';
+import {AskQuestionComponent} from '../../../shared/component/ask-question/ask-question.component';
+import {AppSettings} from '../../../shared/url/AppSettings';
 
 @Component({
   selector: 'app-comment',
@@ -212,5 +214,19 @@ export class CommentComponent implements OnInit, AfterViewInit {
     // 隐藏显示按钮
     this.contentState = false;
   }
-  // 和主页一样，仅对打开的 comment 应用加载 editor 的内容，其他 comment 仅仅显示缩略图
+
+  /**
+   * 修改评论内容
+   */
+  editParentComment() {
+    const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
+    dialogRef.componentInstance.CURRENT_PAGE_TYPE = 'EDIT_COMMENT';
+  }
+
+  /**
+   * 删除评论内容
+   */
+  deleteParentParentComment() {
+
+  }
 }

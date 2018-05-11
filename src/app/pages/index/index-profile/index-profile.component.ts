@@ -26,6 +26,7 @@ export class IndexProfileComponent implements OnInit {
 
   openAskQuestionDialog() {
     const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
+    dialogRef.componentInstance.CURRENT_PAGE_TYPE = 'NORMAL_ASK_QUESTION';
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
