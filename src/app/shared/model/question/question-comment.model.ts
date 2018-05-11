@@ -10,6 +10,7 @@ export class QuestionComment {
               public dislikeCount: number,
               public liked: number,
               public user: User,
-              public comment: CommentTotal) {
+              public comment: CommentTotal,
+              public parentCommentIsUser: boolean) {
   }
 }

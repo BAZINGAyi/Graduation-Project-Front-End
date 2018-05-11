@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material';
 import {AskQuestionComponent} from '../../../shared/component/ask-question/ask-question.component';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {AppSettings} from '../../../shared/url/AppSettings';
+import {LoginComponent} from '../../../authentication/login/login.component';
 
 @Component({
   selector: 'app-index-profile',
@@ -25,6 +26,12 @@ export class IndexProfileComponent implements OnInit {
   }
 
   openAskQuestionDialog() {
+
+    if (!this.authenticationService.isLogin()) {
+      const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+      return;
+    }
+
     const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
     dialogRef.componentInstance.CURRENT_PAGE_TYPE = 'NORMAL_ASK_QUESTION';
 

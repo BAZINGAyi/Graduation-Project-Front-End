@@ -52,6 +52,8 @@ export class CommentComponent implements OnInit, AfterViewInit {
   // 用于表示某个问题的所有内容是否被加载
   contentState = false;
 
+  PARENT_COMMENT_IS_USER = false;
+
   ngAfterViewInit(): void {
     // this.init();
     this.commentCommentsDiv.nativeElement.style.display = 'none';
@@ -71,6 +73,7 @@ export class CommentComponent implements OnInit, AfterViewInit {
      this.dislikeCount = this.comment.dislikeCount;
      this.isLiked = this.comment.liked;
      this.sonCommentCount = this.comment.comment.commentInCommentCount;
+     this.PARENT_COMMENT_IS_USER = this.comment.parentCommentIsUser;
     this.generateFeed();
   }
 

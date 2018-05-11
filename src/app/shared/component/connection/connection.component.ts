@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {PersonComponent} from '../../../pages/person/person.component';
 import {SendMessageComponent} from '../send-message/send-message.component';
 import {AppSettings} from '../../url/AppSettings';
+import {AuthenticationService} from '../../../authentication/authentication.service';
+import {LoginComponent} from '../../../authentication/login/login.component';
 
 @Component({
   selector: 'app-connection',
@@ -16,7 +18,8 @@ export class ConnectionComponent implements OnInit {
 
   constructor(private jqueryServiceComponent: JqueryServiceComponent,
               public dialog: MatDialog,
-              private router: Router
+              private router: Router,
+              public authenticationService: AuthenticationService,
               ) {
   }
 
@@ -58,6 +61,12 @@ export class ConnectionComponent implements OnInit {
   }
 
   openAskQuestionDialog() {
+
+    if (!this.authenticationService.isLogin()) {
+      const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+      return;
+    }
+
     const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
     dialogRef.componentInstance.CURRENT_PAGE_TYPE = 'NORMAL_ASK_QUESTION';
 
@@ -79,6 +88,12 @@ export class ConnectionComponent implements OnInit {
   }
 
   openSendMessageDialog() {
+
+    if (!this.authenticationService.isLogin()) {
+      const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+      return;
+    }
+
     const dialogRef = this.dialog.open(SendMessageComponent, AppSettings.getDialogSendMessageConfig());
 
     dialogRef.afterClosed().subscribe(result => {

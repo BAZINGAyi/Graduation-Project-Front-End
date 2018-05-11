@@ -16,6 +16,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {FromNowPipe} from '../pipes/from-now.pipe';
 import {TopicService} from '../../pages/topic/shared/topic.service';
 import {WendaUtils} from '../util/wendaUtil.service';
+import {AuthenticationService} from '../../authentication/authentication.service';
 @NgModule({
   declarations: [
     ConnectionComponent,
@@ -41,6 +42,7 @@ import {WendaUtils} from '../util/wendaUtil.service';
   providers: [
     JqueryServiceComponent,
     EditorServiceComponent,
+    AuthenticationService,
     TopicService,
     WendaUtils,
   ],

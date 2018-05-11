@@ -56,8 +56,8 @@
             <textarea matInput placeholder="写下你的评论"></textarea>
           </mat-form-field>
           <div style="display: flex; flex-direction: row-reverse;">
-            <button mat-raised-button color="primary" (click)="editParentComment()" style="margin-left: 0.5rem;">修改回答</button>
-            <button mat-raised-button color="primary" (click)="deleteParentParentComment()" style="margin-left: 0.5rem;">删除回答</button>
+            <button mat-raised-button color="primary" (click)="editParentComment()" style="margin-left: 0.5rem;" *ngIf="PARENT_COMMENT_IS_USER == true">修改回答</button>
+            <button mat-raised-button color="primary" (click)="deleteParentParentComment()" style="margin-left: 0.5rem;" *ngIf="PARENT_COMMENT_IS_USER == true">删除回答</button>
             <button mat-raised-button color="primary" (click)="submitSonComment()">评论</button>
           </div>
         </div>

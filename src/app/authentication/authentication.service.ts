@@ -29,7 +29,7 @@ export class AuthenticationService {
   }
 
   public isLogin() {
-    if (localStorage.getItem('currentUser')) {
+    if (localStorage.getItem('currentUser') !== null && localStorage.getItem('currentUser') !== undefined) {
       // logged in so return true
       return true;
     } else {

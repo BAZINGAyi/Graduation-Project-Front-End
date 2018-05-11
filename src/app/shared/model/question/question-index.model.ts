@@ -8,6 +8,7 @@ export class QuestionIndex {
               public followed: boolean,
               public question: Question,
               public user: User,
-              public comments: QuestionComment[]) {
+              public comments: QuestionComment[],
+              public code: number) {
   }
 }

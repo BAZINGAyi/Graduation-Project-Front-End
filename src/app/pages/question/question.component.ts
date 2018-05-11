@@ -93,6 +93,9 @@ export class QuestionComponent implements OnInit, AfterViewInit {
         this.generatePageData(data);
         this.questionDetail = data;
         this.progressBar.closeProgressBar();
+        if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        }
       });
   }
 
@@ -185,10 +188,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   followQuestion() {
 
     if (!this.authenticationService.isLogin()) {
-      const dialogRef = this.dialog.open(LoginComponent, {
-        width: '40%',
-        height: '350px'
-      });
+      const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
       return;
     }
 
@@ -206,10 +206,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   cancelFollowQuestion() {
 
     if (!this.authenticationService.isLogin()) {
-      const dialogRef = this.dialog.open(LoginComponent, {
-        width: '40%',
-        height: '350px'
-      });
+      const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
       return;
     }
 
@@ -225,6 +222,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   submitComment() {
+
+    if (!this.authenticationService.isLogin()) {
+      const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+      return;
+    }
+
     this.http.post<any>(AppSettings.getSubmitCommentUrl(),
       { content: this.editorServiceComponent.getEditEditorHtml(),
         markdownContent: this.editorServiceComponent.getEditEditorMarkdown(),
