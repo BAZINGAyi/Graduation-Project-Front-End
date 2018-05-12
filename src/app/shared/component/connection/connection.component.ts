@@ -16,6 +16,8 @@ import {LoginComponent} from '../../../authentication/login/login.component';
 })
 export class ConnectionComponent implements OnInit {
 
+  IS_LOGIN = false;
+
   constructor(private jqueryServiceComponent: JqueryServiceComponent,
               public dialog: MatDialog,
               private router: Router,
@@ -24,6 +26,7 @@ export class ConnectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.IS_LOGIN = this.authenticationService.isLogin();
     this.fixFloatInstructionDivPosition();
   }
 

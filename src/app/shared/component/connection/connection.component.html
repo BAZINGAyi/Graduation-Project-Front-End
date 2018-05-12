@@ -1,6 +1,6 @@
 <div class="Instructions">
   <div id = "fix1" >
-    <mat-card >
+    <mat-card *ngIf="IS_LOGIN == true" >
     <div class="button-row">
       <button mat-button (click)="openAskQuestionDialog()"> 提问</button>
       <button mat-button (click)="openSendMessageDialog()"> 发送私信</button>

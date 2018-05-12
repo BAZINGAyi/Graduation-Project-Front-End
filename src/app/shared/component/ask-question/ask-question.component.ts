@@ -74,6 +74,13 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
    */
   submitQuestion() {
 
+    if (!this.wendaUtils.checkUserInputLegal(this.questionTitle) ||
+      !this.wendaUtils.checkUserInputLegal(this.editorServiceComponent.getEditEditorHtml()) ||
+      !this.wendaUtils.checkUserInputLegal(this.questionTitle)) {
+      alert('请按要求输入内容');
+      return;
+    }
+
     const url = AppSettings.getSubmitQuestionUrl();
 
     this.http.post<any>(
@@ -85,7 +92,7 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
         topicId: this.topicId
       },
       this.authenticationService.getHttpHeader()
-    )
+     )
       .subscribe(data => {
         if (data.status !== undefined && data.status === 'success') {
           alert(data.msg);

@@ -94,6 +94,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
         this.questionDetail = data;
         this.progressBar.closeProgressBar();
         if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          alert("请您重新登录");
           const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
         }
       });
@@ -140,13 +141,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     const contentLength = 200;
     // 获取要显示的问题内容
     questionContent =  this.wendaUtils.HTMLDecode(questionContent.trim());
-    // 创建节点用于装载 question 的内容
-    const contentDom = document.createElement('div');
-    contentDom.innerHTML = questionContent;
-    // 从创建的节点中取出 text 文本的前 n 个汉字，作为现实内容的缩略版
-    const contentText = contentDom.innerText.trim();
+    const contentText = this.wendaUtils.getTextInHTML(questionContent);
+
     // 判断是否将内容隐藏
-    if (contentText.length > contentLength || this.isIncludeImage(questionContent)) {
+    if (contentText.length > contentLength
+      || this.isIncludeImage(questionContent)
+      || this.wendaUtils.isIncludeIframe(questionContent)) {
       this.questionContent = contentText.substr(0, contentLength);
       this.aState = true;
     } else {

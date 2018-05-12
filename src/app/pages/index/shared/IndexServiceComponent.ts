@@ -55,9 +55,9 @@ export class IndexServiceComponent {
     return this.httpClient.get<IndexData[]>(questionUrl);
   }
 
-  getLoginUserQuestionList(offset: string): Observable<IndexData[]> {
+  getLoginUserQuestionList(offset: string): Observable<any> {
     const questionUrl = AppSettings.getLoginUserQuestionList(offset);
-    return this.httpClient.get<IndexData[]>(questionUrl, this.authenticationService.getHttpHeader());
+    return this.httpClient.get<any>(questionUrl, this.authenticationService.getHttpHeader());
   }
 
   getMyCommentQuestionList(offset: string): Observable<IndexData[]> {

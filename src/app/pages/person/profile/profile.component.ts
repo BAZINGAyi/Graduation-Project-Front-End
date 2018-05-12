@@ -3,6 +3,9 @@ import {ProgressBarServiceComponent} from '../../../shared/progressbar/progressB
 import {IndexServiceComponent} from '../../index/shared/IndexServiceComponent';
 import {IndexData} from '../../../shared/model/index-data.model';
 import {AuthenticationService} from '../../../authentication/authentication.service';
+import {AppSettings} from '../../../shared/url/AppSettings';
+import {LoginComponent} from '../../../authentication/login/login.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-profile',
@@ -35,7 +38,8 @@ export class ProfileComponent implements OnInit {
 
   constructor(private indexServiceComponent: IndexServiceComponent,
               public authenticationService: AuthenticationService,
-              private progressBarService: ProgressBarServiceComponent) {
+              private progressBarService: ProgressBarServiceComponent,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -48,7 +52,15 @@ export class ProfileComponent implements OnInit {
     this.progressBarService.openProgressBar();
     this.indexServiceComponent
       .getLoginUserQuestionList(this.offset + '')
-      .subscribe( data => {this.indexDatas = data; this.progressBarService.closeProgressBar(); });
+      .subscribe( data => {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          this.indexDatas = data.questionList;
+        } else {
+          alert("登录已过期, 请你重新登录");
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        }
+        this.progressBarService.closeProgressBar();
+      });
   }
 
   initUserData() {

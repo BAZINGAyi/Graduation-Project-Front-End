@@ -64,10 +64,16 @@ export class WendaUtils {
 
   isIncludeImage(questionContent) {
     const imgUrl = this.extractFirstImageUrl(questionContent);
-    if (imgUrl === undefined) {
-      return false;
-    } else {
-      return true;
-    }
+    return imgUrl !== undefined;
+  }
+
+  checkUserInputLegal(content: string) {
+    return !(content === null || content === '' || content === undefined);
+  }
+
+  isIncludeIframe(content: string) {
+    const iframeRegex = /(<iframe.*?>.*?<\/iframe>)/g;
+    const arr = content.match(iframeRegex);
+    return arr != null && arr.length !== 0;
   }
 }

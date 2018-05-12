@@ -1,7 +1,7 @@
 <div style="display:flex; flex-direction: column; justify-content: center; align-items: center; margin: 1rem;">
   <h1 style="font-size: 1.5rem; text-align: center;" *ngIf="CURRENT_PAGE_TYPE == NORMAL_ASK_QUESTION">请仔细描述你遇到的问题</h1>
   <h1 style="font-size: 1.5rem; text-align: center;" *ngIf="CURRENT_PAGE_TYPE == EDIT_ASK_QUESTION">请仔细修改你编写的问题</h1>
-  <h1 style="font-size: 1.5rem; text-align: center;" *ngIf="CURRENT_PAGE_TYPE == EDIT_COMMENT">修改你评论内容</h1>
+  <h1 style="font-size: 1.5rem; text-align: center; margin-bottom: 1rem;" *ngIf="CURRENT_PAGE_TYPE == EDIT_COMMENT">修改你评论内容</h1>
   <mat-form-field style="width: 100%;"  *ngIf="CURRENT_PAGE_TYPE != EDIT_COMMENT">
       <textarea matInput placeholder="问题标题" [(ngModel)]="questionTitle" name="questionTitle"></textarea>
   </mat-form-field>

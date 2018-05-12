@@ -153,6 +153,7 @@ export class EditorServiceComponent {
       height  : 540,
       syncScrolling : 'single',
       path    : '../../../../assets/editor/lib/',
+      htmlDecode : true,
       saveHTMLToTextarea : true,
       toolbarIcons : function() {
           return ['undo', 'redo', '|', 'bold', 'hr', '|', 'preview',

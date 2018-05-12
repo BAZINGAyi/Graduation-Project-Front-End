@@ -87,11 +87,15 @@ export class FeedComponent implements OnInit, AfterViewInit {
   generateFeedContent() {
     // 定义显示的字符数
     const contentLength = 150;
+
     // 获取要显示的问题内容
     const questionContent = this.wendaUtils.HTMLDecode(this.feed.question.content.trim());
     const contentText = this.wendaUtils.getTextInHTML(questionContent);
+
     // 判断是否将内容隐藏
-    if (contentText.length > contentLength) {
+    if (contentText.length > contentLength
+      || this.wendaUtils.isIncludeIframe(questionContent)
+      || this.wendaUtils.isIncludeImage(questionContent)) {
       this.feedContent = contentText.substr(0, contentLength);
       this.aState = true;
     } else {
