@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {AppSettings} from '../../shared/url/AppSettings';
 import {QuestionIndex} from '../../shared/model/question/question-index.model';
 import {AuthenticationService} from '../../authentication/authentication.service';
+import {LoginComponent} from '../../authentication/login/login.component';
 
 @Injectable()
 export class QuestionService {
@@ -37,5 +38,15 @@ export class QuestionService {
   dislikeComment(userId: number, commentId: number) {
     const url = AppSettings.getDisLikeCommentUrl();
     return this.httpClient.post<any>(url, { userId: userId, commentId: commentId}, this.authenticationService.getHttpHeader());
+  }
+
+  deleteAnswer(answerId: number) {
+    const url = AppSettings.getDeleteAnswerUrl();
+    return this.httpClient.post<any>(url, { commentId: answerId}, this.authenticationService.getHttpHeader());
+  }
+
+  submitCommentOfAnswer(content: string, entityId: number) {
+    const url = AppSettings.getCreateCommentOfAnswerUrl();
+    return this.httpClient.post<any>(url, { content: content, entityId: entityId}, this.authenticationService.getHttpHeader());
   }
 }

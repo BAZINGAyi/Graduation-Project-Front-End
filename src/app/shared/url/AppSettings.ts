@@ -17,10 +17,13 @@ export class AppSettings {
   private static API_POST_UNFOLLOW_QUESTION = AppSettings.API_URL + 'unfollowQuestion';
   private static API_POST_LIKE_COMMENT = AppSettings.API_URL + 'like';
   private static API_POST_DISLIKE_COMMENT = AppSettings.API_URL + 'dislike';
-  private static API_POST_SUBMIT_COMMENT_OF_COMMENT = AppSettings.API_URL + 'addCommentOfComment';
+  private static API_POST_SUBMIT_COMMENT_OF_ANSWER = AppSettings.API_URL + 'addCommentOfAnswer';
+  private static API_PUT_UPDATE_COMMMENT_OF_ANSWER = AppSettings.API_URL + 'updateCommentOfAnswer';
   private static API_POST_SUBMIT_COMEENT = AppSettings.API_URL + 'addQuestionComment';
   private static API_POST_GET_LOGIN_USER_PUSH_QUESTIONS = AppSettings.API_URL + '/LoginUserQuestionList?offset=';
   private static APT_DELETE_QUESTION = AppSettings.API_URL + 'question/delete';
+  private static API_PUT_UPDATE_ANWSER = AppSettings.API_URL + 'updateQuestionComment';
+  private static API_POST_DELETE_ANWSER = AppSettings.API_URL + 'comment/delete';
 
 
   ///////////////// dialog config /////////////////////////////
@@ -131,8 +134,12 @@ export class AppSettings {
     return this.API_POST_DISLIKE_COMMENT;
   }
 
-  static getCommentOfCommentUrl() {
-    return this.API_POST_SUBMIT_COMMENT_OF_COMMENT;
+  static getCreateCommentOfAnswerUrl() {
+    return this.API_POST_SUBMIT_COMMENT_OF_ANSWER;
+  }
+
+  static getUpdateCommentOfAnswer() {
+    return this.API_PUT_UPDATE_COMMMENT_OF_ANSWER;
   }
 
   static getDialogQuestionConfig() {
@@ -173,6 +180,14 @@ export class AppSettings {
 
   static getDeleteQuestion() {
     return this.APT_DELETE_QUESTION;
+  }
+
+  static getUpdateAnswerUrl() {
+    return this.API_PUT_UPDATE_ANWSER;
+  }
+
+  static getDeleteAnswerUrl() {
+    return this.API_POST_DELETE_ANWSER;
   }
 
 }

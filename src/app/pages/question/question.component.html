@@ -5,23 +5,28 @@
     <div class="big-font" style="cursor: pointer;" >
       {{questionTitle}}
     </div>
+
     <!--问题内容-->
     <div id="{{SHORT_DESCRIBE_QUESTION}}" style="padding: 1rem;">
       {{questionContent}}
       <a *ngIf="aState == true" (click)="openDetailQuestionContent()" style="cursor: pointer;" class="primary-color">{{aText}}</a>
     </div>
+
     <div id="{{DETAIL_DESCRIBE_QUESTION}}"></div>
+
     <!-- 点击开启编辑框 -->
-        <div class="editor" id="{{QUESTION_ANSWER_EDITOR}}"></div>
-        <!--操作编辑框的按钮-->
-        <div *ngIf="EDITOR_STATE == true" class="question-content" style="display: flex; flex-direction: row-reverse;" >
-          <button *ngIf="packUpButtonState == true" mat-button style="margin-left: 1rem;" (click)="closeDetailQuestionContent()">
-            收起<i class="material-icons">keyboard_arrow_up</i>
-          </button>
-          <span style="flex: 1 1 auto;"></span>
-          <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;" (click)="submitComment()">提交回答</button>
-          <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeEditor()">取消回答</button>
-        </div>
+    <div class="editor" id="{{QUESTION_ANSWER_EDITOR}}"></div>
+
+    <!--操作编辑框的按钮-->
+    <div *ngIf="EDITOR_STATE == true" class="question-content" style="display: flex; flex-direction: row-reverse;" >
+      <button *ngIf="packUpButtonState == true" mat-button style="margin-left: 1rem;" (click)="closeDetailQuestionContent()">
+        收起<i class="material-icons">keyboard_arrow_up</i>
+      </button>
+      <span style="flex: 1 1 auto;"></span>
+      <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;" (click)="submitComment()">提交回答</button>
+      <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeEditor()">取消回答</button>
+    </div>
+
     <!--激活编辑框的按钮-->
     <div *ngIf="EDITOR_STATE == false" class="question-content" style="display: flex;">
       <button *ngIf="FOLLOWEE_QUESTION_STATE == false" mat-raised-button color="primary"

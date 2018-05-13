@@ -137,7 +137,8 @@ export class NavigationComponent implements OnInit {
   }
 
   openMyProfile() {
-    this.router.navigate(['pages/person', { id: PersonComponent.MY_PROFILE} ]);
+    // this.router.navigate(['pages/person', { id: PersonComponent.MY_PROFILE} ]);
+    this.router.navigate(['pages/profile']);
   }
 
 }

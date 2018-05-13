@@ -71,6 +71,10 @@ export class WendaUtils {
     return !(content === null || content === '' || content === undefined);
   }
 
+  checkUserInputNumberLegal(content: number) {
+    return !(content === null || content === undefined);
+  }
+
   isIncludeIframe(content: string) {
     const iframeRegex = /(<iframe.*?>.*?<\/iframe>)/g;
     const arr = content.match(iframeRegex);

@@ -10,6 +10,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {WendaUtils} from '../../util/wendaUtil.service';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {Question} from '../../model/question/question.model';
+import {CommentSon} from '../../model/question/commentSon.model';
+import {Comment} from '../../model/question/comment.model';
 
 @Component({
   selector: 'app-ask-question',
@@ -25,8 +27,6 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
   topicId = '';
 
-  question: Question;
-
   options = [
     '加载中',
   ];
@@ -35,17 +35,16 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   ASK_QUESTION_EDITOR_ID = 'askQuestionViewId';
 
   NORMAL_ASK_QUESTION = 'NORMAL_ASK_QUESTION';
+
+  // 编辑问题需要用到的属性
   EDIT_ASK_QUESTION = 'EDIT_ASK_QUESTION';
+  question: Question;
+
+  // 编辑回答需要用到的属性
   EDIT_COMMENT = 'EDIT_COMMENT';
+  comment: Comment;
+
   CURRENT_PAGE_TYPE = '';
-
-  selectedValue: string = 'steak-0';
-
-  foods = [
-    {value: '3', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
 
   ngAfterViewInit(): void {
     // 需要在页面渲染完成后，才能添加编辑器
@@ -69,8 +68,18 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   initEditor() {
-    this.editorServiceComponent.appendEditorToContainer(this.ASK_QUESTION_EDITOR_ID,
-      this.question !== null && this.question !== undefined ? this.question.markdownContent : '');
+
+    if (this.CURRENT_PAGE_TYPE === this.NORMAL_ASK_QUESTION) {
+      this.editorServiceComponent.appendEditorToContainer(this.ASK_QUESTION_EDITOR_ID, '');
+
+    } else if (this.CURRENT_PAGE_TYPE === this.EDIT_ASK_QUESTION) {
+      this.editorServiceComponent.appendEditorToContainer(this.ASK_QUESTION_EDITOR_ID,
+        this.question !== null && this.question !== undefined ? this.question.markdownContent : '');
+
+    } else if (this.CURRENT_PAGE_TYPE === this.EDIT_COMMENT) {
+      this.editorServiceComponent.appendEditorToContainer(this.ASK_QUESTION_EDITOR_ID,
+        this.comment !== null && this.comment !== undefined ? this.comment.markdownContent : '');
+    }
   }
 
   closeDialog() {
@@ -87,7 +96,7 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
    * 如果编辑器的类型是修改类型，则追加内容
    */
   updatePageContent() {
-    if (this.CURRENT_PAGE_TYPE !== this.NORMAL_ASK_QUESTION) {
+    if (this.CURRENT_PAGE_TYPE === this.EDIT_ASK_QUESTION) {
       this.questionTitle = this.question.title;
       this.topicId = this.question.topicId + '';
     }
@@ -145,7 +154,6 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
     }
 
     const url = AppSettings.getUpdateQuestionUrl();
-
     this.http.put<any>(
       url,
       {
@@ -167,7 +175,37 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
       });
   }
 
-  editComment() {
 
+  /**
+   * 编辑回答
+   */
+  editAnswer() {
+    if (!this.wendaUtils.checkUserInputLegal(this.editorServiceComponent.getEditEditorHtml())) {
+      alert('请按要求输入内容');
+      return;
+    }
+
+    if (this.comment.id === null && this.comment.id === undefined) {
+      return;
+    }
+
+    const url = AppSettings.getUpdateAnswerUrl();
+    this.http.put<any>(
+      url,
+      {
+        content: this.editorServiceComponent.getEditEditorHtml(),
+        markdownContent: this.editorServiceComponent.getEditEditorMarkdown(),
+        commentId: this.comment.id
+      },
+      this.authenticationService.getHttpHeader()
+    )
+      .subscribe(data => {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          alert(data.msg);
+          this.wendaUtils.reloadPage();
+        } else {
+          alert(data.msg);
+        }
+      });
   }
 }

@@ -119,7 +119,6 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   private generatePageData(data: any | undefined) {
-    console.log(data);
     this.questionTitle = data.question.title;
     // this.questionContent = data.question.content;
     this.questionCommentCount = data.question.commentCount;
@@ -234,8 +233,10 @@ export class QuestionComponent implements OnInit, AfterViewInit {
         questionId: this.qId
       })
       .subscribe(data => {
-        if (data.status !== undefined && data.status === 'success') {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
           this.wendaUtils.reloadPage();
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
         }
         alert(data.msg);
       });

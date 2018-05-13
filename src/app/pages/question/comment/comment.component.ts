@@ -54,6 +54,8 @@ export class CommentComponent implements OnInit, AfterViewInit {
 
   PARENT_COMMENT_IS_USER = false;
 
+  commentOfAnswer = '';
+
   ngAfterViewInit(): void {
     // this.init();
     this.commentCommentsDiv.nativeElement.style.display = 'none';
@@ -81,22 +83,25 @@ export class CommentComponent implements OnInit, AfterViewInit {
    * 打开对评论的评论页面
    */
   openCommentComments() {
+
+    if (this.comment.comment.commentSon.length === 0) {
+      return;
+    }
+
     const divState = this.commentCommentsDiv.nativeElement.style.display;
     if (divState === 'block') {
       this.commentCommentsDiv.nativeElement.style.display = 'none';
     } else if (divState === 'none') {
       this.commentCommentsDiv.nativeElement.style.display = 'block';
     }
+
     this.commentsCountName = '收起评论列表';
   }
 
   likeComment() {
 
     if (!this.authenticationService.isLogin()) {
-        const dialogRef = this.dialog.open(LoginComponent, {
-          width: '40%',
-          height: '350px'
-        });
+        const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
         return;
     }
 
@@ -124,10 +129,7 @@ export class CommentComponent implements OnInit, AfterViewInit {
   dislikeComment() {
 
     if (!this.authenticationService.isLogin()) {
-      const dialogRef = this.dialog.open(LoginComponent, {
-        width: '40%',
-        height: '350px'
-      });
+      const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
       return;
     }
 
@@ -152,8 +154,25 @@ export class CommentComponent implements OnInit, AfterViewInit {
       });
   }
 
-  submitSonComment() {
+  submitCommentOfAnswer() {
 
+    const entityNumber = this.comment.comment.commentParent.id;
+
+    if (!this.wendaUtils.checkUserInputLegal(this.commentOfAnswer) ||
+    !this.wendaUtils.checkUserInputNumberLegal(entityNumber)) {
+      alert('请输入合法内容');
+      return;
+    }
+
+    this.questionService.submitCommentOfAnswer(this.commentOfAnswer, entityNumber)
+      .subscribe( data => {
+        if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogQuestionConfig());
+        } else if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          this.wendaUtils.reloadPage();
+        }
+        alert(data.msg);
+      });
   }
 
   /**
@@ -221,15 +240,31 @@ export class CommentComponent implements OnInit, AfterViewInit {
   /**
    * 修改评论内容
    */
-  editParentComment() {
+  editAnswer() {
     const dialogRef = this.dialog.open(AskQuestionComponent, AppSettings.getDialogQuestionConfig());
     dialogRef.componentInstance.CURRENT_PAGE_TYPE = 'EDIT_COMMENT';
+    dialogRef.componentInstance.comment = this.comment.comment.commentParent;
   }
 
   /**
    * 删除评论内容
    */
-  deleteParentParentComment() {
+  deleteAnswer() {
 
+    const answerId = this.comment.comment.commentParent.id;
+
+    if (answerId === null || answerId === undefined) {
+      return;
+    }
+
+    this.questionService.deleteAnswer(answerId)
+      .subscribe( data => {
+      if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+        const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogQuestionConfig());
+      } else if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+        this.wendaUtils.reloadPage();
+      }
+      alert(data.msg);
+    });
   }
 }

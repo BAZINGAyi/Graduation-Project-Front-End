@@ -17,12 +17,14 @@ import {FromNowPipe} from '../pipes/from-now.pipe';
 import {TopicService} from '../../pages/topic/shared/topic.service';
 import {WendaUtils} from '../util/wendaUtil.service';
 import {AuthenticationService} from '../../authentication/authentication.service';
+import {SmallDialogComponent} from './small-dialog/small-dialog.component';
 @NgModule({
   declarations: [
     ConnectionComponent,
     AskQuestionComponent,
     SendMessageComponent,
     ChangePasswordComponent,
+    SmallDialogComponent,
     FromNowPipe,
   ],
   exports: [
@@ -31,6 +33,7 @@ import {AuthenticationService} from '../../authentication/authentication.service
     AskQuestionComponent,
     SendMessageComponent,
     ChangePasswordComponent,
+    SmallDialogComponent,
     FromNowPipe,
   ],
   imports: [
@@ -50,6 +53,7 @@ import {AuthenticationService} from '../../authentication/authentication.service
     AskQuestionComponent,
     SendMessageComponent,
     ChangePasswordComponent,
+    SmallDialogComponent,
   ],
 })
 export class SharedModule { }

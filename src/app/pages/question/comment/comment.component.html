@@ -25,7 +25,9 @@
            </div>
          </div>
       </div>
+
       <div id="{{DETAIL_COMMENT_CONTENT_ID}}" style="font-size: 1rem;"></div>
+
       <!--card-button-->
       <div style="margin-top: 5px;">
         <button mat-button (click)="likeComment()" [ngClass]="{'primary-color': isLiked === 1, 'accent-color': isLiked === 0 || isLiked === -1 }">
@@ -39,6 +41,7 @@
         <button mat-button (click)="openCommentComments()">{{commentsCountName}}</button>
         <button *ngIf="contentState == true" mat-button (click)="hiddenCommentContent()">收起</button>
       </div>
+
       <!--评论列表页-->
       <div>
         <!--评论列表-->
@@ -53,15 +56,16 @@
         <!--评论-->
         <div>
           <mat-form-field style="width: 100%;">
-            <textarea matInput placeholder="写下你的评论"></textarea>
+            <textarea matInput placeholder="写下你的评论" [(ngModel)]="commentOfAnswer" name="commentOfAnswer"></textarea>
           </mat-form-field>
           <div style="display: flex; flex-direction: row-reverse;">
-            <button mat-raised-button color="primary" (click)="editParentComment()" style="margin-left: 0.5rem;" *ngIf="PARENT_COMMENT_IS_USER == true">修改回答</button>
-            <button mat-raised-button color="primary" (click)="deleteParentParentComment()" style="margin-left: 0.5rem;" *ngIf="PARENT_COMMENT_IS_USER == true">删除回答</button>
-            <button mat-raised-button color="primary" (click)="submitSonComment()">评论</button>
+            <button mat-raised-button color="primary" (click)="editAnswer()" style="margin-left: 0.5rem;" *ngIf="PARENT_COMMENT_IS_USER == true">修改回答</button>
+            <button mat-raised-button color="primary" (click)="deleteAnswer()" style="margin-left: 0.5rem;" *ngIf="PARENT_COMMENT_IS_USER == true">删除回答</button>
+            <button mat-raised-button color="primary" (click)="submitCommentOfAnswer()">评论</button>
           </div>
         </div>
       </div>
+
     </div>
   </mat-card-content>
 </mat-card>

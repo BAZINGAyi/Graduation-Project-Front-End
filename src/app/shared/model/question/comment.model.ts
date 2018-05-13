@@ -6,6 +6,7 @@ export class Comment {
               public entityId: string,
               public createdDate: string,
               public content: string,
+              public markdownContent: string,
               public userId: string) {
   }
 }
