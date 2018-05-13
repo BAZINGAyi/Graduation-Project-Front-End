@@ -7,6 +7,7 @@ import {DiscoverComponent} from './discover/discover.component';
 import {TopicComponent} from './topic/topic.component';
 import {PersonComponent} from './person/person.component';
 import {SearchComponent} from './search/search.component';
+import {UserIndexComponent} from './user-index/user-index.component';
 
 const routes: Routes =
 [
@@ -21,6 +22,7 @@ const routes: Routes =
           { path: 'topic', component: TopicComponent },
           { path: 'person', component: PersonComponent },
           { path: 'search', component: SearchComponent },
+          { path: 'profile', component: UserIndexComponent },
       ]
   },
 {
