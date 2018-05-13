@@ -8,6 +8,7 @@ import {MaterialModule} from '../../shared/component/material.module';
 import {EditorServiceComponent} from '../../shared/editor/editorService.component';
 import {AuthenticationService} from '../../authentication/authentication.service';
 import {UserIndexComponent} from './user-index.component';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import {UserIndexComponent} from './user-index.component';
   ],
   declarations: [UserIndexComponent],
   exports: [UserIndexComponent],
-  providers: [EditorServiceComponent, AuthenticationService],
+  providers: [EditorServiceComponent, AuthenticationService, ProgressBarServiceComponent],
 })
 export class UserIndexModule { }

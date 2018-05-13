@@ -117,7 +117,8 @@ export class ConnectionComponent implements OnInit {
   }
 
   openMyProfile() {
-    // this.router.navigate(['pages/person', { id: PersonComponent.MY_PROFILE} ]);
-    this.router.navigate(['pages/profile']);
+    const currentUser = this.authenticationService.getCurrentUserInfo();
+    const userId = currentUser.id;
+    this.router.navigate(['pages/profile', { id: userId} ]);
   }
 }

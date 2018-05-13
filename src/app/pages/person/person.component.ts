@@ -9,13 +9,13 @@ import {ActivatedRoute, ParamMap} from '@angular/router';
 })
 export class PersonComponent implements OnInit {
   // 用于标示每个 tab 的 Index
-  public static  MY_PROFILE = 0;
-  public static  FOLLOW_QUESTION = 1;
+  // public static  MY_PROFILE = 0;
+  public static  FOLLOW_QUESTION = 0;
   // public static  PUSH_QUESTION = 2;
-  public static  MY_COMMENT_QUESTIONS = 2;
-  public static  STATION_LETTER = 3;
-  public static  FOLLOW_PEOPLE = 4;
-  public static  FANS = 5;
+  public static  MY_COMMENT_QUESTIONS = 1;
+  public static  STATION_LETTER = 2;
+  public static  FOLLOW_PEOPLE = 3;
+  public static  FANS = 4;
   // 动态选择第几个 tab 页面
   activeIndexPage = '0';
 

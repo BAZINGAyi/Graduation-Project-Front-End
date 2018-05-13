@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.offset = this.offset + 10;
       this.indexServiceComponent
-        .getLoginUserQuestionList(this.offset + '')
+        .getLoginUserQuestionList(this.offset + '', 29)
         .subscribe( data => {
           if (data.code === AppSettings.getNoContentHttpResponseCode()) {
             return;
@@ -56,7 +56,7 @@ export class ProfileComponent implements OnInit {
   private getQuestion() {
     this.progressBarService.openProgressBar();
     this.indexServiceComponent
-      .getLoginUserQuestionList(this.offset + '')
+      .getLoginUserQuestionList(this.offset + '', 29)
       .subscribe( data => {
         if (data.code === AppSettings.getSuccessHttpResponseCode()) {
           this.indexDatas = data.questionList;

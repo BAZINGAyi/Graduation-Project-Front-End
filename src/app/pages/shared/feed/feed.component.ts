@@ -161,6 +161,8 @@ export class FeedComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/pages/question', { qid: this.feed.question.id }]);
   }
 
-
-  // Feed 流显示代优化
+  openProfile() {
+    const userId = this.feed.user.id;
+    this.router.navigate(['pages/profile', { id: userId} ]);
+  }
 }

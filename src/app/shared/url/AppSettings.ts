@@ -20,7 +20,7 @@ export class AppSettings {
   private static API_POST_SUBMIT_COMMENT_OF_ANSWER = AppSettings.API_URL + 'addCommentOfAnswer';
   private static API_PUT_UPDATE_COMMMENT_OF_ANSWER = AppSettings.API_URL + 'updateCommentOfAnswer';
   private static API_POST_SUBMIT_COMEENT = AppSettings.API_URL + 'addQuestionComment';
-  private static API_POST_GET_LOGIN_USER_PUSH_QUESTIONS = AppSettings.API_URL + '/LoginUserQuestionList?offset=';
+  private static API_POST_GET_LOGIN_USER_PUSH_QUESTIONS = AppSettings.API_URL + '/getUserProfile?offset=';
   private static APT_DELETE_QUESTION = AppSettings.API_URL + 'question/delete';
   private static API_PUT_UPDATE_ANWSER = AppSettings.API_URL + 'updateQuestionComment';
   private static API_POST_DELETE_ANWSER = AppSettings.API_URL + 'comment/delete';
@@ -162,8 +162,8 @@ export class AppSettings {
     return this.API_POST_SUBMIT_COMEENT;
   }
 
-  static getLoginUserQuestionList(offset: string) {
-    return this.API_POST_GET_LOGIN_USER_PUSH_QUESTIONS + offset;
+  static getLoginUserQuestionList(offset: string, userId: number) {
+    return this.API_POST_GET_LOGIN_USER_PUSH_QUESTIONS + offset + '&&userId=' + userId;
   }
 
   static getSuccessHttpResponseCode() {

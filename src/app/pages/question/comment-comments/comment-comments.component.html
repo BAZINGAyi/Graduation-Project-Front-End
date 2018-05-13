@@ -1,6 +1,6 @@
 
 <div *ngFor="let comment of commentListInComment" style="display: flex; flex-direction: column; padding: 1rem;">
-  <div style="display: flex; flex-direction: row">
+  <div style="display: flex; flex-direction: row; cursor: pointer;" (click)="openProfile(comment)">
     <!--header image-->
     <img mat-card-avatar class="comment-header-image" src="{{comment.user.headUrl}}">
     <!--header comment-->

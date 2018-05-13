@@ -9,6 +9,7 @@ import {AppSettings} from '../../../shared/url/AppSettings';
 import {SmallDialogComponent} from '../../../shared/component/small-dialog/small-dialog.component';
 import {QuestionService} from '../question.service';
 import {WendaUtils} from '../../../shared/util/wendaUtil.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-comment-comments',
@@ -23,7 +24,8 @@ export class CommentCommentsComponent implements OnInit {
   constructor(private authenticationService: AuthenticationService,
               public dialog: MatDialog,
               public questionService: QuestionService,
-              public wendaUtils: WendaUtils) { }
+              public wendaUtils: WendaUtils,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -49,6 +51,11 @@ export class CommentCommentsComponent implements OnInit {
   updateCommentOfAnswer(comment: CommentSon) {
     const dialogRef = this.dialog.open(SmallDialogComponent);
     dialogRef.componentInstance.comment = comment.comment;
+  }
+
+  openProfile(comment: CommentSon) {
+    const userId = comment.comment.userId;
+    this.router.navigate(['pages/profile', { id: userId} ]);
   }
 }
 

@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material';
 import {WendaUtils} from '../../../shared/util/wendaUtil.service';
 import {AskQuestionComponent} from '../../../shared/component/ask-question/ask-question.component';
 import {AppSettings} from '../../../shared/url/AppSettings';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-comment',
@@ -65,7 +66,8 @@ export class CommentComponent implements OnInit, AfterViewInit {
               private authenticationService: AuthenticationService,
               private questionService: QuestionService,
               public dialog: MatDialog,
-              private wendaUtils: WendaUtils) { }
+              private wendaUtils: WendaUtils,
+              private router: Router) { }
 
   ngOnInit() {
      this.SHORT_COMMENT_CONTENT_ID = this.comment.comment.commentParent.id + '';
@@ -266,5 +268,10 @@ export class CommentComponent implements OnInit, AfterViewInit {
       }
       alert(data.msg);
     });
+  }
+
+  openProfile() {
+    const userId = this.comment.user.id;
+    this.router.navigate(['pages/profile', { id: userId} ]);
   }
 }
