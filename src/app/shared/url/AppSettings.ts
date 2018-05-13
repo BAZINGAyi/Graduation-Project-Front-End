@@ -10,6 +10,7 @@ export class AppSettings {
   private static API_GET_TIMELINE_FEEDS = AppSettings.API_URL + 'pullUserFeeds';
   private static API_GET_MY_COMMENT_QUESTION_LIST = AppSettings.API_URL + 'queryUserCommentQuestionList?offset=';
   private static API_SUBMMIT_QUESTION = AppSettings.API_URL + 'question/add';
+  private static API_PUT_QUESTION_UPDATE = AppSettings.API_URL + 'question/update';
   private static API_POST_LOGIN = AppSettings.API_URL + 'login/';
   private static API_POST_REGISTER = AppSettings.API_URL + 'reg/';
   private static API_POST_FOLLOW_QUSTION = AppSettings.API_URL + 'followQuestion';
@@ -19,6 +20,7 @@ export class AppSettings {
   private static API_POST_SUBMIT_COMMENT_OF_COMMENT = AppSettings.API_URL + 'addCommentOfComment';
   private static API_POST_SUBMIT_COMEENT = AppSettings.API_URL + 'addQuestionComment';
   private static API_POST_GET_LOGIN_USER_PUSH_QUESTIONS = AppSettings.API_URL + '/LoginUserQuestionList?offset=';
+  private static APT_DELETE_QUESTION = AppSettings.API_URL + 'question/delete';
 
 
   ///////////////// dialog config /////////////////////////////
@@ -117,6 +119,10 @@ export class AppSettings {
     return this.API_SUBMMIT_QUESTION;
   }
 
+  static getUpdateQuestionUrl() {
+    return this.API_PUT_QUESTION_UPDATE;
+  }
+
   static getLikeCommentUrl() {
     return this.API_POST_LIKE_COMMENT;
   }
@@ -164,4 +170,9 @@ export class AppSettings {
   static getUnauthorizedResponseCode() {
     return this.Unauthorized;
   }
+
+  static getDeleteQuestion() {
+    return this.APT_DELETE_QUESTION;
+  }
+
 }

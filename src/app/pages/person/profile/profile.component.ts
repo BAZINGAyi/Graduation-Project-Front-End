@@ -32,7 +32,12 @@ export class ProfileComponent implements OnInit {
       this.offset = this.offset + 10;
       this.indexServiceComponent
         .getLoginUserQuestionList(this.offset + '')
-        .subscribe( data => { this.indexDatas = this.indexDatas.concat(data); });
+        .subscribe( data => {
+          if (data.code === AppSettings.getNoContentHttpResponseCode()) {
+            return;
+          }
+          this.indexDatas = this.indexDatas.concat(data);
+        });
     }
   }
 

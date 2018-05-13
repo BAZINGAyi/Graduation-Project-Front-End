@@ -7,6 +7,8 @@ import { NotFoundDataComponent } from './not-found-data/not-found-data.component
 import { TimeLineFeedComponent } from './time-line-feed/time-line-feed.component';
 import { FeedActionComponent } from './feed-action/feed-action.component';
 import {WendaUtils} from '../../shared/util/wendaUtil.service';
+import {QuestionService} from '../question/question.service';
+import {AuthenticationService} from '../../authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import {WendaUtils} from '../../shared/util/wendaUtil.service';
     FeedActionComponent
   ],
   providers: [
-    WendaUtils
+    WendaUtils,
+    QuestionService,
+    AuthenticationService
   ]
 })
 export class PagesSharedModule { }

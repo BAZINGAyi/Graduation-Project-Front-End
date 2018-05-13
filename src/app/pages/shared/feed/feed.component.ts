@@ -54,6 +54,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    console.log(this.feed);
     this.initViewId();
     this.generateFeed();
     // 显示 feed 类型

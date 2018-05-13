@@ -9,6 +9,7 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {WendaUtils} from '../../util/wendaUtil.service';
 import {AuthenticationService} from '../../../authentication/authentication.service';
+import {Question} from '../../model/question/question.model';
 
 @Component({
   selector: 'app-ask-question',
@@ -24,6 +25,8 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
   topicId = '';
 
+  question: Question;
+
   options = [
     '加载中',
   ];
@@ -36,7 +39,16 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   EDIT_COMMENT = 'EDIT_COMMENT';
   CURRENT_PAGE_TYPE = '';
 
+  selectedValue: string = 'steak-0';
+
+  foods = [
+    {value: '3', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
+
   ngAfterViewInit(): void {
+    // 需要在页面渲染完成后，才能添加编辑器
     this.initEditor();
   }
 
@@ -52,11 +64,13 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    // 获取话题类型
     this.getTopicList();
   }
 
   initEditor() {
-    this.editorServiceComponent.appendEditorToContainer(this.ASK_QUESTION_EDITOR_ID);
+    this.editorServiceComponent.appendEditorToContainer(this.ASK_QUESTION_EDITOR_ID,
+      this.question !== null && this.question !== undefined ? this.question.markdownContent : '');
   }
 
   closeDialog() {
@@ -66,7 +80,17 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
   private getTopicList() {
     this.topicService
       .getTopicList()
-      .subscribe( data => {  this.topicNameList = data; });
+      .subscribe( data => {  this.topicNameList = data; this.updatePageContent(); });
+  }
+
+  /**
+   * 如果编辑器的类型是修改类型，则追加内容
+   */
+  updatePageContent() {
+    if (this.CURRENT_PAGE_TYPE !== this.NORMAL_ASK_QUESTION) {
+      this.questionTitle = this.question.title;
+      this.topicId = this.question.topicId + '';
+    }
   }
 
   /**
@@ -76,7 +100,8 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
 
     if (!this.wendaUtils.checkUserInputLegal(this.questionTitle) ||
       !this.wendaUtils.checkUserInputLegal(this.editorServiceComponent.getEditEditorHtml()) ||
-      !this.wendaUtils.checkUserInputLegal(this.questionTitle)) {
+      !this.wendaUtils.checkUserInputLegal(this.questionTitle)||
+      !this.wendaUtils.checkUserInputLegal(this.topicId)) {
       alert('请按要求输入内容');
       return;
     }
@@ -92,9 +117,9 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
         topicId: this.topicId
       },
       this.authenticationService.getHttpHeader()
-     )
+    )
       .subscribe(data => {
-        if (data.status !== undefined && data.status === 'success') {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
           alert(data.msg);
           this.wendaUtils.reloadPage();
         } else {
@@ -103,8 +128,43 @@ export class AskQuestionComponent implements OnInit, AfterViewInit {
       });
   }
 
+  /**
+   * 编辑已经修改过得问题
+   */
   editQuestion() {
 
+    if (!this.wendaUtils.checkUserInputLegal(this.questionTitle) ||
+      !this.wendaUtils.checkUserInputLegal(this.editorServiceComponent.getEditEditorHtml()) ||
+      !this.wendaUtils.checkUserInputLegal(this.questionTitle)) {
+      alert('请按要求输入内容');
+      return;
+    }
+
+    if (this.question === null && this.question === undefined) {
+      return;
+    }
+
+    const url = AppSettings.getUpdateQuestionUrl();
+
+    this.http.put<any>(
+      url,
+      {
+        title: this.questionTitle,
+        content: this.editorServiceComponent.getEditEditorHtml(),
+        markdownContent: this.editorServiceComponent.getEditEditorMarkdown(),
+        topicId: this.topicId,
+        qid: this.question.id
+      },
+      this.authenticationService.getHttpHeader()
+    )
+      .subscribe(data => {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          alert(data.msg);
+          this.wendaUtils.reloadPage();
+        } else {
+          alert(data.msg);
+        }
+      });
   }
 
   editComment() {

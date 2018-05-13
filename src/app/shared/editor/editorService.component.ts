@@ -72,7 +72,7 @@ export class EditorServiceComponent {
    * 添加输入界面到相应的 div 中
    * @param {string} containerId
    */
-  public appendEditorToContainer(divId: string) {
+  public appendEditorToContainer(divId: string, content: string) {
     if (divId != null && divId !== '') {
       // 添加内容到 div 中
       const editor = $('#' + divId);
@@ -82,7 +82,7 @@ export class EditorServiceComponent {
         return;
       }
       editor.innerHTML = this.editEditoTemplate;
-      this.genernateEditEditor(divId);
+      this.genernateEditEditor(divId, content);
     }
   }
 
@@ -147,8 +147,9 @@ export class EditorServiceComponent {
    * 生成编辑 Editor 内容的页面
    * 编辑后保存的内容尽量是 html 形式，如果是 markdown 形式，则会造成多次渲染 editor
    */
-  private genernateEditEditor(editEditorId: string) {
+  private genernateEditEditor(editEditorId: string, content: string) {
     const editor = editormd(editEditorId, {
+      markdown : content ,
       width   : '100%',
       height  : 540,
       syncScrolling : 'single',

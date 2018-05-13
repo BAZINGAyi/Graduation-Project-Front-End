@@ -104,7 +104,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
    * 打开输入回答的编辑框
    */
   openEidtor() {
-    this.editorService.appendEditorToContainer(this.QUESTION_ANSWER_EDITOR);
+    this.editorService.appendEditorToContainer(this.QUESTION_ANSWER_EDITOR, '');
     // this.fixFloatEditorDivPosition();
     // 显示操作编辑框的 button div 隐藏正常 button
     this.EDITOR_STATE = true;

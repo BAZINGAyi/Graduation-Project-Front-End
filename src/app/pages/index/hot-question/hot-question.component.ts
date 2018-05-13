@@ -27,7 +27,9 @@ export class HotQuestionComponent implements OnInit {
 
   getQuestion() {
     const questionUrl = AppSettings.getQuestionsUrl('0');
-    this.httpClient.get<IndexData[]>(questionUrl, this.authenticationService.getHttpHeader()).subscribe( data => { this.indexDatas = data; });
+    this.httpClient.get<IndexData[]>(questionUrl,
+      this.authenticationService.getHttpHeader()
+    ).subscribe( data => { this.indexDatas = data; });
   }
 
   /**

@@ -13,7 +13,7 @@
     {{comment.comment.content}}
   </div>
 
-  <div style="display: flex; flex-direction: row-reverse;" *ngIf="IS_LOGIN == true">
+  <div style="display: flex; flex-direction: row-reverse;" *ngIf="comment.sonCommentIsUser == true">
     <button mat-button style="margin-left: 0.5rem;">删除</button>
     <button mat-button>修改</button>
   </div>
