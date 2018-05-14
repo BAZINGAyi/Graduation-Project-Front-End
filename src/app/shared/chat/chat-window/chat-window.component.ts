@@ -65,8 +65,6 @@ export class ChatWindowComponent implements OnInit {
     this.messagesService.addMessage(m);
     // 相当于清空 draftMessage 的数据
     this.draftMessage = new Message();
-    console.log('----hhhhh');
-    console.log(this.messages);
   }
 
   scrollToBottom(): void {
