@@ -24,6 +24,7 @@ export class AppSettings {
   private static APT_DELETE_QUESTION = AppSettings.API_URL + 'question/delete';
   private static API_PUT_UPDATE_ANWSER = AppSettings.API_URL + 'updateQuestionComment';
   private static API_POST_DELETE_ANWSER = AppSettings.API_URL + 'comment/delete';
+  private static API_GET_FOLLOW_QUESTIONS = AppSettings.API_URL +  'queryUserFolloweeQuestionList?offset=';
 
 
   ///////////////// dialog config /////////////////////////////
@@ -190,4 +191,7 @@ export class AppSettings {
     return this.API_POST_DELETE_ANWSER;
   }
 
+  static getFollowQuestionList(offset: string) {
+    return this.API_GET_FOLLOW_QUESTIONS  + offset;
+  }
 }

@@ -73,6 +73,7 @@ export class FeedActionComponent implements OnInit {
     this.questionService.unFollowQuestion(qid)
       .subscribe( data => {
         if (data.code !== undefined && data.code === 200) {
+          this.wendaUtils.reloadPage();
         } else {
           alert(data.msg);
         }

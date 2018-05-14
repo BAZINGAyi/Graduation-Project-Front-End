@@ -71,9 +71,15 @@ export class UserIndexComponent implements OnInit {
       .subscribe( data => {
         if (data.code === AppSettings.getSuccessHttpResponseCode()) {
           this.initPageData(data);
-        } else {
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()){
           alert('登录已过期, 请你重新登录');
           const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        } else if (data.code === AppSettings.getNoContentHttpResponseCode()) {
+          this.indexDatas = data.questionList;
+          this.commentCount = data.commentCount;
+          this.followerUserCount = data.followerUserCount;
+          this.followeeUserCount = data.followeeUserCount;
+          this.followeeQuestionCount = data.followeeQuestionCount;
         }
         this.progressBarService.closeProgressBar();
       });

@@ -60,9 +60,14 @@ export class IndexServiceComponent {
     return this.httpClient.get<any>(questionUrl, this.authenticationService.getHttpHeader());
   }
 
-  getMyCommentQuestionList(offset: string): Observable<IndexData[]> {
+  getMyCommentQuestionList(offset: string): Observable<any> {
     const questionUrl = AppSettings.getMyCommentQuestionList(offset);
-    return this.httpClient.get<IndexData[]>(questionUrl, this.authenticationService.getHttpHeader());
+    return this.httpClient.get<any>(questionUrl, this.authenticationService.getHttpHeader());
+  }
+
+  getMyFollowQuestionList(offset: string): Observable<any> {
+    const url = AppSettings.getFollowQuestionList(offset);
+    return this.httpClient.get<any>(url, this.authenticationService.getHttpHeader());
   }
 
   // 文档高度
