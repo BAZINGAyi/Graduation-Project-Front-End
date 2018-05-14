@@ -9,6 +9,7 @@ import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarS
 import {LoginComponent} from '../../authentication/login/login.component';
 import {ActivatedRoute} from '@angular/router';
 import {User} from '../../shared/model/user.model';
+import {WendaUtils} from '../../shared/util/wendaUtil.service';
 
 @Component({
   selector: 'app-user-index',
@@ -35,6 +36,8 @@ export class UserIndexComponent implements OnInit {
 
   name = '';
 
+  IS_FOLLOW = false;
+
   // 判断是否滚动到底部
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -54,7 +57,8 @@ export class UserIndexComponent implements OnInit {
               public authenticationService: AuthenticationService,
               private progressBarService: ProgressBarServiceComponent,
               public dialog: MatDialog,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private wendaUtils: WendaUtils) {
   }
 
   ngOnInit(): void {
@@ -111,6 +115,42 @@ export class UserIndexComponent implements OnInit {
     this.followerUserCount = data.followerUserCount;
     this.followeeUserCount = data.followeeUserCount;
     this.followeeQuestionCount = data.followeeQuestionCount;
+    this.IS_FOLLOW = data.isFollow;
     this.initUserData(data.user);
+  }
+
+  followUser() {
+
+    if (!this.wendaUtils.checkUserInputNumberLegal(this.userId)) {
+      return;
+    }
+
+    this.indexServiceComponent.followUser(this.userId)
+      .subscribe( data => {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          this.IS_FOLLOW = true;
+          this.followerUserCount = data.followerUserCount;
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()){
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        }
+        alert(data.msg);
+      });
+  }
+
+  cancelFollowUser() {
+    if (!this.wendaUtils.checkUserInputNumberLegal(this.userId)) {
+      return;
+    }
+
+    this.indexServiceComponent.unFollowUser(this.userId)
+      .subscribe( data => {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          this.IS_FOLLOW = false;
+          this.followerUserCount = data.followerUserCount;
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        }
+        alert(data.msg);
+      });
   }
 }

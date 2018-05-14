@@ -13,6 +13,9 @@ import {PushQuestionComponent} from './push-question/push-question.component';
 import { MyCommentQuestionsComponent } from './my-comment-questions/my-comment-questions.component';
 import { ProfileComponent } from './profile/profile.component';
 import {AuthenticationService} from '../../authentication/authentication.service';
+import {IndexServiceComponent} from '../index/shared/IndexServiceComponent';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
+import {WendaUtils} from '../../shared/util/wendaUtil.service';
 
 @NgModule({
   imports: [
@@ -30,7 +33,7 @@ import {AuthenticationService} from '../../authentication/authentication.service
     MyCommentQuestionsComponent,
     ProfileComponent
   ],
-  providers: [EditorServiceComponent, AuthenticationService],
+  providers: [EditorServiceComponent, AuthenticationService, IndexServiceComponent, ProgressBarServiceComponent, WendaUtils],
   exports: [PersonComponent]
 })
 export class PersonModule { }
