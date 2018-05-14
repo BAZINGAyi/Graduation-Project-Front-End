@@ -15,11 +15,11 @@
       <div style="display: flex; flex-direction: column; padding: 0.5rem;">
           <div style="display: flex; flex: 1 1 auto; margin-right: 0.5rem;">
                 <mat-form-field style="width: 100%;">
-                      <textarea matInput ></textarea>
+                      <textarea matInput [(ngModel)]="draftMessage.text"></textarea>
                 </mat-form-field>
           </div>
           <div style="display: flex; flex-direction: row-reverse;">
-              <button mat-raised-button color="warn" (keydown.enter)="onEnter($event)"> 发送</button>
+              <button mat-raised-button color="warn" (click)="onEnter($event)"> 发送</button>
           </div>
       </div>
     </mat-card>

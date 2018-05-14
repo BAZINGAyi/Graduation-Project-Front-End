@@ -10,11 +10,13 @@ import {MessagesService} from './message/messages.service';
 import {ThreadsService} from './thread/thread.service';
 import {UsersService} from './user/users.service';
 import {FromNowPipe} from './pipes/from-now.pipe';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   exports: [ChatComponent],
   declarations: [
