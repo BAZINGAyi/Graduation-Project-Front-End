@@ -5,6 +5,9 @@
       <img mat-card-avatar src="{{headUrl}}">
       <mat-card-title>{{name}}</mat-card-title>
       <mat-card-subtitle>Recent login , 2018.10.2 16:30:22</mat-card-subtitle>
+      <div style="flex: 1 1 auto;"></div>
+      <button mat-button *ngIf="MY_QUESTION === 'NORMAL_FEED' && IS_FOLLOW == false" (click)="followUser()"><b>关注</b></button>
+      <button mat-button *ngIf="MY_QUESTION === 'NORMAL_FEED' && IS_FOLLOW == true" (click)="cancelFollowUser()"><b>取消关注</b></button>
     </mat-card-header>
     <!--card-content-->
     <mat-card-content>

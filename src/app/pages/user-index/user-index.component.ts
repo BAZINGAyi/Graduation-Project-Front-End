@@ -35,6 +35,8 @@ export class UserIndexComponent implements OnInit {
 
   name = '';
 
+  IS_FOLLOW = false;
+
   // 判断是否滚动到底部
   @HostListener('window:scroll', [])
   onScroll(): void {
@@ -113,4 +115,8 @@ export class UserIndexComponent implements OnInit {
     this.followeeQuestionCount = data.followeeQuestionCount;
     this.initUserData(data.user);
   }
+
+  followUser() {}
+
+  cancelFollowUser() {}
 }
