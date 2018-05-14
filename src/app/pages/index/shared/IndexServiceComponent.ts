@@ -70,6 +70,16 @@ export class IndexServiceComponent {
     return this.httpClient.get<any>(url, this.authenticationService.getHttpHeader());
   }
 
+  followUser(userId: number): Observable<any> {
+    const url = AppSettings.getFollowUser();
+    return this.httpClient.post<any>(url, { userId: userId}, this.authenticationService.getHttpHeader());
+  }
+
+  unFollowUser(userId: number): Observable<any> {
+    const url = AppSettings.getUnFollowUser();
+    return this.httpClient.post<any>(url, { userId: userId}, this.authenticationService.getHttpHeader());
+  }
+
   // 文档高度
    getDocumentTop() {
     var scrollTop = 0, bodyScrollTop = 0, documentScrollTop = 0;

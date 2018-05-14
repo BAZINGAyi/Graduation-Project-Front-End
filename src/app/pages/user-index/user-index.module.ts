@@ -9,6 +9,7 @@ import {EditorServiceComponent} from '../../shared/editor/editorService.componen
 import {AuthenticationService} from '../../authentication/authentication.service';
 import {UserIndexComponent} from './user-index.component';
 import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
+import {WendaUtils} from '../../shared/util/wendaUtil.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarS
   ],
   declarations: [UserIndexComponent],
   exports: [UserIndexComponent],
-  providers: [EditorServiceComponent, AuthenticationService, ProgressBarServiceComponent],
+  providers: [EditorServiceComponent, AuthenticationService, ProgressBarServiceComponent, WendaUtils],
 })
 export class UserIndexModule { }

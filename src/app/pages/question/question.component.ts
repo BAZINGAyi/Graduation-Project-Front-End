@@ -194,11 +194,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     const qid: number = +this.qId;
     this.questionService.followQuestion(qid)
       .subscribe( data => {
-        if (data.code !== undefined && data.code === 200) {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
           this.FOLLOWEE_QUESTION_STATE = true;
-        } else {
-          alert(data.msg);
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
         }
+        alert(data.msg);
       });
   }
 
@@ -212,11 +213,12 @@ export class QuestionComponent implements OnInit, AfterViewInit {
     const  qid: number = +this.qId;
     this.questionService.unFollowQuestion(qid)
       .subscribe( data => {
-        if (data.code !== undefined && data.code === 200) {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
           this.FOLLOWEE_QUESTION_STATE = false;
-        } else {
-          alert(data.msg);
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()){
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
         }
+        alert(data.msg);
       });
   }
 

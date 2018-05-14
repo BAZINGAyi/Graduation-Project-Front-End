@@ -25,7 +25,8 @@ export class AppSettings {
   private static API_PUT_UPDATE_ANWSER = AppSettings.API_URL + 'updateQuestionComment';
   private static API_POST_DELETE_ANWSER = AppSettings.API_URL + 'comment/delete';
   private static API_GET_FOLLOW_QUESTIONS = AppSettings.API_URL +  'queryUserFolloweeQuestionList?offset=';
-
+  private static API_POST_FOLLOW_USER = AppSettings.API_URL + 'followUser';
+  private static API_POST_UNFOLLOW_USER = AppSettings.API_URL + 'unfollowUser';
 
   ///////////////// dialog config /////////////////////////////
   private static DIALOG_ASK_QUESTION_CONFIG = {
@@ -193,5 +194,13 @@ export class AppSettings {
 
   static getFollowQuestionList(offset: string) {
     return this.API_GET_FOLLOW_QUESTIONS  + offset;
+  }
+
+  static getFollowUser() {
+    return this.API_POST_FOLLOW_USER;
+  }
+
+  static getUnFollowUser() {
+    return this.API_POST_UNFOLLOW_USER;
   }
 }
