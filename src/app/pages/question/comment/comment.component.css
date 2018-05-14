@@ -15,6 +15,7 @@
 
 .comment-header-image {
   background-size: cover;
+  cursor: pointer;
 }
 
 .card-feeds-img {

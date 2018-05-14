@@ -1,11 +1,9 @@
 <mat-card class="example-card center-card">
   <!--card-header-->
   <mat-card-header>
-    <div (click)="openProfile()" style="cursor: pointer;">
-      <img mat-card-avatar class="comment-header-image" src="{{comment.user.headUrl}}">
+      <img mat-card-avatar class="comment-header-image" src="{{comment.user.headUrl}}" (click)="openProfile()">
       <mat-card-title>{{comment.user.name}}</mat-card-title>
       <mat-card-subtitle>{{comment.user.description}}, 2018.10.2 16:30:22</mat-card-subtitle>
-    </div>
   </mat-card-header>
 
   <!--card-content-->

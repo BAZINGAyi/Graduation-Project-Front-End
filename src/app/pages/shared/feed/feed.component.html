@@ -1,11 +1,9 @@
 <mat-card class="example-card center-card">
   <!--card-header-->
   <mat-card-header *ngIf="isNeedHeader == true">
-    <div (click)="openProfile()" style="cursor: pointer;">
-      <img mat-card-avatar src="{{feed.user.headUrl}}">
+      <img mat-card-avatar src="{{feed.user.headUrl}}" (click)="openProfile()" style="cursor: pointer;">
       <mat-card-title>{{feed.user.name}}</mat-card-title>
       <mat-card-subtitle>{{feed.user.description}}, {{feed.question.createdDate | fromNow}}</mat-card-subtitle>
-    </div>
   </mat-card-header>
   <!--card-content-->
   <mat-card-content class="clear-padding">
