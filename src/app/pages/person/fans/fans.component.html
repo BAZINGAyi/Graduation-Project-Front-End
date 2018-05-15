@@ -1,4 +1,4 @@
-<div style="margin-top: 1rem;">
+<div style="margin-top: 1rem; ">
 
   <div class="fans-item" *ngFor="let user of userList">
     <!--头像-->
@@ -16,5 +16,7 @@
       <button mat-raised-button color="warn" *ngIf="false === user.followed" (click)="followUser(user.user)">关注</button>
     </div>
   </div>
+
+  <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData" style="width: 100%;"></app-not-found-data>
 
 </div>

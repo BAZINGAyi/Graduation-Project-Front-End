@@ -7,6 +7,8 @@ import {DiscoverData} from '../../../shared/model/disvocer/DiscoverData';
 import {Feeds} from '../../../shared/model/disvocer/feeds.model';
 import {ProgressBarServiceComponent} from '../../../shared/progressbar/progressBarService.component';
 import {AuthenticationService} from '../../../authentication/authentication.service';
+import {LoginComponent} from '../../../authentication/login/login.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-discover-feeds',
@@ -15,12 +17,16 @@ import {AuthenticationService} from '../../../authentication/authentication.serv
 })
 export class DiscoverFeedsComponent implements OnInit {
 
+  notFoundDataState = false;
+  notFoundData = '没有Feed数据';
+
   // feeds 流数据
   feeds: Feeds[];
 
   constructor(private httpClient: HttpClient,
               private progressBar: ProgressBarServiceComponent,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -32,7 +38,16 @@ export class DiscoverFeedsComponent implements OnInit {
     const feedsUrl = AppSettings.getTimeLineFeeds();
     this.httpClient
       .get<DiscoverData>(feedsUrl, this.authenticationService.getHttpHeader())
-      .subscribe(data => { this.feeds = data.feeds; console.log(data); this.progressBar.closeProgressBar(); });
+      .subscribe(data => {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          this.feeds = data.feeds;
+        } else if (data.code === AppSettings.getNoContentHttpResponseCode()) {
+          this.notFoundDataState = true;
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        }
+        this.progressBar.closeProgressBar();
+      });
   }
 
 }

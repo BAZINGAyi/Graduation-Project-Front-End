@@ -16,6 +16,9 @@ import {Router} from '@angular/router';
 })
 export class FollowComponent implements OnInit {
 
+  notFoundDataState = false;
+  notFoundData = '没有数据';
+
   userList: any;
 
   constructor(private progressBarService: ProgressBarServiceComponent,
@@ -45,6 +48,8 @@ export class FollowComponent implements OnInit {
           return;
         } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
           const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        } else if (data.code === AppSettings.getNoContentHttpResponseCode()) {
+          this.notFoundDataState = true;
         }
         alert(data.msg);
       });

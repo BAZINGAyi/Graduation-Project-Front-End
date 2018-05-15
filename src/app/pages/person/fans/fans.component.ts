@@ -24,6 +24,9 @@ export class FansComponent implements OnInit {
   commentCount = '';
   followeeQuestionCount = '';
 
+  notFoundDataState = false;
+  notFoundData = '没有数据';
+
   constructor(private progressBarService: ProgressBarServiceComponent,
               private indexServiceComponent: IndexServiceComponent,
               public dialog: MatDialog,
@@ -51,6 +54,8 @@ export class FansComponent implements OnInit {
           return;
         } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
           const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        }else if (data.code === AppSettings.getNoContentHttpResponseCode()) {
+          this.notFoundDataState = true;
         }
         alert(data.msg);
       });

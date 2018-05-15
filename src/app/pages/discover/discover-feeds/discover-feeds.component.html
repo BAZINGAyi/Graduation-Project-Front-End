@@ -1,5 +1,6 @@
 <div>
      <app-time-line-feed *ngFor="let feed of feeds" [feed] = "feed"></app-time-line-feed>
+    <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData"></app-not-found-data>
 </div>
 
 
