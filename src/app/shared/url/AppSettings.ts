@@ -29,6 +29,7 @@ export class AppSettings {
   private static API_POST_UNFOLLOW_USER = AppSettings.API_URL + 'unfollowUser';
   private static API_POST_GET_FOLLOWERS = AppSettings.API_URL + 'getUserFollowers';
   private static API_POST_GET_FOLLOWEES = AppSettings.API_URL + 'getUserFollowees';
+  private static API_GET_MESSAGE_LIST = AppSettings.API_URL + 'msg/list';
 
   ///////////////// dialog config /////////////////////////////
   private static DIALOG_ASK_QUESTION_CONFIG = {
@@ -212,5 +213,9 @@ export class AppSettings {
 
   static getUserFollowees() {
     return this.API_POST_GET_FOLLOWEES;
+  }
+
+  static getMessageList() {
+    return this.API_GET_MESSAGE_LIST;
   }
 }

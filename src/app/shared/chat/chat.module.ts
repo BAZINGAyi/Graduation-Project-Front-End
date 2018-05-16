@@ -11,12 +11,17 @@ import {ThreadsService} from './thread/thread.service';
 import {UsersService} from './user/users.service';
 import {FromNowPipe} from './pipes/from-now.pipe';
 import {FormsModule} from '@angular/forms';
+import {AuthenticationService} from '../../authentication/authentication.service';
+import {HttpClientModule} from '@angular/common/http';
+import {PagesSharedModule} from '../../pages/shared/pagesShared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    PagesSharedModule
   ],
   exports: [ChatComponent],
   declarations: [
@@ -28,7 +33,7 @@ import {FormsModule} from '@angular/forms';
     FromNowPipe
   ],
   providers: [
-    MessagesService, ThreadsService, UsersService
+    MessagesService, ThreadsService, UsersService, AuthenticationService
   ],
 })
 export class ChatModule { }

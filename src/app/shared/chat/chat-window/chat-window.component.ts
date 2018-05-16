@@ -6,6 +6,10 @@ import {User} from '../user/user.model';
 import {MessagesService} from '../message/messages.service';
 import {ThreadsService} from '../thread/thread.service';
 import {UsersService} from '../user/users.service';
+import * as _ from 'lodash';
+import {AuthenticationService} from '../../../authentication/authentication.service';
+import {MatDialog} from '@angular/material';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-chat-window',
@@ -21,11 +25,23 @@ export class ChatWindowComponent implements OnInit {
   constructor(public messagesService: MessagesService,
               public threadsService: ThreadsService,
               public usersService: UsersService,
-              public el: ElementRef) { }
+              public el: ElementRef,
+              public dialog: MatDialog,
+              private httpClient: HttpClient,
+              private auth: AuthenticationService) { }
 
   ngOnInit() {
     // 获取聊天框的 message
-    this.messages = this.threadsService.currentThreadMessages;
+    this.messages = this.threadsService
+      .currentThreadMessages
+      .map((messages: Message[]) => {
+        // 将 message 按照时间排序
+        const messages1: Message[] = _.values(messages);
+        // console.log('zzzzzzzzzzz');
+        console.log(messages1);
+        // console.log('zzzz');
+        return _.sortBy(messages1, (m: Message) => m.sentAt);
+      });
 
     this.draftMessage = new Message();
 
@@ -62,6 +78,10 @@ export class ChatWindowComponent implements OnInit {
     m.author = this.currentUser;
     m.thread = this.currentThread;
     m.isRead = true;
+
+    alert(this.currentUser.id);
+    alert(this.currentThread.name);
+
     this.messagesService.addMessage(m);
     // 相当于清空 draftMessage 的数据
     this.draftMessage = new Message();

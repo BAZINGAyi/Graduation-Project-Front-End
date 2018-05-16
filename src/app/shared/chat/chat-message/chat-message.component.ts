@@ -22,8 +22,10 @@ export class ChatMessageComponent implements OnInit {
         (user: User) => {
           this.currentUser = user;
           if (this.message.author && user) {
+            console.log(this.message.author.id);
+            console.log(user.id);
             this.incoming = this.message.author.id !== user.id;
-          }
+        }
         });
   }
 

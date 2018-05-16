@@ -24,9 +24,9 @@ export class ThreadsService {
   currentThreadMessages: Observable<Message[]>;
 
   constructor(public messagesService: MessagesService) {
-    console.log('-----threadService工作开始------');
+    // console.log('-----threadService工作开始------');
 
-    console.log('TODO1 从messageService取出数据');
+    // console.log('TODO1 从messageService取出数据');
     // 将 messages 的数据转换成 thread 的数据结构
     this.threads = messagesService.messages
       .map( (messages: Message[]) => {
@@ -45,7 +45,7 @@ export class ThreadsService {
         });
         return threads;
       })
-      .map( threads => {console.log(threads); return threads; });
+      .map( threads => threads);
 
     // 按照时间将 threads 排序成页面上要求的排序,并转换成数组返回
     this.orderedThreads = this.threads
@@ -53,7 +53,9 @@ export class ThreadsService {
         const threads: Thread[] = _.values(threadGroups);
         return _.sortBy(threads, (t: Thread) => t.lastMessage.sentAt).reverse();
       })
-      .map( threads => {console.log('TODO2 将 thread 按照时间排序成 orderThreads'); console.log(threads); return threads; });
+      .map( threads => {
+        // console.log('TODO2 将 thread 按照时间排序成 orderThreads'); console.log(threads);
+        return threads; });
 
     // 提供当前聊天窗口 messages 的数组值
     this.currentThreadMessages = this.currentThread
@@ -72,7 +74,10 @@ export class ThreadsService {
             return [];
           }
         })
-      .map( messages => { console.log('TODO1 输出当前threadMessage(聊天框)的值'); console.log(messages); return messages; });
+      .map( messages => {
+        // console.log('TODO1 输出当前threadMessage(聊天框)的值'); console.log(messages);
+        return messages;
+      });
 
     this.currentThread.subscribe(this.messagesService.markThreadAsRead);
   }
