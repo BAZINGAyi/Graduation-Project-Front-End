@@ -92,12 +92,12 @@ export class CommentComponent implements OnInit, AfterViewInit {
 
     const divState = this.commentCommentsDiv.nativeElement.style.display;
     if (divState === 'block') {
+      this.commentsCountName =  this.comment.comment.commentInCommentCount + '条评论';
       this.commentCommentsDiv.nativeElement.style.display = 'none';
     } else if (divState === 'none') {
+      this.commentsCountName = '收起评论列表';
       this.commentCommentsDiv.nativeElement.style.display = 'block';
     }
-
-    this.commentsCountName = '收起评论列表';
   }
 
   likeComment() {

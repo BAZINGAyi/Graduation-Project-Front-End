@@ -3,24 +3,19 @@
   <!--选择话题-->
   <mat-form-field style="width: 80%;">
       <input type="text" placeholder="输入发送的用户名称" aria-label="text" matInput [formControl]="myControl" [matAutocomplete]="auto" (keypress)="getSearchResult($event)">
-      <mat-autocomplete #auto="matAutocomplete">
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getMessage($event.option.value)'>
         <mat-option *ngFor="let user of searchValue" [value]="user.name">
           {{ user.name }}
         </mat-option>
       </mat-autocomplete>
-    <!--<mat-select placeholder="输入发送的用户名称" [(value)]="sendToUsername">-->
-      <!--<mat-option *ngFor="let option of options" [value]="option">-->
-        <!--{{ option }}-->
-      <!--</mat-option>-->
-    <!--</mat-select>-->
    </mat-form-field>
   <!--站内信内容-->
-  <mat-form-field style="width: 80%;">
-      <textarea matInput placeholder="站内信内容"></textarea>
+  <mat-form-field style="width: 80%;" >
+      <textarea matInput placeholder="站内信内容" [(ngModel)]="message" name="message"></textarea>
   </mat-form-field>
   <!--操作 dialog 的按钮-->
   <div style="display: flex; flex-direction: row-reverse;" >
-     <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;">发送私信 </button>
+     <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;" (click)="sendMessage()">发送私信 </button>
      <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeDialog()">取消发送</button>
   </div>
 </div>

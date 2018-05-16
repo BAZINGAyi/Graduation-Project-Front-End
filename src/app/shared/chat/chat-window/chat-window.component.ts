@@ -10,6 +10,8 @@ import * as _ from 'lodash';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {MatDialog} from '@angular/material';
 import {HttpClient} from '@angular/common/http';
+import {AppSettings} from '../../url/AppSettings';
+import {LoginComponent} from '../../../authentication/login/login.component';
 
 @Component({
   selector: 'app-chat-window',
@@ -79,12 +81,18 @@ export class ChatWindowComponent implements OnInit {
     m.thread = this.currentThread;
     m.isRead = true;
 
-    alert(this.currentUser.id);
-    alert(this.currentThread.name);
-
-    this.messagesService.addMessage(m);
-    // 相当于清空 draftMessage 的数据
-    this.draftMessage = new Message();
+    const url = AppSettings.getSendMessage();
+    this.httpClient.post<any>(url, {toName: this.currentThread.name, content: this.draftMessage.text },
+      this.auth.getHttpHeader())
+      .subscribe( data => {
+        if (data.code === AppSettings.getSuccessHttpResponseCode()) {
+          this.messagesService.addMessage(m);
+          // 相当于清空 draftMessage 的数据
+          this.draftMessage = new Message();
+        } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
+          const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
+        }
+      });
   }
 
   scrollToBottom(): void {
