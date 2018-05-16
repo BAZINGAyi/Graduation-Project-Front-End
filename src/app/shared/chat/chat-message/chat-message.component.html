@@ -4,7 +4,7 @@
 
     <div class="col-10 row" style="margin: 0 auto">
       <div class="col-3" style="padding: 0; display: flex; flex-direction: row-reverse;" *ngIf="incoming">
-            <img class="example-header-image" src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+            <img class="example-header-image" src="{{message.author.headUrl}}">
           </div>
 
           <div class="col-9" style="border: 1px solid #000000; "
@@ -14,7 +14,7 @@
           </div>
 
           <div class="col-3" style="padding: 0;" *ngIf="!incoming">
-            <img class="example-header-image" src="https://material.angular.io/assets/img/examples/shiba1.jpg">
+            <img class="example-header-image" src="{{message.author.headUrl}}">
           </div>
     </div>
 

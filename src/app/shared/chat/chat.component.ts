@@ -43,7 +43,10 @@ export class ChatComponent implements OnInit {
           threadMessages.map( (message: Message) => messagesService.addMessage(message));
           // 设置 currentThread
           threadsService.setCurrentThread(data.currentThread);
+          // 设置当前用户
           usersService.setCurrentUser(data.currentUser);
+          // 保存已经请求过 thread id
+          localStorage.setItem('alreadyRequestThreadId', data.currentThread.id);
         } else if (data.code === AppSettings.getUnauthorizedResponseCode()) {
           const dialogRef = this.dialog.open(LoginComponent, AppSettings.getDialogLoginConfig());
         } else if (data.code === AppSettings.getNoContentHttpResponseCode()) {
