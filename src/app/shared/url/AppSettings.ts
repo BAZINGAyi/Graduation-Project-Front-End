@@ -61,6 +61,16 @@ export class AppSettings {
   private static NO_CONTENT = 201;
   private static Unauthorized = 401;
 
+  ///////////////////// feed config /////////////////////////////////////////
+  public static getFeedTextLength() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+      return 50;
+    } else {
+      return 150;
+    }
+  }
+
   /**
    * @param {string} offset 查询数据库相对与问题的偏移量
    * @returns {string} 拼接完成后的 URL

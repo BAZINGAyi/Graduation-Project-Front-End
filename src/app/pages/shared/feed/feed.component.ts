@@ -5,6 +5,7 @@ import {IndexData} from '../../../shared/model/index-data.model';
 import {PersonComponent} from '../../person/person.component';
 import {FeedActionComponent, NORMAL_FEED} from '../feed-action/feed-action.component';
 import {WendaUtils} from '../../../shared/util/wendaUtil.service';
+import {AppSettings} from '../../../shared/url/AppSettings';
 
 
 declare var $: any;
@@ -87,7 +88,7 @@ export class FeedComponent implements OnInit, AfterViewInit {
    */
   generateFeedContent() {
     // 定义显示的字符数
-    const contentLength = 150;
+    const contentLength = AppSettings.getFeedTextLength();
 
     // 获取要显示的问题内容
     const questionContent = this.wendaUtils.HTMLDecode(this.feed.question.content.trim());

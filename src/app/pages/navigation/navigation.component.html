@@ -2,15 +2,16 @@
 <mat-toolbar color="primary" class="navigation" id="navigationView" >
   <!-- navigation-container -->
   <div class="navigation-container">
+    <i class="material-icons header-icno" >highlight</i>
     <!-- navigation-left -->
     <div class="navigation-left">
-      <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-right:1rem;">highlight</i>
-      <button mat-button routerLink="index">首页</button>
-      <button mat-button routerLink="discover">新鲜事</button>
-      <button mat-button routerLink="topic">话题</button>
+
+      <button mat-button routerLink="index" class="navigation-button">首页</button>
+      <button mat-button routerLink="discover" class="navigation-button">新鲜事</button>
+      <button mat-button routerLink="topic" class="navigation-button">话题</button>
       <span class="example-fill-remaining-space"></span>
       <!--search input-->
-      <mat-form-field floatPlaceholder="never">
+      <mat-form-field floatPlaceholder="never" class="search">
         <input matInput [matAutocomplete]="auto" [formControl]="stateCtrl"  (keydown)="handleSearchEvent($event)">
         <mat-placeholder class="placeholder" style="color: white; font-size: 14px;">搜索....</mat-placeholder>
         <mat-icon matSuffix style="font-size: smaller;">search</mat-icon>
@@ -23,6 +24,7 @@
         </mat-autocomplete>
       </mat-form-field>
     </div>
+
     <!-- navigation-right -->
     <div *ngIf="IS_LOGIN == true" class="navigation-right">
       <!-- <i class="material-icons" style="color: white;font-size:2rem; margin-top: 1rem; padding-left:1rem;">face</i> -->
@@ -56,14 +58,18 @@
     <!-- navigation-right -->
     <div *ngIf="IS_LOGIN == false" class="navigation-right">
       <!--登陆-->
-      <button mat-button (click)="openLoginPage()">
+      <button mat-button (click)="openLoginPage()" class="navigation-button">
         登录
       </button>
       <!--注册-->
-      <button mat-button (click)="openRegisterPage()">
+      <button mat-button (click)="openRegisterPage()" class="navigation-button">
         注册
       </button>
     </div>
-
   </div>
+</mat-toolbar>
+
+<!-- 小屏幕用于切换 -->
+<mat-toolbar color="primary" class="navigation" id="navigationView" hidden>
+<i class="material-icons header-icno" >highlight</i>
 </mat-toolbar>

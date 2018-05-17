@@ -11,10 +11,34 @@
   z-index: 200;
 }
 
+@media (max-width: 767.98px) {
+  .navigation {
+    -moz-box-shadow: 0 5px 5px #888888; /* 老的 Firefox */
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: auto;
+    background-color: #303F9F;
+    position: static;
+    /* 固定导航栏 */
+    /*position:fixed;!*固定作用*!*/
+    /*top:0;*/
+    /*z-index: 200;*/
+  }
+}
+
 .navigation-container {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
+}
+
+@media (max-width: 767.98px) {
+  .navigation-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 }
 
 .navigation-left {
@@ -22,6 +46,33 @@
   display: flex;
   font-size: 1rem;
   flex-direction: row;
+}
+
+@media (max-width: 1199.98px) {
+  .navigation-left {
+    width: 35rem;
+    display: flex;
+    font-size: 1rem;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navigation-left {
+    width: 30rem;
+    display: flex;
+    font-size: 1rem;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .navigation-left {
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    flex-direction: column;
+  }
 }
 
 .navigation-right {
@@ -33,65 +84,146 @@
   flex-direction: row-reverse;
 }
 
-.example-fill-remaining-space {
-  flex: 1 1 auto;
+@media (max-width: 1199.98px) {
+  .navigation-right {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 18rem;
+    display: flex;
+    font-size: 1rem;
+    flex-direction: row-reverse;
+  }
 }
 
-.navigation-button {
-  max-width: 2rem;
-  max-height: 2rem;
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-right: 1rem;
+@media (max-width: 991.98px) {
+  .navigation-right {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    width: 15rem;
+    display: flex;
+    font-size: 1rem;
+    flex-direction: row-reverse;
+  }
 }
 
-.navigation-search {
-  max-width: 20rem;
+@media (max-width: 767.98px) {
+  .navigation-right {
+    margin-left: 0rem;
+    margin-right: 0rem;
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    flex-direction: column;
+  }
 }
 
-.bar-width-normal {
+  .search {
+
+  }
+
+  @media (max-width: 1199.98px) {
+    .search {
+      width: 10rem;
+      margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .search {
+      width: 8rem;
+      margin-left: 1rem;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .search {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
+  .example-fill-remaining-space {
+    flex: 1 1 auto;
+  }
+
+  @media (max-width: 1199.98px) {
+    .example-fill-remaining-space {
+      flex: 0 0 0;
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .example-fill-remaining-space {
+      flex: 0 0 0;
+    }
+  }
+
+  .navigation-button {
+  }
+
+@media (max-width: 767.98px) {
+  .navigation-button {
+    width: 100%;
+  }
 }
 
-.example-card {
-  max-width: 400px;
-}
-
-.navigation-img {
-  background-size: cover;
-  height: 1.5rem;
-  width: 1.5rem;
-}
-
-.center-card {
-  margin: auto;
-}
-
-:host /deep/ .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+.header-icno {
   color: white;
+  font-size:2rem;
+  margin-top: 1rem;
+  padding-right:1rem;
+}
+@media (max-width: 767.98px) {
+  .header-icno  {
+    margin: 0 auto;
+    padding: 0;
+  }
 }
 
+  .navigation-search {
+    width: 20rem;
+  }
 
-:host /deep/ .mat-form-field-underline {
-  background-color: red;
-}
+  .bar-width-normal {
+  }
 
-.dummy-input-field .mat-input-placeholder {
-  color: white;
-}
+  .example-card {
+    max-width: 400px;
+  }
 
-/* search bar */
+  .navigation-img {
+    background-size: cover;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 
-:host /deep/ .mat-form-field-wrapper {
-  padding-bottom: 1rem;
-}
+  .center-card {
+    margin: auto;
+  }
 
-:host /deep/ .mat-form-field-infix {
-  width: 15rem;
-}
+  :host /deep/ .mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label, .mat-form-field-empty.mat-form-field-label {
+    color: white;
+  }
 
-/* navigation button */
+  :host /deep/ .mat-form-field-underline {
+    background-color: red;
+  }
 
-:host /deep/ .mat-button {
-  height: 3.5rem;
-  padding-top: 0.5rem;
-}
+  .dummy-input-field .mat-input-placeholder {
+    color: white;
+  }
+
+  /* search bar */
+  :host /deep/ .mat-form-field-wrapper {
+    padding-bottom: 1rem;
+  }
+
+  :host /deep/ .mat-form-field-infix {
+    width: 15rem;
+  }
+
+  /* navigation button */
+  :host /deep/ .mat-button {
+    height: 3.5rem;
+    padding-top: 0.5rem;
+  }
