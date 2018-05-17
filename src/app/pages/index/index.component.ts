@@ -16,7 +16,7 @@ export class IndexComponent implements OnInit {
 
   ngOnInit() {
     // 调整浮动部分视窗位置
-    this.indexServiceComponent.fixFloatInstructionDivPosition();
+    // this.indexServiceComponent.fixFloatInstructionDivPosition();
   }
 
 }

@@ -46,12 +46,12 @@ export class AppSettings {
     panelClass: 'no-padding-dialog',
   };
   private static DIALOG_LOGIN_CONFIG = {
-    width: '40%',
+    width: AppSettings.getLoginDialogWidth(),
     height: '350px',
     panelClass: 'no-padding-dialog',
   };
   private static DIALOG_REGISTER_CONFIG = {
-    width: '40%',
+    width: AppSettings.getLoginDialogWidth(),
     height: '350px',
     panelClass: 'no-padding-dialog',
   };
@@ -63,11 +63,28 @@ export class AppSettings {
 
   ///////////////////// feed config /////////////////////////////////////////
   public static getFeedTextLength() {
-    const screenWidth = window.innerWidth;
-    if (screenWidth < 768) {
+    if (AppSettings.isSmallScreen() === true) {
       return 50;
     } else {
       return 150;
+    }
+  }
+
+  ////////////////// page para //////////////////////////////////////////////
+  static getLoginDialogWidth() {
+    if (AppSettings.isSmallScreen() === true) {
+      return '80%';
+    } else {
+      return '40%';
+    }
+  }
+
+  public static isSmallScreen() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 768) {
+      return true;
+    } else {
+      return false;
     }
   }
 

@@ -27,7 +27,9 @@ export class ConnectionComponent implements OnInit {
 
   ngOnInit() {
     this.IS_LOGIN = this.authenticationService.isLogin();
-    this.fixFloatInstructionDivPosition();
+    if (!AppSettings.isSmallScreen()) {
+      this.fixFloatInstructionDivPosition();
+    }
   }
 
   /**

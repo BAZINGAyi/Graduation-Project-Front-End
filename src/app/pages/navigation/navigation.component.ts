@@ -36,6 +36,9 @@ export class NavigationComponent implements OnInit {
   // 判断当前用户是否登陆
   IS_LOGIN = false;
 
+  IS_SMALL_SCREEN = false;
+  SMALL_SCREEN_NAVIGATION = false;
+
   ngOnInit(): void {
   }
 
@@ -46,6 +49,8 @@ export class NavigationComponent implements OnInit {
               public httpClient: HttpClient) {
 
     this.stateCtrl = new FormControl();
+
+    this.IS_SMALL_SCREEN = AppSettings.isSmallScreen();
 
     // 判断是否登录
     if (this.authenticationService.isLogin() === true) {
@@ -142,6 +147,16 @@ export class NavigationComponent implements OnInit {
     this.router.navigate(['pages/profile', { id: userId} ]);
   }
 
+  /**
+   * 用与小屏幕打开导航栏
+   */
+  openNavigation() {
+    this.SMALL_SCREEN_NAVIGATION = true;
+  }
+
+  closeNavigation() {
+    this.SMALL_SCREEN_NAVIGATION = false;
+  }
 }
 
 

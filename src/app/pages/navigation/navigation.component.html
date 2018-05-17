@@ -1,8 +1,8 @@
 <!--navigation-->
-<mat-toolbar color="primary" class="navigation" id="navigationView" >
+<mat-toolbar color="primary" class="navigation" id="navigationView" *ngIf="SMALL_SCREEN_NAVIGATION === true || IS_SMALL_SCREEN === false">
   <!-- navigation-container -->
   <div class="navigation-container">
-    <i class="material-icons header-icno" >highlight</i>
+    <i class="material-icons header-icno" (click)="closeNavigation()">highlight</i>
     <!-- navigation-left -->
     <div class="navigation-left">
 
@@ -70,6 +70,6 @@
 </mat-toolbar>
 
 <!-- 小屏幕用于切换 -->
-<mat-toolbar color="primary" class="navigation" id="navigationView" hidden>
-<i class="material-icons header-icno" >highlight</i>
+<mat-toolbar color="primary" class="navigation" id="navigationView" *ngIf="IS_SMALL_SCREEN == true && SMALL_SCREEN_NAVIGATION == false">
+<i class="material-icons header-icno" (click)="openNavigation()">highlight</i>
 </mat-toolbar>
