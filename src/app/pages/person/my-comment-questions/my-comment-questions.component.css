@@ -1,3 +1,8 @@
-:host /deep/ .mat-card {
-  width: 43rem !important;
+.my-comment-question-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
 }
+

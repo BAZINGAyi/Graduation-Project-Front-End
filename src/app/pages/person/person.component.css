@@ -4,3 +4,25 @@
   margin: 10px;
   border: 1px solid #555;
 }
+
+.person-tab {
+  width:  64.5rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+@media (max-width: 1199.98px) {
+  .person-tab {
+    width: 54rem;
+  }
+}
+@media (max-width: 991.98px) {
+  .person-tab {
+    width: 46rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .person-tab {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
