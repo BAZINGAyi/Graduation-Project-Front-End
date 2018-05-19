@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {Topic} from '../../shared/model/topic.model';
 import {TopicService} from './shared/topic.service';
 import {IndexTopic} from '../../shared/model/topicIndex.model';
+import {MatDialog} from '@angular/material';
+import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.component';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../../authentication/authentication.service';
 
 
 
@@ -18,9 +22,13 @@ export class TopicComponent implements OnInit {
   // 当前选择的 topic
   topicId = 0;
 
-  constructor(public topicService: TopicService) {}
+  IS_LOGIN = false;
+
+  constructor(public topicService: TopicService,
+              public authenticationService: AuthenticationService,) {}
 
   ngOnInit() {
+    this.IS_LOGIN = this.authenticationService.isLogin();
     this.getTopicList();
   }
 

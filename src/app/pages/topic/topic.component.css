@@ -1,8 +1,68 @@
-.index-container {
+.topic-container {
   padding: 1rem;
   /* 距离导航栏的高度 */
   margin-top: 1rem;
   display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 767.98px) {
+  .topic-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+  }
+}
+
+.topic-title {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: row;
+  width: 64.5rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+}
+@media (max-width: 1199.98px) {
+  .topic-title {
+    width: 54rem;
+  }
+}
+@media (max-width: 991.98px) {
+  .topic-title {
+    width: 46rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .topic-title {
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
+
+.topic-list {
+  width: 64.5rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+}
+@media (max-width: 1199.98px) {
+  .topic-list {
+    width: 54rem;
+  }
+}
+@media (max-width: 991.98px) {
+  .topic-list {
+    width: 46rem;
+  }
+}
+@media (max-width: 767.98px) {
+  .topic-list {
+    width: 100%;
+  }
+}
+
+.topic-chip {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .fill-remaining-space {
@@ -14,4 +74,26 @@
 /*connection*/
 :host /deep/ .Instructions{
   margin-top: 0 !important;
+}
+
+.topic-left {
+
+}
+@media (max-width: 767.98px) {
+  .topic-left {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+  }
+}
+
+.topic-right {
+
+}
+@media (max-width: 767.98px) {
+  .topic-right {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+  }
 }

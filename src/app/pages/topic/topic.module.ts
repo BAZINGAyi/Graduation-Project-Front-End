@@ -8,6 +8,7 @@ import {JqueryServiceComponent} from '../../shared/jquery/jQueryService.componen
 import {EditorServiceComponent} from '../../shared/editor/editorService.component';
 import {TopicService} from './shared/topic.service';
 import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
+import {AuthenticationService} from '../../authentication/authentication.service';
 
 
 @NgModule({
@@ -17,6 +18,6 @@ import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarS
     PagesSharedModule,
   ],
   declarations: [TopicComponent, TopicFeedsComponent],
-  providers: [EditorServiceComponent, JqueryServiceComponent, TopicService, EditorServiceComponent, ProgressBarServiceComponent ],
+  providers: [EditorServiceComponent, JqueryServiceComponent, TopicService, EditorServiceComponent, ProgressBarServiceComponent, AuthenticationService ],
 })
 export class TopicModule { }

@@ -1,26 +1,24 @@
 <!--title-->
-<div style="font-size: 1rem; display: flex; flex-direction: row; width: 64.5rem; margin: 0 auto; margin-top: 3rem;">
+<div class="topic-title">
   <i class="material-icons" style="margin-top: 0.5rem;">assignment</i>
-  <div style="margin-top: 0.5rem;">热门话题</div>
+  <div style="margin-top: 0.5rem; margin-left: 0.5rem">热门话题</div>
 </div>
 <!--话题列表页-->
-<div style="width: 64.5rem; margin: 0 auto; margin-top: 1rem;">
+<div class="topic-list">
   <mat-divider></mat-divider>
-  <mat-chip-list style="margin: 1rem;">
-    <mat-chip *ngFor="let topic of topicNameList" (click)="topicFeed.getTopicQuestionListByTid(topic.topic.id)">
+  <mat-chip-list style="margin: 0.5rem;">
+    <mat-chip *ngFor="let topic of topicNameList" (click)="topicFeed.getTopicQuestionListByTid(topic.topic.id)" class="topic-chip">
       {{topic.topic.topicName}}
     </mat-chip>
   </mat-chip-list>
   <mat-divider></mat-divider>
 </div>
 <!--question feed 流-->
-<div class="index-container">
-  <span class="fill-remaining-space"></span>
-  <div>
+<div class="topic-container">
+  <div class="topic-left">
     <app-topic-feeds [topicId]="topicId" #topicFeed></app-topic-feeds>
   </div>
-  <div>
-    <app-connection></app-connection>
+  <div class="topic-right">
+    <app-connection *ngIf="IS_LOGIN == true"></app-connection>
   </div>
-  <span class="fill-remaining-space"></span>
 </div>
