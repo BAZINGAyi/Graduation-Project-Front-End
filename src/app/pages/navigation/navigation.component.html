@@ -2,10 +2,10 @@
 <mat-toolbar color="primary" class="navigation" id="navigationView" *ngIf="SMALL_SCREEN_NAVIGATION === true || IS_SMALL_SCREEN === false">
   <!-- navigation-container -->
   <div class="navigation-container">
-    <i class="material-icons header-icno" (click)="closeNavigation()">highlight</i>
+
     <!-- navigation-left -->
     <div class="navigation-left">
-
+      <i class="material-icons header-icno" (click)="closeNavigation()">highlight</i>
       <button mat-button routerLink="index" class="navigation-button">首页</button>
       <button mat-button routerLink="discover" class="navigation-button">新鲜事</button>
       <button mat-button routerLink="topic" class="navigation-button">话题</button>
@@ -50,7 +50,7 @@
         <i class="material-icons">message</i>
       </button>
       <!--关注列表-->
-      <button mat-button routerLink="person">
+      <button mat-button routerLink="person" >
         <i class="material-icons">person_pin</i>
       </button>
     </div>
@@ -62,7 +62,7 @@
         登录
       </button>
       <!--注册-->
-      <button mat-button (click)="openRegisterPage()" class="navigation-button">
+      <button mat-button (click)="openRegisterPage()" class="navigation-button" >
         注册
       </button>
     </div>
@@ -70,6 +70,6 @@
 </mat-toolbar>
 
 <!-- 小屏幕用于切换 -->
-<mat-toolbar color="primary" class="navigation" id="navigationView" *ngIf="IS_SMALL_SCREEN == true && SMALL_SCREEN_NAVIGATION == false">
+<mat-toolbar color="primary" class="navigation"  *ngIf="IS_SMALL_SCREEN == true && SMALL_SCREEN_NAVIGATION == false">
 <i class="material-icons header-icno" (click)="openNavigation()">highlight</i>
 </mat-toolbar>

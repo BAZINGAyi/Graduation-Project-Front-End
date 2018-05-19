@@ -1,12 +1,10 @@
-<div class="index-container">
-   <span class="fill-remaining-space"></span>
-      <div>
+<div class="discover-container">
+      <div class="discover-left">
           <app-discover-feeds></app-discover-feeds>
       </div>
-      <div>
+      <div *ngIf="IS_LOGIN == true" class="discover-right">
           <app-connection></app-connection>
       </div>
-      <span class="fill-remaining-space"></span>
 </div>
 
 <!--用于展示每个人的 feed 流数据也就是个人 TIMELINE-->

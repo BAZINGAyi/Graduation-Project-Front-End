@@ -4,6 +4,17 @@
     margin-right: 1rem;
     width: 20rem;
 }
+@media (max-width: 1199.98px) {
+  .hot-question-container {
+    width: 18rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .hot-question-container {
+    width: 15rem;
+  }
+}
 @media (max-width: 767.98px) {
   .hot-question-container {
     width: 100%;
@@ -14,10 +25,30 @@
 }
 
 
-.text-style {
-    -o-text-overflow: ellipsis;/*兼容opera*/
+.hot-question-text-style {
+  cursor: pointer;
+  -o-text-overflow: ellipsis;/*兼容opera*/
 	text-overflow: ellipsis;/*这就是省略号喽*/
 	overflow: hidden;/*设置超过的隐藏*/
 	white-space: nowrap;/*设置不折行*/
 	width:18rem;/*设置宽度*/
+}
+@media (max-width: 1199.98px) {
+  .hot-question-text-style {
+    width:16rem;/*设置宽度*/
+  }
+}
+
+@media (max-width: 991.98px) {
+  .hot-question-text-style {
+    width:13rem;/*设置宽度*/
+  }
+}
+@media (max-width: 767.98px) {
+  .hot-question-text-style {
+    width: 80%;
+    padding: 1rem;
+    margin: 0;
+    margin-bottom: 1rem;
+  }
 }

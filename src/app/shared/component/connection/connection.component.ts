@@ -27,7 +27,7 @@ export class ConnectionComponent implements OnInit {
 
   ngOnInit() {
     this.IS_LOGIN = this.authenticationService.isLogin();
-    if (!AppSettings.isSmallScreen()) {
+    if (!AppSettings.isSmallScreen() && this.authenticationService.isLogin()) {
       this.fixFloatInstructionDivPosition();
     }
   }
@@ -50,9 +50,12 @@ export class ConnectionComponent implements OnInit {
         if (scrollTop > offsetTop ) {
           that.addClass(actCls);
           // 获取屏幕宽度
-          let width = document.body.clientWidth;
-          width = (width - (43.5 + 22) * 16) / 2 + 44.5 * 16;
-          that.css('left', width);
+          let windowWidth = document.body.clientWidth;
+          // width = (width - (43.5 + 22) * 16) / 2 + 44.5 * 16;
+          let feedWidth = document.getElementsByClassName('feed-card').item(0).clientWidth;
+          let selfWidth = document.getElementById('connection').clientWidth;
+          let leftDistance = (windowWidth - feedWidth - selfWidth) / 2 + feedWidth;
+          that.css('left', leftDistance);
         } else {
           that.removeClass(actCls);
           normalLeftWidth = that.offset().left;
@@ -62,7 +65,7 @@ export class ConnectionComponent implements OnInit {
       $(window).scroll(fix);
     };
 
-    $('#fix1').fixedDiv('fix-div');
+    $('#fix1').fixedDiv('scroll-connection');
   }
 
   openAskQuestionDialog() {

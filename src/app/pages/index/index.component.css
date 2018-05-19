@@ -3,6 +3,7 @@
     /* 距离导航栏的高度 */
     padding-top: 3.5rem;
     display: flex;
+    justify-content:center;
 }
 
 @media (max-width: 767.98px) {

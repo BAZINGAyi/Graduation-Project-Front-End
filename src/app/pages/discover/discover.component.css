@@ -1,8 +1,16 @@
-.index-container {
+.discover-container {
   padding: 1rem;
   /* 距离导航栏的高度 */
   padding-top: 3.5rem;
   display: flex;
+  justify-content:center;
+}
+@media (max-width: 767.98px) {
+  .discover-container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+  }
 }
 
 .fill-remaining-space {
@@ -14,4 +22,26 @@
 /*connection*/
 :host /deep/ .Instructions{
   margin-top: 0 !important;
+}
+
+.discover-left {
+
+}
+@media (max-width: 767.98px) {
+  .discover-left {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+  }
+}
+
+.discover-right {
+
+}
+@media (max-width: 767.98px) {
+  .discover-right {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+  }
 }

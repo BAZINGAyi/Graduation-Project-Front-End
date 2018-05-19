@@ -4,6 +4,17 @@
   width: 20rem;
   margin-top: 1rem;
 }
+@media (max-width: 1199.98px) {
+  .Instructions{
+    width:18rem;/*设置宽度*/
+  }
+}
+
+@media (max-width: 991.98px) {
+  .Instructions {
+    width:15rem;/*设置宽度*/
+  }
+}
 @media (max-width: 767.98px) {
   .Instructions {
     width: 100%;
@@ -13,11 +24,22 @@
   }
 }
 
-.fix-div{
+.scroll-connection{
   position: fixed;
   top:  3.5rem;
   right: 1rem;
   width: 20rem;
+}
+@media (max-width: 1199.98px) {
+  .scroll-connection{
+    width: 18rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .scroll-connection {
+    width:15rem;/*设置宽度*/
+  }
 }
 
 .button-row {

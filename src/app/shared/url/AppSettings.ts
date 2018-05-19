@@ -35,13 +35,13 @@ export class AppSettings {
 
   ///////////////// dialog config /////////////////////////////
   private static DIALOG_ASK_QUESTION_CONFIG = {
-    width: '60%',
+    width: AppSettings.getAskQuestionDialogWidth(),
     height: '700px',
     panelClass: 'no-padding-dialog',
     data: {}
   };
   private static DIALOG_SEND_MESSAGE_CONFIG = {
-    width: '50%',
+    width: AppSettings.getLoginDialogWidth(),
     height: '250px',
     panelClass: 'no-padding-dialog',
   };
@@ -65,6 +65,10 @@ export class AppSettings {
   public static getFeedTextLength() {
     if (AppSettings.isSmallScreen() === true) {
       return 50;
+    } else if (AppSettings.isMidiumScreen() === true) {
+      return 100;
+    } else if (AppSettings.isLargeScreen() === true) {
+      return 120;
     } else {
       return 150;
     }
@@ -74,19 +78,63 @@ export class AppSettings {
   static getLoginDialogWidth() {
     if (AppSettings.isSmallScreen() === true) {
       return '80%';
+    } else if (AppSettings.isMidiumScreen() === true) {
+      return '60%';
+    } else if (AppSettings.isLargeScreen() === true) {
+      return '50%';
     } else {
       return '40%';
     }
   }
 
+  static getAskQuestionDialogWidth() {
+    if (AppSettings.isSmallScreen() === true) {
+      return '90%';
+    } else if (AppSettings.isMidiumScreen() === true) {
+      return '80%';
+    } else if (AppSettings.isLargeScreen() === true) {
+      return '70%';
+    } else {
+      return '60%';
+    }
+  }
+
   public static isSmallScreen() {
     const screenWidth = window.innerWidth;
-    if (screenWidth < 768) {
+    if (screenWidth <= 768) {
       return true;
     } else {
       return false;
     }
   }
+
+  public static  isMidiumScreen() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 992 && screenWidth > 768) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public static  isLargeScreen() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 1200 && screenWidth > 992) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public static  isSoLargeScreen() {
+    const screenWidth = window.innerWidth;
+    if (screenWidth > 1200) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
 
   /**
    * @param {string} offset 查询数据库相对与问题的偏移量

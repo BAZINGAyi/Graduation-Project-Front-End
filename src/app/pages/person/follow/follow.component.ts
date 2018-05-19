@@ -51,7 +51,6 @@ export class FollowComponent implements OnInit {
         } else if (data.code === AppSettings.getNoContentHttpResponseCode()) {
           this.notFoundDataState = true;
         }
-        alert(data.msg);
       });
   }
 
