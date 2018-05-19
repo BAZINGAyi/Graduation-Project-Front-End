@@ -1,12 +1,40 @@
 .question-container {
   padding: 1rem;
 }
-.example-card {
-  max-width: 43.5rem;
+.feed-card {
+  width: 43.5rem;
   padding: 0.5rem !important;
   margin-bottom: 1rem;
   /* margin-right: auto;
   margin-left: auto; */
+}
+
+@media (max-width: 1199.98px) {
+  .feed-card {
+    width: 35rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .feed-card {
+    width: 30rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .feed-card {
+    width: 100%;
+  }
+}
+
+.comment-action {
+  margin-top: 5px;
+}
+@media (max-width: 767.98px) {
+  .comment-action {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .card-feeds-container {

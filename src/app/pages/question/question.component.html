@@ -1,5 +1,5 @@
 <!--问题页头部-->
-<mat-card class="question-header" id="{{questionHeaderId}}">
+<mat-card class="question-header" id="{{QUESTION_HEADER_ID}}">
   <div class="question-header-text-container">
     <!--问题题目-->
     <div class="big-font" style="cursor: pointer;" >
@@ -18,25 +18,29 @@
     <div class="editor" id="{{QUESTION_ANSWER_EDITOR}}"></div>
 
     <!--操作编辑框的按钮-->
-    <div *ngIf="EDITOR_STATE == true" class="question-content" style="display: flex; flex-direction: row-reverse;" >
-      <button *ngIf="packUpButtonState == true" mat-button style="margin-left: 1rem;" (click)="closeDetailQuestionContent()">
+    <div *ngIf="EDITOR_STATE == true" class="question-action" >
+      <button *ngIf="packUpButtonState == true" mat-button class="question-button" (click)="closeDetailQuestionContent()">
         收起<i class="material-icons">keyboard_arrow_up</i>
       </button>
       <span style="flex: 1 1 auto;"></span>
-      <button mat-raised-button color="primary" STYLE="background-color:#FF5252;margin-left: 1rem;" (click)="submitComment()">提交回答</button>
+      <button mat-raised-button color="primary" STYLE="background-color:#FF5252;" class="question-button" (click)="submitComment()">提交回答</button>
       <button mat-raised-button color="primary" style="background-color: #757575" (click)="closeEditor()">取消回答</button>
     </div>
 
     <!--激活编辑框的按钮-->
     <div *ngIf="EDITOR_STATE == false" class="question-content" style="display: flex;">
       <button *ngIf="FOLLOWEE_QUESTION_STATE == false" mat-raised-button color="primary"
-      STYLE="background-color:#757575;" (click)="followQuestion()">关注问题</button>
+      STYLE="background-color:#757575;" (click)="followQuestion()" class="button-bottom">关注问题</button>
+
        <button *ngIf="FOLLOWEE_QUESTION_STATE == true" mat-raised-button color="primary"
        STYLE="background-color:#757575;" (click)="cancelFollowQuestion()">取消关注问题</button>
-      <button mat-raised-button color="primary" style="margin-left: 1rem;background-color: #757575" (click)="openEidtor()">写回答</button>
-      <button  mat-button disabled style="margin-left: 1rem;">{{questionCommentCount}}条评论</button>
+
+      <button mat-raised-button color="primary" style="background-color: #f44336" class="question-button" (click)="openEidtor()">写回答</button>
+
+      <button  mat-button disabled class="question-button">{{questionCommentCount}}条评论</button>
+
       <span style="flex: 1 1 auto;"></span>
-      <button *ngIf="packUpButtonState == true" mat-button style="margin-left: 1rem;" (click)="closeDetailQuestionContent()">
+      <button *ngIf="packUpButtonState == true" mat-button class="question-button" (click)="closeDetailQuestionContent()">
         收起<i class="material-icons">keyboard_arrow_up</i>
       </button>
     </div>
@@ -45,13 +49,13 @@
 
 <!--问题页内容部分-->
 <div class="question-container">
-  <span class="fill-remaining-space"></span>
-  <div style="width: 43.5rem;">
+  <div class="question-left">
     <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData"></app-not-found-data>
     <app-question-comments [comments]="questionComment" ></app-question-comments>
   </div>
-  <app-connection></app-connection>
-  <span class="fill-remaining-space"></span>
+  <div class="question-right"  *ngIf="IS_LOGIN == true">
+    <app-connection></app-connection>
+  </div>
 </div>
 
 <div class="question-container">

@@ -1,4 +1,4 @@
-<mat-card class="example-card center-card">
+<mat-card class="feed-card center-card">
   <!--card-header-->
   <mat-card-header>
       <img mat-card-avatar class="comment-header-image" src="{{comment.user.headUrl}}" (click)="openProfile()">
@@ -29,16 +29,19 @@
       <div id="{{DETAIL_COMMENT_CONTENT_ID}}" style="font-size: 1rem;"></div>
 
       <!--card-button-->
-      <div style="margin-top: 5px;">
+      <div class="comment-action">
         <button mat-button (click)="likeComment()" [ngClass]="{'primary-color': isLiked === 1, 'accent-color': isLiked === 0 || isLiked === -1 }">
           <i class="material-icons" style="margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_up</i>
           Upvote | {{likeCount}}
         </button>
+
         <button mat-button (click)="dislikeComment()" [ngClass]="{'primary-color': isLiked === -1, 'accent-color': isLiked === 0 || isLiked === 1 }">
           <i class="material-icons" style="margin-top: 0; margin-right:0.5rem;font-size:1rem;">thumb_down</i>
           Downvote | {{dislikeCount}}
         </button>
+
         <button mat-button (click)="openCommentComments()">{{commentsCountName}}</button>
+
         <button *ngIf="contentState == true" mat-button (click)="hiddenCommentContent()">收起</button>
       </div>
 

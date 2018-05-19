@@ -74,6 +74,18 @@ export class AppSettings {
     }
   }
 
+  public static getQyestionTextLength() {
+    if (AppSettings.isSmallScreen() === true) {
+      return 100;
+    } else if (AppSettings.isMidiumScreen() === true) {
+      return 150;
+    } else if (AppSettings.isLargeScreen() === true) {
+      return 170;
+    } else {
+      return 200;
+    }
+  }
+
   ////////////////// page para //////////////////////////////////////////////
   static getLoginDialogWidth() {
     if (AppSettings.isSmallScreen() === true) {

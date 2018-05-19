@@ -33,7 +33,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   // editor state
   EDITOR_STATE = false;
 
-  questionHeaderId =  'questionHeaderId';
+  QUESTION_HEADER_ID =  'QUESTION_HEADER_ID';
   // 接受返回的数据
   questionDetail: QuestionIndex;
   // 问题标题
@@ -58,6 +58,8 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   notFoundDataState = false;
   notFoundData = '写下评论，成为第一个吃螃蟹的人的吧';
 
+  IS_LOGIN = false;
+
   ngAfterViewInit(): void {
   }
 
@@ -78,6 +80,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.IS_LOGIN = this.authenticationService.isLogin();
     this.getQuestionDetailById();
   }
 
@@ -137,7 +140,7 @@ export class QuestionComponent implements OnInit, AfterViewInit {
    */
   initQuestionContent(questionContent) {
     // 定义显示的字符数
-    const contentLength = 200;
+    const contentLength = AppSettings.getQyestionTextLength();
     // 获取要显示的问题内容
     questionContent =  this.wendaUtils.HTMLDecode(questionContent.trim());
     const contentText = this.wendaUtils.getTextInHTML(questionContent);
