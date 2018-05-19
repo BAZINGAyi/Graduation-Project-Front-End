@@ -1,7 +1,22 @@
-.selector{
+.thread-last-message{
   -o-text-overflow: ellipsis;/*兼容opera*/
   text-overflow: ellipsis;/*这就是省略号喽*/
   overflow: hidden;/*设置超过的隐藏*/
   white-space: nowrap;/*设置不折行*/
-  width:15vw;/*设置宽度*/
+  width: 70%;/*设置宽度*/
+}
+
+.thread-container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #ddd;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.thread-right {
+  flex-direction: column;
+  margin-left: 1rem;
+  width: 100%;
 }

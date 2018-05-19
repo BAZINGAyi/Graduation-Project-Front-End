@@ -1,8 +1,8 @@
-<mat-card style="display: flex; flex-flow: row; margin: 0 auto; margin-top: 1rem; box-shadow: -2px 30px 3px #f00; border: 1px solid #ddd; padding: 0;" *ngIf="notFoundDataState == false">
+<mat-card class="chat-container" *ngIf="notFoundDataState == false">
   <!--chat 联系人部分-->
-  <app-chat-threads class="col-4" style="padding:0; padding-right: 0.5rem;"></app-chat-threads>
+  <app-chat-threads class="col-sm-12 col-md-4 " style="padding:0; padding-right: 0.5rem;"></app-chat-threads>
   <!--chat 聊天部分-->
-  <app-chat-window class="col-8" style="padding: 0;"></app-chat-window>
+  <app-chat-window class="col-sm-12 col-md-8 " style="padding: 0;"></app-chat-window>
 </mat-card>
 
 <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData"></app-not-found-data>

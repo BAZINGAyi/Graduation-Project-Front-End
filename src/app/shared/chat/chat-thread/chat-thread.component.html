@@ -1,11 +1,9 @@
-<div style="display: flex; flex-direction: row; border: 1px solid #ddd; justify-content: center; align-items: center; margin-bottom: 1rem;" (click)="clicked($event)">
+<div class="thread-container" (click)="clicked($event)" style="padding: 0.5rem;">
         <!--头像-->
-        <div>
-          <img mat-card-avatar src="{{thread.avatarSrc}}" style=" width: 2rem; height: 2rem; margin-left: 0.5rem;">
-        </div>
+        <img mat-card-avatar src="{{thread.avatarSrc}}" style=" width: 2rem; height: 2rem;">
         <!--个人信息-->
-        <div style="flex: 1 1 0; flex-direction: column; margin-left: 1rem;">
+        <div class="thread-right">
           <h4 style="font-size: 1rem;">{{thread.name}}</h4>
-          <div style="font-size: 0.8rem; " class="selector">{{thread.lastMessage.text}}</div>
+          <div class="thread-last-message">{{thread.lastMessage.text}}</div>
         </div>
 </div>

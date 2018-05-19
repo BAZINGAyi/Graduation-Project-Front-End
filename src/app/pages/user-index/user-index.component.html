@@ -1,5 +1,5 @@
-<div style="margin-top: 1rem; display: flex; flex-direction:column; justify-content: center; align-items: center; margin-top: 4rem;">
-  <mat-card>
+<div class="user-index-container">
+  <mat-card class="user-index-header">
     <!--card-header-->
     <mat-card-header>
       <img mat-card-avatar src="{{headUrl}}">
@@ -27,6 +27,7 @@
       </div>
     </mat-card-content>
   </mat-card>
-  <!--个人TIMELINE-->
-  <app-pages-feed *ngFor="let feed of indexDatas" [feed] = "feed" [CURRENT_FEED_TYPE]="MY_QUESTION" [isNeedHeader]="false"></app-pages-feed>
 </div>
+<!--个人TIMELINE-->
+<app-pages-feed *ngFor="let feed of indexDatas" [feed] = "feed" [CURRENT_FEED_TYPE]="MY_QUESTION" [isNeedHeader]="false">
+</app-pages-feed>

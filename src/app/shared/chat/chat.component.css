@@ -1,3 +1,19 @@
 :host /deep/ .mat-form-field-wrapper {
  padding: 0;
 }
+
+.chat-container {
+  display: flex;
+  flex-flow: row;
+  margin: 0 auto;
+  margin-top: 1rem;
+  box-shadow: -2px 30px 3px #f00;
+  border: 1px solid #ddd;
+  padding: 0;
+}
+@media (max-width: 767.98px) {
+  .chat-container {
+    flex-flow: column;
+  }
+}
+
