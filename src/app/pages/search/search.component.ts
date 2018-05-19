@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {AppSettings} from '../../shared/url/AppSettings';
 import {QuestionIndex} from '../../shared/model/question/question-index.model';
 import {IndexData} from '../../shared/model/index-data.model';
+import {ProgressBarServiceComponent} from '../../shared/progressbar/progressBarService.component';
 
 @Component({
   selector: 'app-search',
@@ -29,7 +30,8 @@ export class SearchComponent implements OnInit {
   }
 
   constructor(private route: ActivatedRoute,
-              private httpClient: HttpClient) {
+              private httpClient: HttpClient,
+              private progressService: ProgressBarServiceComponent) {
     this.route.params.subscribe(params => {
       this.searchContent = params['searchContent'];
       this.getSearchResult();
@@ -38,10 +40,14 @@ export class SearchComponent implements OnInit {
 
   getSearchResult() {
     if (this.searchContent != null && this.searchContent !== '') {
+      this.progressService.openProgressBar();
       const searchUrl = AppSettings.getSearchQuestionList(this.searchContent, 0);
       this.httpClient
         .get<IndexData[]>(searchUrl)
-        .subscribe( data => { this.dealReturnResult(data); });
+        .subscribe( data => {
+          this.dealReturnResult(data);
+          this.progressService.closeProgressBar();
+        });
     }
   }
 

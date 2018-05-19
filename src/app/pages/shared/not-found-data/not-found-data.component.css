@@ -1,0 +1,22 @@
+.not-found-container {
+  width: 43.5rem;
+  font-size: 1rem;
+  color: #303F9F;
+}
+@media (max-width: 1199.98px) {
+  .not-found-container {
+    width: 35rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .not-found-container {
+    width: 30rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .not-found-container {
+    width: 100%;
+  }
+}

@@ -1,11 +1,9 @@
-<div class="index-container">
-  <span class="fill-remaining-space"></span>
-  <div>
+<div class="search-container">
+  <div class="search-left">
     <app-pages-feed *ngFor="let feed of searchDataList" [feed] = "feed" [CURRENT_FEED_TYPE]="NORMAL_FEED" [isNeedHeader]="true"></app-pages-feed>
     <app-not-found-data *ngIf="notFoundDataState == true" [displayData]="notFoundData"></app-not-found-data>
   </div>
-  <div>
+  <div class="search-right">
     <app-connection></app-connection>
   </div>
-  <span class="fill-remaining-space"></span>
 </div>
