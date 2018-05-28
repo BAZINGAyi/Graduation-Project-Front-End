@@ -27,7 +27,10 @@
       </div>
     </mat-card-content>
   </mat-card>
+  <!--个人TIMELINE-->
+  <app-pages-feed *ngFor="let feed of indexDatas" [feed] = "feed" [CURRENT_FEED_TYPE]="MY_QUESTION" [isNeedHeader]="false">
+  </app-pages-feed>
 </div>
 <!--个人TIMELINE-->
-<app-pages-feed *ngFor="let feed of indexDatas" [feed] = "feed" [CURRENT_FEED_TYPE]="MY_QUESTION" [isNeedHeader]="false">
-</app-pages-feed>
+<!--<app-pages-feed *ngFor="let feed of indexDatas" [feed] = "feed" [CURRENT_FEED_TYPE]="MY_QUESTION" [isNeedHeader]="false">-->
+<!--</app-pages-feed>-->
